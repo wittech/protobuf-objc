@@ -51,6 +51,7 @@ namespace google {
                 bool IsRetainedName(const string& name);
                 
                 bool IsBootstrapFile(const FileDescriptor* file);
+                bool isObjectivecFileOptions(const string& name);
                 
                 bool isObjectArray(const FieldDescriptor* field);
                 // Gets the name of the file we're going to generate (sans the .pb.h

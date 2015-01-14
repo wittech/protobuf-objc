@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3F2404EA1955F7FE0022C703 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F2404E91955F7FE0022C703 /* XCTest.framework */; };
+		3F6E96B91A66B61D004E26F2 /* ObjectivecDescriptor.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F6E96B71A66B61D004E26F2 /* ObjectivecDescriptor.pb.h */; };
+		3F6E96BA1A66B61D004E26F2 /* ObjectivecDescriptor.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6E96B81A66B61D004E26F2 /* ObjectivecDescriptor.pb.m */; };
 		3F7A405A1957772800B7AC58 /* Descriptor.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F7A40581957772800B7AC58 /* Descriptor.pb.h */; };
 		3F7A405B1957772800B7AC58 /* Descriptor.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7A40591957772800B7AC58 /* Descriptor.pb.m */; };
 		3F887B4919102C6000AFDD46 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* libProtocolBuffers.a */; };
@@ -116,6 +118,8 @@
 
 /* Begin PBXFileReference section */
 		3F2404E91955F7FE0022C703 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		3F6E96B71A66B61D004E26F2 /* ObjectivecDescriptor.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectivecDescriptor.pb.h; sourceTree = "<group>"; };
+		3F6E96B81A66B61D004E26F2 /* ObjectivecDescriptor.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectivecDescriptor.pb.m; sourceTree = "<group>"; };
 		3F7A40581957772800B7AC58 /* Descriptor.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Descriptor.pb.h; sourceTree = "<group>"; };
 		3F7A40591957772800B7AC58 /* Descriptor.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Descriptor.pb.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3F7E14901955FAEE00B3DD01 /* golden_message */ = {isa = PBXFileReference; lastKnownFileType = file; path = golden_message; sourceTree = "<group>"; };
@@ -490,6 +494,8 @@
 		C5CBB803126CBD6700354923 /* Internal */ = {
 			isa = PBXGroup;
 			children = (
+				3F6E96B71A66B61D004E26F2 /* ObjectivecDescriptor.pb.h */,
+				3F6E96B81A66B61D004E26F2 /* ObjectivecDescriptor.pb.m */,
 				3F7A40581957772800B7AC58 /* Descriptor.pb.h */,
 				3F7A40591957772800B7AC58 /* Descriptor.pb.m */,
 			);
@@ -527,6 +533,7 @@
 				C586266712668C5800204EE1 /* GeneratedMessageBuilder.h in Headers */,
 				C586266912668C5800204EE1 /* GeneratedMessage.h in Headers */,
 				C586266D12668C5F00204EE1 /* MessageBuilder.h in Headers */,
+				3F6E96B91A66B61D004E26F2 /* ObjectivecDescriptor.pb.h in Headers */,
 				C586266E12668C5F00204EE1 /* Message.h in Headers */,
 				C586267112668C6C00204EE1 /* RingBuffer.h in Headers */,
 				C586267512668C7400204EE1 /* Utilities.h in Headers */,
@@ -556,7 +563,7 @@
 			name = UnitTests;
 			productName = UnitTests;
 			productReference = C5B03F76125179F30087887C /* UnitTests.xctest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		D2AAC07D0554694100DB518D /* ProtocolBuffers */ = {
 			isa = PBXNativeTarget;
@@ -687,6 +694,7 @@
 				C586264812668C2000204EE1 /* UnknownFieldSetBuilder.m in Sources */,
 				C586264A12668C2000204EE1 /* UnknownFieldSet.m in Sources */,
 				C586265012668C2F00204EE1 /* CodedInputStream.m in Sources */,
+				3F6E96BA1A66B61D004E26F2 /* ObjectivecDescriptor.pb.m in Sources */,
 				C586265212668C2F00204EE1 /* CodedOutputStream.m in Sources */,
 				C586265612668C3900204EE1 /* TextFormat.m in Sources */,
 				C586265A12668C4100204EE1 /* WireFormat.m in Sources */,

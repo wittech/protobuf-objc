@@ -216,6 +216,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         return file->name() == "google/protobuf/descriptor.proto";
     }
     
+    bool isObjectivecFileOptions(const string& name) {
+        return name == "ObjectivecDescriptor";
+    }
+    
     
     string FileName(const FileDescriptor* file) {
         string basename;

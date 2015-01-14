@@ -52,9 +52,11 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
 //        }
         
         for (int i = 0; i < file_->dependency_count(); i++) {
-            printer->Print(
-                           "#import \"$header$.pb.h\"\n",
-                           "header", FilePath(file_->dependency(i)));
+            if (!isObjectivecFileOptions(FilePath(file_->dependency(i)))) {
+                printer->Print(
+                               "#import \"$header$.pb.h\"\n",
+                               "header", FilePath(file_->dependency(i)));
+            }
         }
         
         printer->Print(
