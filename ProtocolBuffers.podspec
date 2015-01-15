@@ -38,12 +38,14 @@ Pod::Spec.new do |s|
 
   s.author       = { "Alexey Khokhlov" => "alexeyxo@gmail.com" }
 
-  s.authors      = {  "Alexey Khokhlov" => "alexeyxo@gmail.com" }
+  s.authors      = { "Alexey Khokhlov" => "alexeyxo@gmail.com" }
 
   s.source       = {
     :git => "https://github.com/alexeyxo/protobuf-objc.git", :tag => s.version
   }
+  s.module_name = "ProtocolBuffers"
   s.header_dir = "ProtocolBuffers"
+  s.public_header_files = 'src/runtime/Classes/*.h'
   s.source_files = 'src/runtime/Classes/*.{h,m}'
   s.preserve_paths = 'README.md'
   s.framework    = 'Foundation'
