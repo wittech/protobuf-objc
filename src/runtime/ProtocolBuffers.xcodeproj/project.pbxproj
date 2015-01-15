@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		3F2404EA1955F7FE0022C703 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F2404E91955F7FE0022C703 /* XCTest.framework */; };
-		3F6E96B91A66B61D004E26F2 /* ObjectivecDescriptor.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F6E96B71A66B61D004E26F2 /* ObjectivecDescriptor.pb.h */; };
+		3F6E96B91A66B61D004E26F2 /* ObjectivecDescriptor.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F6E96B71A66B61D004E26F2 /* ObjectivecDescriptor.pb.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F6E96BA1A66B61D004E26F2 /* ObjectivecDescriptor.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6E96B81A66B61D004E26F2 /* ObjectivecDescriptor.pb.m */; };
-		3F7A405A1957772800B7AC58 /* Descriptor.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F7A40581957772800B7AC58 /* Descriptor.pb.h */; };
+		3F7A405A1957772800B7AC58 /* Descriptor.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F7A40581957772800B7AC58 /* Descriptor.pb.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F7A405B1957772800B7AC58 /* Descriptor.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7A40591957772800B7AC58 /* Descriptor.pb.m */; };
-		3F887B4919102C6000AFDD46 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* libProtocolBuffers.a */; };
+		3F887B4919102C6000AFDD46 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* libProtocolBuffers.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		3FD0CF311959F700000C8F68 /* Unittest_custom_options.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD0CF161959F700000C8F68 /* Unittest_custom_options.pb.m */; };
 		3FD0CF321959F700000C8F68 /* Unittest_embed_optimize_for.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD0CF181959F700000C8F68 /* Unittest_embed_optimize_for.pb.m */; };
 		3FD0CF331959F700000C8F68 /* Unittest_empty.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD0CF1A1959F700000C8F68 /* Unittest_empty.pb.m */; };
@@ -509,15 +509,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA747D9F0F9514B9006C5449 /* ProtocolBuffers_Prefix.pch in Headers */,
 				C586262012668B9F00204EE1 /* Bootstrap.h in Headers */,
-				C586262212668BB100204EE1 /* ForwardDeclarations.h in Headers */,
 				C586262412668BBF00204EE1 /* ProtocolBuffers.h in Headers */,
+				AA747D9F0F9514B9006C5449 /* ProtocolBuffers_Prefix.pch in Headers */,
+				C586262212668BB100204EE1 /* ForwardDeclarations.h in Headers */,
 				C586262E12668BCF00204EE1 /* ConcreteExtensionField.h in Headers */,
 				C586263012668BCF00204EE1 /* ExtendableMessageBuilder.h in Headers */,
 				C586263212668BCF00204EE1 /* ExtendableMessage.h in Headers */,
 				C586263412668BCF00204EE1 /* ExtensionField.h in Headers */,
-				3F7A405A1957772800B7AC58 /* Descriptor.pb.h in Headers */,
 				C586263512668BCF00204EE1 /* ExtensionRegistry.h in Headers */,
 				C586263912668BFD00204EE1 /* MutableExtensionRegistry.h in Headers */,
 				C586263D12668C0D00204EE1 /* Field.h in Headers */,
@@ -533,8 +532,9 @@
 				C586266712668C5800204EE1 /* GeneratedMessageBuilder.h in Headers */,
 				C586266912668C5800204EE1 /* GeneratedMessage.h in Headers */,
 				C586266D12668C5F00204EE1 /* MessageBuilder.h in Headers */,
-				3F6E96B91A66B61D004E26F2 /* ObjectivecDescriptor.pb.h in Headers */,
+				3F7A405A1957772800B7AC58 /* Descriptor.pb.h in Headers */,
 				C586266E12668C5F00204EE1 /* Message.h in Headers */,
+				3F6E96B91A66B61D004E26F2 /* ObjectivecDescriptor.pb.h in Headers */,
 				C586267112668C6C00204EE1 /* RingBuffer.h in Headers */,
 				C586267512668C7400204EE1 /* Utilities.h in Headers */,
 				C5D8D7351276810200F0BAE4 /* PBArray.h in Headers */,
@@ -736,6 +736,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = YES;
 				DSTROOT = /tmp/ProtocolBuffers.dst;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -744,6 +745,7 @@
 				GCC_PREFIX_HEADER = ProtocolBuffers_Prefix.pch;
 				INSTALL_PATH = /usr/local/lib;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MODULE_NAME = ProtocolBuffers;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = ProtocolBuffers;
 				SDKROOT = iphoneos;
@@ -760,12 +762,14 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
+				DEFINES_MODULE = YES;
 				DSTROOT = /tmp/ProtocolBuffers.dst;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ProtocolBuffers_Prefix.pch;
 				INSTALL_PATH = /usr/local/lib;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MODULE_NAME = ProtocolBuffers;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = ProtocolBuffers;
 				SDKROOT = iphoneos;
@@ -822,9 +826,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
@@ -859,10 +866,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
