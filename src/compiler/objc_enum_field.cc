@@ -204,7 +204,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     void EnumFieldGenerator::GenerateDescriptionCodeSource(io::Printer* printer) const {
         printer->Print(variables_,
                        "if (self.has$capitalized_name$) {\n"
-                       "  [output appendFormat:@\"%@%@: %@\\n\", indent, @\"$name$\", [NSNumber numberWithInteger:self.$name$]];\n"
+                       "  [output appendFormat:@\"%@%@: %@\\n\", indent, @\"$name$\", NSStringFrom$type$(self.$name$)];\n"
                        "}\n");
     }
     
@@ -454,7 +454,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     void RepeatedEnumFieldGenerator::GenerateDescriptionCodeSource(io::Printer* printer) const {
         printer->Print(variables_,
                        "[self.$list_name$ enumerateObjectsUsingBlock:^(id element, NSUInteger idx, BOOL *stop) {\n"
-                       "  [output appendFormat:@\"%@%@: %@\\n\", indent, @\"$name$\", element];\n"
+                       "  [output appendFormat:@\"%@%@: %@\\n\", indent, @\"$name$\", NSStringFrom$type$([(NSNumber *)element intValue])];\n"
                        "}];\n");
     }
     
