@@ -71,6 +71,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "};\n"
                        "\n"
                        "BOOL $classname$IsValidValue($classname$ value);\n"
+                       "NSString *NSStringFrom$classname$($classname$ value);\n"
                        "\n",
                        "classname", ClassName(descriptor_));
     }
@@ -94,6 +95,23 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "      return NO;\n"
                        "  }\n"
                        "}\n");
+        printer->Print(
+                       "NSString *NSStringFrom$classname$($classname$ value) {\n"
+                       "  switch (value) {\n",
+                       "classname", ClassName(descriptor_));
+        
+        for (int i = 0; i < canonical_values_.size(); i++) {
+            printer->Print(
+                           "    case $name$:\n"
+                           "      return @\"$name$\";\n",
+                           "name", EnumValueName(canonical_values_[i]));
+        }
+        
+        printer->Print(
+                       "    default:\n"
+                       "      return nil;\n"
+                       "  }\n"
+                       "}\n\n");
     }
 }  // namespace objectivec
 }  // namespace compiler
