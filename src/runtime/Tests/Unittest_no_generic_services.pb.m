@@ -42,6 +42,15 @@ BOOL TestEnumIsValidValue(TestEnum value) {
       return NO;
   }
 }
+NSString *NSStringFromTestEnum(TestEnum value) {
+  switch (value) {
+    case TestEnumFoo:
+      return @"TestEnumFoo";
+    default:
+      return nil;
+  }
+}
+
 @interface TestMessage ()
 @property SInt32 a;
 @end

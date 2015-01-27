@@ -28,6 +28,7 @@ typedef NS_ENUM(SInt32, ImportEnum) {
 };
 
 BOOL ImportEnumIsValidValue(ImportEnum value);
+NSString *NSStringFromImportEnum(ImportEnum value);
 
 
 @interface UnittestImportRoot : NSObject {
@@ -36,7 +37,7 @@ BOOL ImportEnumIsValidValue(ImportEnum value);
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
-@interface ImportMessage : PBGeneratedMessage {
+@interface ImportMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasD_:1;
   SInt32 d;

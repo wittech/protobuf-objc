@@ -168,6 +168,7 @@ typedef NS_ENUM(SInt32, ForeignEnum) {
 };
 
 BOOL ForeignEnumIsValidValue(ForeignEnum value);
+NSString *NSStringFromForeignEnum(ForeignEnum value);
 
 typedef NS_ENUM(SInt32, TestEnumWithDupValue) {
   TestEnumWithDupValueFoo1 = 1,
@@ -176,6 +177,7 @@ typedef NS_ENUM(SInt32, TestEnumWithDupValue) {
 };
 
 BOOL TestEnumWithDupValueIsValidValue(TestEnumWithDupValue value);
+NSString *NSStringFromTestEnumWithDupValue(TestEnumWithDupValue value);
 
 typedef NS_ENUM(SInt32, TestSparseEnum) {
   TestSparseEnumSparseA = 123,
@@ -188,6 +190,7 @@ typedef NS_ENUM(SInt32, TestSparseEnum) {
 };
 
 BOOL TestSparseEnumIsValidValue(TestSparseEnum value);
+NSString *NSStringFromTestSparseEnum(TestSparseEnum value);
 
 typedef NS_ENUM(SInt32, TestAllTypesNestedEnum) {
   TestAllTypesNestedEnumFoo = 1,
@@ -197,6 +200,7 @@ typedef NS_ENUM(SInt32, TestAllTypesNestedEnum) {
 };
 
 BOOL TestAllTypesNestedEnumIsValidValue(TestAllTypesNestedEnum value);
+NSString *NSStringFromTestAllTypesNestedEnum(TestAllTypesNestedEnum value);
 
 typedef NS_ENUM(SInt32, TestOneof2NestedEnum) {
   TestOneof2NestedEnumFoo = 1,
@@ -205,6 +209,7 @@ typedef NS_ENUM(SInt32, TestOneof2NestedEnum) {
 };
 
 BOOL TestOneof2NestedEnumIsValidValue(TestOneof2NestedEnum value);
+NSString *NSStringFromTestOneof2NestedEnum(TestOneof2NestedEnum value);
 
 typedef NS_ENUM(SInt32, TestDynamicExtensionsDynamicEnumType) {
   TestDynamicExtensionsDynamicEnumTypeDynamicFoo = 2200,
@@ -213,6 +218,7 @@ typedef NS_ENUM(SInt32, TestDynamicExtensionsDynamicEnumType) {
 };
 
 BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynamicEnumType value);
+NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensionsDynamicEnumType value);
 
 
 @interface UnittestRoot : NSObject {
@@ -326,7 +332,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 + (id<PBExtensionField>) unpackedEnumExtension;
 @end
 
-@interface TestAllTypes : PBGeneratedMessage {
+@interface TestAllTypes : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasOptionalBool_:1;
   BOOL hasDefaultBool_:1;
@@ -623,7 +629,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 + (TestAllTypes*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestAllTypesNestedMessage : PBGeneratedMessage {
+@interface TestAllTypesNestedMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasBb_:1;
   SInt32 bb;
@@ -672,7 +678,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestAllTypesNestedMessageBuilder*) clearBb;
 @end
 
-@interface TestAllTypesOptionalGroup : PBGeneratedMessage {
+@interface TestAllTypesOptionalGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
   SInt32 a;
@@ -721,7 +727,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestAllTypesOptionalGroupBuilder*) clearA;
 @end
 
-@interface TestAllTypesRepeatedGroup : PBGeneratedMessage {
+@interface TestAllTypesRepeatedGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
   SInt32 a;
@@ -1218,7 +1224,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestAllTypesBuilder*) clearOneofBytes;
 @end
 
-@interface NestedTestAllTypes : PBGeneratedMessage {
+@interface NestedTestAllTypes : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasChild_:1;
   BOOL hasPayload_:1;
@@ -1280,7 +1286,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (NestedTestAllTypesBuilder*) clearPayload;
 @end
 
-@interface TestDeprecatedFields : PBGeneratedMessage {
+@interface TestDeprecatedFields : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasDeprecatedInt32_:1;
   SInt32 deprecatedInt32;
@@ -1329,7 +1335,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestDeprecatedFieldsBuilder*) clearDeprecatedInt32;
 @end
 
-@interface ForeignMessage : PBGeneratedMessage {
+@interface ForeignMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasC_:1;
   SInt32 c;
@@ -1378,7 +1384,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (ForeignMessageBuilder*) clearC;
 @end
 
-@interface TestAllExtensions : PBExtendableMessage {
+@interface TestAllExtensions : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -1418,7 +1424,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestAllExtensionsBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface OptionalGroup_extension : PBGeneratedMessage {
+@interface OptionalGroup_extension : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
   SInt32 a;
@@ -1467,7 +1473,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (OptionalGroup_extensionBuilder*) clearA;
 @end
 
-@interface RepeatedGroup_extension : PBGeneratedMessage {
+@interface RepeatedGroup_extension : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
   SInt32 a;
@@ -1516,7 +1522,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (RepeatedGroup_extensionBuilder*) clearA;
 @end
 
-@interface TestNestedExtension : PBGeneratedMessage {
+@interface TestNestedExtension : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -1558,7 +1564,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestNestedExtensionBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestRequired : PBGeneratedMessage {
+@interface TestRequired : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
   BOOL hasDummy2_:1;
@@ -1897,7 +1903,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestRequiredBuilder*) clearC;
 @end
 
-@interface TestRequiredForeign : PBGeneratedMessage {
+@interface TestRequiredForeign : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasDummy_:1;
   BOOL hasOptionalMessage_:1;
@@ -1966,7 +1972,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestRequiredForeignBuilder*) clearDummy;
 @end
 
-@interface TestForeignNested : PBGeneratedMessage {
+@interface TestForeignNested : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasForeignNested_:1;
   TestAllTypesNestedMessage* foreignNested;
@@ -2017,7 +2023,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestForeignNestedBuilder*) clearForeignNested;
 @end
 
-@interface TestEmptyMessage : PBGeneratedMessage {
+@interface TestEmptyMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -2057,7 +2063,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestEmptyMessageBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestEmptyMessageWithExtensions : PBExtendableMessage {
+@interface TestEmptyMessageWithExtensions : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -2097,7 +2103,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestEmptyMessageWithExtensionsBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestMultipleExtensionRanges : PBExtendableMessage {
+@interface TestMultipleExtensionRanges : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -2137,7 +2143,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestMultipleExtensionRangesBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestReallyLargeTagNumber : PBGeneratedMessage {
+@interface TestReallyLargeTagNumber : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
   BOOL hasBb_:1;
@@ -2195,7 +2201,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestReallyLargeTagNumberBuilder*) clearBb;
 @end
 
-@interface TestRecursiveMessage : PBGeneratedMessage {
+@interface TestRecursiveMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasI_:1;
   BOOL hasA_:1;
@@ -2255,7 +2261,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestRecursiveMessageBuilder*) clearI;
 @end
 
-@interface TestMutualRecursionA : PBGeneratedMessage {
+@interface TestMutualRecursionA : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasBb_:1;
   TestMutualRecursionB* bb;
@@ -2306,7 +2312,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestMutualRecursionABuilder*) clearBb;
 @end
 
-@interface TestMutualRecursionB : PBGeneratedMessage {
+@interface TestMutualRecursionB : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasOptionalInt32_:1;
   BOOL hasA_:1;
@@ -2366,7 +2372,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestMutualRecursionBBuilder*) clearOptionalInt32;
 @end
 
-@interface TestDupFieldNumber : PBGeneratedMessage {
+@interface TestDupFieldNumber : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
   BOOL hasFoo_:1;
@@ -2400,7 +2406,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 + (TestDupFieldNumber*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestDupFieldNumberFoo : PBGeneratedMessage {
+@interface TestDupFieldNumberFoo : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
   SInt32 a;
@@ -2449,7 +2455,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestDupFieldNumberFooBuilder*) clearA;
 @end
 
-@interface TestDupFieldNumberBar : PBGeneratedMessage {
+@interface TestDupFieldNumberBar : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
   SInt32 a;
@@ -2535,7 +2541,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestDupFieldNumberBuilder*) clearBar;
 @end
 
-@interface TestEagerMessage : PBGeneratedMessage {
+@interface TestEagerMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasSubMessage_:1;
   TestAllTypes* subMessage;
@@ -2586,7 +2592,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestEagerMessageBuilder*) clearSubMessage;
 @end
 
-@interface TestLazyMessage : PBGeneratedMessage {
+@interface TestLazyMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasSubMessage_:1;
   TestAllTypes* subMessage;
@@ -2637,7 +2643,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestLazyMessageBuilder*) clearSubMessage;
 @end
 
-@interface TestNestedMessageHasBits : PBGeneratedMessage {
+@interface TestNestedMessageHasBits : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasOptionalNestedMessage_:1;
   TestNestedMessageHasBitsNestedMessage* optionalNestedMessage;
@@ -2663,7 +2669,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 + (TestNestedMessageHasBits*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestNestedMessageHasBitsNestedMessage : PBGeneratedMessage {
+@interface TestNestedMessageHasBitsNestedMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   PBAppendableArray * nestedmessageRepeatedInt32Array;
   NSMutableArray * nestedmessageRepeatedForeignmessageArray;
@@ -2747,7 +2753,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestNestedMessageHasBitsBuilder*) clearOptionalNestedMessage;
 @end
 
-@interface TestCamelCaseFieldNames : PBGeneratedMessage {
+@interface TestCamelCaseFieldNames : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasPrimitiveField_:1;
   BOOL hasStringField_:1;
@@ -2899,7 +2905,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestCamelCaseFieldNamesBuilder *)clearRepeatedCordField;
 @end
 
-@interface TestFieldOrderings : PBExtendableMessage {
+@interface TestFieldOrderings : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasMyFloat_:1;
   BOOL hasMyInt_:1;
@@ -2966,7 +2972,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestFieldOrderingsBuilder*) clearMyFloat;
 @end
 
-@interface TestExtremeDefaultValues : PBGeneratedMessage {
+@interface TestExtremeDefaultValues : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasInfDouble_:1;
   BOOL hasNegInfDouble_:1;
@@ -3249,7 +3255,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestExtremeDefaultValuesBuilder*) clearReplacementString;
 @end
 
-@interface SparseEnumMessage : PBGeneratedMessage {
+@interface SparseEnumMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasSparseEnum_:1;
   TestSparseEnum sparseEnum;
@@ -3298,7 +3304,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (SparseEnumMessageBuilder*) clearSparseEnum;
 @end
 
-@interface OneString : PBGeneratedMessage {
+@interface OneString : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasData_:1;
   NSString* data;
@@ -3347,7 +3353,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (OneStringBuilder*) clearData;
 @end
 
-@interface MoreString : PBGeneratedMessage {
+@interface MoreString : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   NSMutableArray * dataArray;
 }
@@ -3396,7 +3402,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (MoreStringBuilder *)clearData;
 @end
 
-@interface OneBytes : PBGeneratedMessage {
+@interface OneBytes : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasData_:1;
   NSData* data;
@@ -3445,7 +3451,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (OneBytesBuilder*) clearData;
 @end
 
-@interface MoreBytes : PBGeneratedMessage {
+@interface MoreBytes : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   NSMutableArray * dataArray;
 }
@@ -3494,7 +3500,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (MoreBytesBuilder *)clearData;
 @end
 
-@interface Int32Message : PBGeneratedMessage {
+@interface Int32Message : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasData_:1;
   SInt32 data;
@@ -3543,7 +3549,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (Int32MessageBuilder*) clearData;
 @end
 
-@interface Uint32Message : PBGeneratedMessage {
+@interface Uint32Message : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasData_:1;
   UInt32 data;
@@ -3592,7 +3598,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (Uint32MessageBuilder*) clearData;
 @end
 
-@interface Int64Message : PBGeneratedMessage {
+@interface Int64Message : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasData_:1;
   SInt64 data;
@@ -3641,7 +3647,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (Int64MessageBuilder*) clearData;
 @end
 
-@interface Uint64Message : PBGeneratedMessage {
+@interface Uint64Message : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasData_:1;
   UInt64 data;
@@ -3690,7 +3696,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (Uint64MessageBuilder*) clearData;
 @end
 
-@interface BoolMessage : PBGeneratedMessage {
+@interface BoolMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasData_:1;
   BOOL data_:1;
@@ -3739,7 +3745,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (BoolMessageBuilder*) clearData;
 @end
 
-@interface TestOneof : PBGeneratedMessage {
+@interface TestOneof : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasFooInt_:1;
   BOOL hasFooString_:1;
@@ -3777,7 +3783,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 + (TestOneof*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestOneofFooGroup : PBGeneratedMessage {
+@interface TestOneofFooGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
   BOOL hasB_:1;
@@ -3877,7 +3883,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestOneofBuilder*) clearFooGroup;
 @end
 
-@interface TestOneofBackwardsCompatible : PBGeneratedMessage {
+@interface TestOneofBackwardsCompatible : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasFooInt_:1;
   BOOL hasFooString_:1;
@@ -3915,7 +3921,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 + (TestOneofBackwardsCompatible*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestOneofBackwardsCompatibleFooGroup : PBGeneratedMessage {
+@interface TestOneofBackwardsCompatibleFooGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
   BOOL hasB_:1;
@@ -4015,7 +4021,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestOneofBackwardsCompatibleBuilder*) clearFooGroup;
 @end
 
-@interface TestOneof2 : PBGeneratedMessage {
+@interface TestOneof2 : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasFooInt_:1;
   BOOL hasBarInt_:1;
@@ -4105,7 +4111,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 + (TestOneof2*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestOneof2FooGroup : PBGeneratedMessage {
+@interface TestOneof2FooGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
   BOOL hasB_:1;
@@ -4163,7 +4169,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestOneof2FooGroupBuilder*) clearB;
 @end
 
-@interface TestOneof2NestedMessage : PBGeneratedMessage {
+@interface TestOneof2NestedMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasQuxInt_:1;
   SInt64 quxInt;
@@ -4331,7 +4337,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestOneof2Builder*) clearBazString;
 @end
 
-@interface TestRequiredOneof : PBGeneratedMessage {
+@interface TestRequiredOneof : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasFooInt_:1;
   BOOL hasFooString_:1;
@@ -4365,7 +4371,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 + (TestRequiredOneof*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestRequiredOneofNestedMessage : PBGeneratedMessage {
+@interface TestRequiredOneofNestedMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasRequiredDouble_:1;
   Float64 requiredDouble;
@@ -4449,7 +4455,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestRequiredOneofBuilder*) clearFooMessage;
 @end
 
-@interface TestPackedTypes : PBGeneratedMessage {
+@interface TestPackedTypes : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   PBAppendableArray * packedBoolArray;
   SInt32 packedBoolMemoizedSerializedSize;
@@ -4643,7 +4649,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestPackedTypesBuilder *)clearPackedEnum;
 @end
 
-@interface TestUnpackedTypes : PBGeneratedMessage {
+@interface TestUnpackedTypes : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   PBAppendableArray * unpackedBoolArray;
   PBAppendableArray * unpackedDoubleArray;
@@ -4823,7 +4829,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestUnpackedTypesBuilder *)clearUnpackedEnum;
 @end
 
-@interface TestPackedExtensions : PBExtendableMessage {
+@interface TestPackedExtensions : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -4863,7 +4869,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestPackedExtensionsBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestUnpackedExtensions : PBExtendableMessage {
+@interface TestUnpackedExtensions : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -4903,7 +4909,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestUnpackedExtensionsBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestDynamicExtensions : PBGeneratedMessage {
+@interface TestDynamicExtensions : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasScalarExtension_:1;
   BOOL hasMessageExtension_:1;
@@ -4952,7 +4958,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 + (TestDynamicExtensions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestDynamicExtensionsDynamicMessageType : PBGeneratedMessage {
+@interface TestDynamicExtensionsDynamicMessageType : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasDynamicField_:1;
   SInt32 dynamicField;
@@ -5061,7 +5067,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestDynamicExtensionsBuilder *)clearPackedExtension;
 @end
 
-@interface TestRepeatedScalarDifferentTagSizes : PBGeneratedMessage {
+@interface TestRepeatedScalarDifferentTagSizes : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   PBAppendableArray * repeatedFloatArray;
   PBAppendableArray * repeatedInt64Array;
@@ -5161,7 +5167,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestRepeatedScalarDifferentTagSizesBuilder *)clearRepeatedUint64;
 @end
 
-@interface TestParsingMerge : PBExtendableMessage {
+@interface TestParsingMerge : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasOptionalGroup_:1;
   BOOL hasRequiredAllTypes_:1;
@@ -5203,7 +5209,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 + (TestParsingMerge*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestParsingMergeRepeatedFieldsGenerator : PBGeneratedMessage {
+@interface TestParsingMergeRepeatedFieldsGenerator : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   NSMutableArray * group1Array;
   NSMutableArray * group2Array;
@@ -5246,7 +5252,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 + (TestParsingMergeRepeatedFieldsGenerator*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestParsingMergeRepeatedFieldsGeneratorGroup1 : PBGeneratedMessage {
+@interface TestParsingMergeRepeatedFieldsGeneratorGroup1 : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasField1_:1;
   TestAllTypes* field1;
@@ -5297,7 +5303,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestParsingMergeRepeatedFieldsGeneratorGroup1Builder*) clearField1;
 @end
 
-@interface TestParsingMergeRepeatedFieldsGeneratorGroup2 : PBGeneratedMessage {
+@interface TestParsingMergeRepeatedFieldsGeneratorGroup2 : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasField1_:1;
   TestAllTypes* field1;
@@ -5408,7 +5414,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestParsingMergeRepeatedFieldsGeneratorBuilder *)clearExt2;
 @end
 
-@interface TestParsingMergeOptionalGroup : PBGeneratedMessage {
+@interface TestParsingMergeOptionalGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasOptionalGroupAllTypes_:1;
   TestAllTypes* optionalGroupAllTypes;
@@ -5459,7 +5465,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestParsingMergeOptionalGroupBuilder*) clearOptionalGroupAllTypes;
 @end
 
-@interface TestParsingMergeRepeatedGroup : PBGeneratedMessage {
+@interface TestParsingMergeRepeatedGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasRepeatedGroupAllTypes_:1;
   TestAllTypes* repeatedGroupAllTypes;
@@ -5561,7 +5567,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestParsingMergeBuilder *)clearRepeatedGroup;
 @end
 
-@interface TestCommentInjectionMessage : PBGeneratedMessage {
+@interface TestCommentInjectionMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
   NSString* a;
@@ -5610,7 +5616,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (TestCommentInjectionMessageBuilder*) clearA;
 @end
 
-@interface FooRequest : PBGeneratedMessage {
+@interface FooRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -5650,7 +5656,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (FooRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface FooResponse : PBGeneratedMessage {
+@interface FooResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -5690,7 +5696,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (FooResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface FooClientMessage : PBGeneratedMessage {
+@interface FooClientMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -5730,7 +5736,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (FooClientMessageBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface FooServerMessage : PBGeneratedMessage {
+@interface FooServerMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -5770,7 +5776,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (FooServerMessageBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface BarRequest : PBGeneratedMessage {
+@interface BarRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -5810,7 +5816,7 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
 - (BarRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface BarResponse : PBGeneratedMessage {
+@interface BarResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 

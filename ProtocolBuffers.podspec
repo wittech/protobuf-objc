@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ProtocolBuffers"
-  s.version      = "1.9.6"
+  s.version      = "1.9.7"
   s.summary      = "Protocol Buffers for Objective-C"
   s.description  = <<-DESC
                       An implementation of Protocol Buffers 2.6 in Objective C.
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
                       DESC
   s.homepage     = "http://protobuf.io#objc"
   s.license      = "Apache 2.0"
-
+  s.documentation_url = "https://github.com/alexeyxo/protobuf-objc"
   s.license      = { :type => 'Apache License, Version 2.0', :text =>
     <<-LICENSE
     Licensed under the Apache License, Version 2.0 (the "License");

@@ -35,7 +35,7 @@
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
-@interface TestMessageSet : PBExtendableMessage {
+@interface TestMessageSet : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -75,7 +75,7 @@
 - (TestMessageSetBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestMessageSetContainer : PBGeneratedMessage {
+@interface TestMessageSetContainer : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasMessageSet_:1;
   TestMessageSet* messageSet;
@@ -126,7 +126,7 @@
 - (TestMessageSetContainerBuilder*) clearMessageSet;
 @end
 
-@interface TestMessageSetExtension1 : PBGeneratedMessage {
+@interface TestMessageSetExtension1 : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasI_:1;
   SInt32 i;
@@ -176,7 +176,7 @@
 - (TestMessageSetExtension1Builder*) clearI;
 @end
 
-@interface TestMessageSetExtension2 : PBGeneratedMessage {
+@interface TestMessageSetExtension2 : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasStr_:1;
   NSString* str;
@@ -226,7 +226,7 @@
 - (TestMessageSetExtension2Builder*) clearStr;
 @end
 
-@interface RawMessageSet : PBGeneratedMessage {
+@interface RawMessageSet : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   NSMutableArray * itemArray;
 }
@@ -251,7 +251,7 @@
 + (RawMessageSet*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface RawMessageSetItem : PBGeneratedMessage {
+@interface RawMessageSetItem : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasTypeId_:1;
   BOOL hasMessage_:1;

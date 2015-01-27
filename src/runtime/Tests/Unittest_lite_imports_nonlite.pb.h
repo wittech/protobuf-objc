@@ -170,7 +170,7 @@
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
-@interface TestLiteImportsNonlite : PBGeneratedMessage {
+@interface TestLiteImportsNonlite : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasMessage_:1;
   TestAllTypes* message;

@@ -174,7 +174,7 @@
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
-@interface TestOptimizedForSize : PBExtendableMessage {
+@interface TestOptimizedForSize : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasI_:1;
   BOOL hasIntegerField_:1;
@@ -254,7 +254,7 @@
 - (TestOptimizedForSizeBuilder*) clearStringField;
 @end
 
-@interface TestRequiredOptimizedForSize : PBGeneratedMessage {
+@interface TestRequiredOptimizedForSize : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasX_:1;
   SInt32 x;
@@ -303,7 +303,7 @@
 - (TestRequiredOptimizedForSizeBuilder*) clearX;
 @end
 
-@interface TestOptionalOptimizedForSize : PBGeneratedMessage {
+@interface TestOptionalOptimizedForSize : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasO_:1;
   TestRequiredOptimizedForSize* o;

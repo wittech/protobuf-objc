@@ -68,6 +68,7 @@ typedef NS_ENUM(SInt32, ForeignEnumLite) {
 };
 
 BOOL ForeignEnumLiteIsValidValue(ForeignEnumLite value);
+NSString *NSStringFromForeignEnumLite(ForeignEnumLite value);
 
 typedef NS_ENUM(SInt32, TestAllTypesLiteNestedEnum) {
   TestAllTypesLiteNestedEnumFoo = 1,
@@ -76,6 +77,7 @@ typedef NS_ENUM(SInt32, TestAllTypesLiteNestedEnum) {
 };
 
 BOOL TestAllTypesLiteNestedEnumIsValidValue(TestAllTypesLiteNestedEnum value);
+NSString *NSStringFromTestAllTypesLiteNestedEnum(TestAllTypesLiteNestedEnum value);
 
 
 @interface UnittestLiteRoot : NSObject {
@@ -173,7 +175,7 @@ BOOL TestAllTypesLiteNestedEnumIsValidValue(TestAllTypesLiteNestedEnum value);
 + (id<PBExtensionField>) packedEnumExtensionLite;
 @end
 
-@interface TestAllTypesLite : PBGeneratedMessage {
+@interface TestAllTypesLite : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasOptionalBool_:1;
   BOOL hasDefaultBool_:1;
@@ -470,7 +472,7 @@ BOOL TestAllTypesLiteNestedEnumIsValidValue(TestAllTypesLiteNestedEnum value);
 + (TestAllTypesLite*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestAllTypesLiteNestedMessage : PBGeneratedMessage {
+@interface TestAllTypesLiteNestedMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasBb_:1;
   SInt32 bb;
@@ -519,7 +521,7 @@ BOOL TestAllTypesLiteNestedEnumIsValidValue(TestAllTypesLiteNestedEnum value);
 - (TestAllTypesLiteNestedMessageBuilder*) clearBb;
 @end
 
-@interface TestAllTypesLiteOptionalGroup : PBGeneratedMessage {
+@interface TestAllTypesLiteOptionalGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
   SInt32 a;
@@ -568,7 +570,7 @@ BOOL TestAllTypesLiteNestedEnumIsValidValue(TestAllTypesLiteNestedEnum value);
 - (TestAllTypesLiteOptionalGroupBuilder*) clearA;
 @end
 
-@interface TestAllTypesLiteRepeatedGroup : PBGeneratedMessage {
+@interface TestAllTypesLiteRepeatedGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
   SInt32 a;
@@ -1065,7 +1067,7 @@ BOOL TestAllTypesLiteNestedEnumIsValidValue(TestAllTypesLiteNestedEnum value);
 - (TestAllTypesLiteBuilder*) clearOneofBytes;
 @end
 
-@interface ForeignMessageLite : PBGeneratedMessage {
+@interface ForeignMessageLite : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasC_:1;
   SInt32 c;
@@ -1114,7 +1116,7 @@ BOOL TestAllTypesLiteNestedEnumIsValidValue(TestAllTypesLiteNestedEnum value);
 - (ForeignMessageLiteBuilder*) clearC;
 @end
 
-@interface TestPackedTypesLite : PBGeneratedMessage {
+@interface TestPackedTypesLite : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   PBAppendableArray * packedBoolArray;
   SInt32 packedBoolMemoizedSerializedSize;
@@ -1308,7 +1310,7 @@ BOOL TestAllTypesLiteNestedEnumIsValidValue(TestAllTypesLiteNestedEnum value);
 - (TestPackedTypesLiteBuilder *)clearPackedEnum;
 @end
 
-@interface TestAllExtensionsLite : PBExtendableMessage {
+@interface TestAllExtensionsLite : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -1348,7 +1350,7 @@ BOOL TestAllTypesLiteNestedEnumIsValidValue(TestAllTypesLiteNestedEnum value);
 - (TestAllExtensionsLiteBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface OptionalGroup_extension_lite : PBGeneratedMessage {
+@interface OptionalGroup_extension_lite : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
   SInt32 a;
@@ -1397,7 +1399,7 @@ BOOL TestAllTypesLiteNestedEnumIsValidValue(TestAllTypesLiteNestedEnum value);
 - (OptionalGroup_extension_liteBuilder*) clearA;
 @end
 
-@interface RepeatedGroup_extension_lite : PBGeneratedMessage {
+@interface RepeatedGroup_extension_lite : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
   SInt32 a;
@@ -1446,7 +1448,7 @@ BOOL TestAllTypesLiteNestedEnumIsValidValue(TestAllTypesLiteNestedEnum value);
 - (RepeatedGroup_extension_liteBuilder*) clearA;
 @end
 
-@interface TestPackedExtensionsLite : PBExtendableMessage {
+@interface TestPackedExtensionsLite : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -1486,7 +1488,7 @@ BOOL TestAllTypesLiteNestedEnumIsValidValue(TestAllTypesLiteNestedEnum value);
 - (TestPackedExtensionsLiteBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestNestedExtensionLite : PBGeneratedMessage {
+@interface TestNestedExtensionLite : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -1527,7 +1529,7 @@ BOOL TestAllTypesLiteNestedEnumIsValidValue(TestAllTypesLiteNestedEnum value);
 - (TestNestedExtensionLiteBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestDeprecatedLite : PBGeneratedMessage {
+@interface TestDeprecatedLite : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasDeprecatedField_:1;
   SInt32 deprecatedField;
@@ -1576,7 +1578,7 @@ BOOL TestAllTypesLiteNestedEnumIsValidValue(TestAllTypesLiteNestedEnum value);
 - (TestDeprecatedLiteBuilder*) clearDeprecatedField;
 @end
 
-@interface TestParsingMergeLite : PBExtendableMessage {
+@interface TestParsingMergeLite : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasOptionalGroup_:1;
   BOOL hasRequiredAllTypes_:1;
@@ -1618,7 +1620,7 @@ BOOL TestAllTypesLiteNestedEnumIsValidValue(TestAllTypesLiteNestedEnum value);
 + (TestParsingMergeLite*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestParsingMergeLiteRepeatedFieldsGenerator : PBGeneratedMessage {
+@interface TestParsingMergeLiteRepeatedFieldsGenerator : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   NSMutableArray * group1Array;
   NSMutableArray * group2Array;
@@ -1661,7 +1663,7 @@ BOOL TestAllTypesLiteNestedEnumIsValidValue(TestAllTypesLiteNestedEnum value);
 + (TestParsingMergeLiteRepeatedFieldsGenerator*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestParsingMergeLiteRepeatedFieldsGeneratorGroup1 : PBGeneratedMessage {
+@interface TestParsingMergeLiteRepeatedFieldsGeneratorGroup1 : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasField1_:1;
   TestAllTypesLite* field1;
@@ -1712,7 +1714,7 @@ BOOL TestAllTypesLiteNestedEnumIsValidValue(TestAllTypesLiteNestedEnum value);
 - (TestParsingMergeLiteRepeatedFieldsGeneratorGroup1Builder*) clearField1;
 @end
 
-@interface TestParsingMergeLiteRepeatedFieldsGeneratorGroup2 : PBGeneratedMessage {
+@interface TestParsingMergeLiteRepeatedFieldsGeneratorGroup2 : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasField1_:1;
   TestAllTypesLite* field1;
@@ -1823,7 +1825,7 @@ BOOL TestAllTypesLiteNestedEnumIsValidValue(TestAllTypesLiteNestedEnum value);
 - (TestParsingMergeLiteRepeatedFieldsGeneratorBuilder *)clearExt2;
 @end
 
-@interface TestParsingMergeLiteOptionalGroup : PBGeneratedMessage {
+@interface TestParsingMergeLiteOptionalGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasOptionalGroupAllTypes_:1;
   TestAllTypesLite* optionalGroupAllTypes;
@@ -1874,7 +1876,7 @@ BOOL TestAllTypesLiteNestedEnumIsValidValue(TestAllTypesLiteNestedEnum value);
 - (TestParsingMergeLiteOptionalGroupBuilder*) clearOptionalGroupAllTypes;
 @end
 
-@interface TestParsingMergeLiteRepeatedGroup : PBGeneratedMessage {
+@interface TestParsingMergeLiteRepeatedGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasRepeatedGroupAllTypes_:1;
   TestAllTypesLite* repeatedGroupAllTypes;
@@ -1976,7 +1978,7 @@ BOOL TestAllTypesLiteNestedEnumIsValidValue(TestAllTypesLiteNestedEnum value);
 - (TestParsingMergeLiteBuilder *)clearRepeatedGroup;
 @end
 
-@interface TestEmptyMessageLite : PBGeneratedMessage {
+@interface TestEmptyMessageLite : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -2016,7 +2018,7 @@ BOOL TestAllTypesLiteNestedEnumIsValidValue(TestAllTypesLiteNestedEnum value);
 - (TestEmptyMessageLiteBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestEmptyMessageWithExtensionsLite : PBExtendableMessage {
+@interface TestEmptyMessageWithExtensionsLite : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
 }
 

@@ -634,6 +634,17 @@ BOOL MethodOpt1IsValidValue(MethodOpt1 value) {
       return NO;
   }
 }
+NSString *NSStringFromMethodOpt1(MethodOpt1 value) {
+  switch (value) {
+    case MethodOpt1Methodopt1Val1:
+      return @"MethodOpt1Methodopt1Val1";
+    case MethodOpt1Methodopt1Val2:
+      return @"MethodOpt1Methodopt1Val2";
+    default:
+      return nil;
+  }
+}
+
 BOOL AggregateEnumIsValidValue(AggregateEnum value) {
   switch (value) {
     case AggregateEnumValue:
@@ -642,6 +653,15 @@ BOOL AggregateEnumIsValidValue(AggregateEnum value) {
       return NO;
   }
 }
+NSString *NSStringFromAggregateEnum(AggregateEnum value) {
+  switch (value) {
+    case AggregateEnumValue:
+      return @"AggregateEnumValue";
+    default:
+      return nil;
+  }
+}
+
 @interface TestMessageWithCustomOptions ()
 @property (strong) NSString* field1;
 @end
@@ -764,6 +784,17 @@ BOOL TestMessageWithCustomOptionsAnEnumIsValidValue(TestMessageWithCustomOptions
       return NO;
   }
 }
+NSString *NSStringFromTestMessageWithCustomOptionsAnEnum(TestMessageWithCustomOptionsAnEnum value) {
+  switch (value) {
+    case TestMessageWithCustomOptionsAnEnumAnenumVal1:
+      return @"TestMessageWithCustomOptionsAnEnumAnenumVal1";
+    case TestMessageWithCustomOptionsAnEnumAnenumVal2:
+      return @"TestMessageWithCustomOptionsAnEnumAnenumVal2";
+    default:
+      return nil;
+  }
+}
+
 @interface TestMessageWithCustomOptionsBuilder()
 @property (strong) TestMessageWithCustomOptions* resultTestMessageWithCustomOptions;
 @end
@@ -1566,6 +1597,17 @@ BOOL DummyMessageContainingEnumTestEnumTypeIsValidValue(DummyMessageContainingEn
       return NO;
   }
 }
+NSString *NSStringFromDummyMessageContainingEnumTestEnumType(DummyMessageContainingEnumTestEnumType value) {
+  switch (value) {
+    case DummyMessageContainingEnumTestEnumTypeTestOptionEnumType1:
+      return @"DummyMessageContainingEnumTestEnumTypeTestOptionEnumType1";
+    case DummyMessageContainingEnumTestEnumTypeTestOptionEnumType2:
+      return @"DummyMessageContainingEnumTestEnumTypeTestOptionEnumType2";
+    default:
+      return nil;
+  }
+}
+
 @interface DummyMessageContainingEnumBuilder()
 @property (strong) DummyMessageContainingEnum* resultDummyMessageContainingEnum;
 @end
@@ -5511,6 +5553,15 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value) {
       return NO;
   }
 }
+NSString *NSStringFromNestedOptionTypeNestedEnum(NestedOptionTypeNestedEnum value) {
+  switch (value) {
+    case NestedOptionTypeNestedEnumNestedEnumValue:
+      return @"NestedOptionTypeNestedEnumNestedEnumValue";
+    default:
+      return nil;
+  }
+}
+
 @interface NestedOptionTypeNestedMessage ()
 @property SInt32 nestedField;
 @end

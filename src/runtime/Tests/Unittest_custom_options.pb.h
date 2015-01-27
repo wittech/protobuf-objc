@@ -115,12 +115,14 @@ typedef NS_ENUM(SInt32, MethodOpt1) {
 };
 
 BOOL MethodOpt1IsValidValue(MethodOpt1 value);
+NSString *NSStringFromMethodOpt1(MethodOpt1 value);
 
 typedef NS_ENUM(SInt32, AggregateEnum) {
   AggregateEnumValue = 1,
 };
 
 BOOL AggregateEnumIsValidValue(AggregateEnum value);
+NSString *NSStringFromAggregateEnum(AggregateEnum value);
 
 typedef NS_ENUM(SInt32, TestMessageWithCustomOptionsAnEnum) {
   TestMessageWithCustomOptionsAnEnumAnenumVal1 = 1,
@@ -128,6 +130,7 @@ typedef NS_ENUM(SInt32, TestMessageWithCustomOptionsAnEnum) {
 };
 
 BOOL TestMessageWithCustomOptionsAnEnumIsValidValue(TestMessageWithCustomOptionsAnEnum value);
+NSString *NSStringFromTestMessageWithCustomOptionsAnEnum(TestMessageWithCustomOptionsAnEnum value);
 
 typedef NS_ENUM(SInt32, DummyMessageContainingEnumTestEnumType) {
   DummyMessageContainingEnumTestEnumTypeTestOptionEnumType1 = 22,
@@ -135,12 +138,14 @@ typedef NS_ENUM(SInt32, DummyMessageContainingEnumTestEnumType) {
 };
 
 BOOL DummyMessageContainingEnumTestEnumTypeIsValidValue(DummyMessageContainingEnumTestEnumType value);
+NSString *NSStringFromDummyMessageContainingEnumTestEnumType(DummyMessageContainingEnumTestEnumType value);
 
 typedef NS_ENUM(SInt32, NestedOptionTypeNestedEnum) {
   NestedOptionTypeNestedEnumNestedEnumValue = 1,
 };
 
 BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
+NSString *NSStringFromNestedOptionTypeNestedEnum(NestedOptionTypeNestedEnum value);
 
 
 @interface UnittestCustomOptionsRoot : NSObject {
@@ -189,7 +194,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 + (id<PBExtensionField>) methodopt;
 @end
 
-@interface TestMessageWithCustomOptions : PBGeneratedMessage {
+@interface TestMessageWithCustomOptions : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasField1_:1;
   NSString* field1;
@@ -238,7 +243,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 - (TestMessageWithCustomOptionsBuilder*) clearField1;
 @end
 
-@interface CustomOptionFooRequest : PBGeneratedMessage {
+@interface CustomOptionFooRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -278,7 +283,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 - (CustomOptionFooRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface CustomOptionFooResponse : PBGeneratedMessage {
+@interface CustomOptionFooResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -318,7 +323,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 - (CustomOptionFooResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface CustomOptionFooClientMessage : PBGeneratedMessage {
+@interface CustomOptionFooClientMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -358,7 +363,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 - (CustomOptionFooClientMessageBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface CustomOptionFooServerMessage : PBGeneratedMessage {
+@interface CustomOptionFooServerMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -398,7 +403,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 - (CustomOptionFooServerMessageBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface DummyMessageContainingEnum : PBGeneratedMessage {
+@interface DummyMessageContainingEnum : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -438,7 +443,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 - (DummyMessageContainingEnumBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface DummyMessageInvalidAsOptionType : PBGeneratedMessage {
+@interface DummyMessageInvalidAsOptionType : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -478,7 +483,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 - (DummyMessageInvalidAsOptionTypeBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface CustomOptionMinIntegerValues : PBGeneratedMessage {
+@interface CustomOptionMinIntegerValues : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -518,7 +523,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 - (CustomOptionMinIntegerValuesBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface CustomOptionMaxIntegerValues : PBGeneratedMessage {
+@interface CustomOptionMaxIntegerValues : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -558,7 +563,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 - (CustomOptionMaxIntegerValuesBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface CustomOptionOtherValues : PBGeneratedMessage {
+@interface CustomOptionOtherValues : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -598,7 +603,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 - (CustomOptionOtherValuesBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface SettingRealsFromPositiveInts : PBGeneratedMessage {
+@interface SettingRealsFromPositiveInts : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -638,7 +643,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 - (SettingRealsFromPositiveIntsBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface SettingRealsFromNegativeInts : PBGeneratedMessage {
+@interface SettingRealsFromNegativeInts : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -678,7 +683,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 - (SettingRealsFromNegativeIntsBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface ComplexOptionType1 : PBExtendableMessage {
+@interface ComplexOptionType1 : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasFoo_:1;
   BOOL hasFoo2_:1;
@@ -755,7 +760,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 - (ComplexOptionType1Builder *)clearFoo4;
 @end
 
-@interface ComplexOptionType2 : PBExtendableMessage {
+@interface ComplexOptionType2 : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasBaz_:1;
   BOOL hasBar_:1;
@@ -792,7 +797,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 + (ComplexOptionType2*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface ComplexOptionType2ComplexOptionType4 : PBGeneratedMessage {
+@interface ComplexOptionType2ComplexOptionType4 : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasWaldo_:1;
   SInt32 waldo;
@@ -885,7 +890,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 - (ComplexOptionType2Builder *)clearBarney;
 @end
 
-@interface ComplexOptionType3 : PBGeneratedMessage {
+@interface ComplexOptionType3 : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasQux_:1;
   BOOL hasComplexOptionType5_:1;
@@ -915,7 +920,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 + (ComplexOptionType3*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface ComplexOptionType3ComplexOptionType5 : PBGeneratedMessage {
+@interface ComplexOptionType3ComplexOptionType5 : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasPlugh_:1;
   SInt32 plugh;
@@ -994,7 +999,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 - (ComplexOptionType3Builder*) clearComplexOptionType5;
 @end
 
-@interface ComplexOpt6 : PBGeneratedMessage {
+@interface ComplexOpt6 : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasXyzzy_:1;
   SInt32 xyzzy;
@@ -1043,7 +1048,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 - (ComplexOpt6Builder*) clearXyzzy;
 @end
 
-@interface VariousComplexOptions : PBGeneratedMessage {
+@interface VariousComplexOptions : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -1083,7 +1088,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 - (VariousComplexOptionsBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface AggregateMessageSet : PBExtendableMessage {
+@interface AggregateMessageSet : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -1123,7 +1128,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 - (AggregateMessageSetBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface AggregateMessageSetElement : PBGeneratedMessage {
+@interface AggregateMessageSetElement : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasS_:1;
   NSString* s;
@@ -1173,7 +1178,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 - (AggregateMessageSetElementBuilder*) clearS;
 @end
 
-@interface Aggregate : PBGeneratedMessage {
+@interface Aggregate : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasI_:1;
   BOOL hasS_:1;
@@ -1265,7 +1270,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 - (AggregateBuilder*) clearMset;
 @end
 
-@interface AggregateMessage : PBGeneratedMessage {
+@interface AggregateMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasFieldname_:1;
   SInt32 fieldname;
@@ -1314,7 +1319,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 - (AggregateMessageBuilder*) clearFieldname;
 @end
 
-@interface NestedOptionType : PBGeneratedMessage {
+@interface NestedOptionType : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
@@ -1337,7 +1342,7 @@ BOOL NestedOptionTypeNestedEnumIsValidValue(NestedOptionTypeNestedEnum value);
 + (NestedOptionType*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface NestedOptionTypeNestedMessage : PBGeneratedMessage {
+@interface NestedOptionTypeNestedMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasNestedField_:1;
   SInt32 nestedField;

@@ -176,7 +176,7 @@
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
-@interface TestEmbedOptimizedForSize : PBGeneratedMessage {
+@interface TestEmbedOptimizedForSize : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasOptionalMessage_:1;
   TestOptimizedForSize* optionalMessage;

@@ -31,6 +31,19 @@ BOOL ImportEnumIsValidValue(ImportEnum value) {
       return NO;
   }
 }
+NSString *NSStringFromImportEnum(ImportEnum value) {
+  switch (value) {
+    case ImportEnumImportFoo:
+      return @"ImportEnumImportFoo";
+    case ImportEnumImportBar:
+      return @"ImportEnumImportBar";
+    case ImportEnumImportBaz:
+      return @"ImportEnumImportBaz";
+    default:
+      return nil;
+  }
+}
+
 @interface ImportMessage ()
 @property SInt32 d;
 @end

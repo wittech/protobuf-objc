@@ -2219,10 +2219,10 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"number", [NSNumber numberWithInteger:self.number]];
   }
   if (self.hasLabel) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"label", [NSNumber numberWithInteger:self.label]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"label", NSStringFromPBFieldDescriptorProtoLabel(self.label)];
   }
   if (self.hasType) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"type", [NSNumber numberWithInteger:self.type]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"type", NSStringFromPBFieldDescriptorProtoType(self.type)];
   }
   if (self.hasTypeName) {
     [output appendFormat:@"%@%@: %@\n", indent, @"typeName", self.typeName];
@@ -2329,6 +2329,49 @@ BOOL PBFieldDescriptorProtoTypeIsValidValue(PBFieldDescriptorProtoType value) {
       return NO;
   }
 }
+NSString *NSStringFromPBFieldDescriptorProtoType(PBFieldDescriptorProtoType value) {
+  switch (value) {
+    case PBFieldDescriptorProtoTypeTypeDouble:
+      return @"PBFieldDescriptorProtoTypeTypeDouble";
+    case PBFieldDescriptorProtoTypeTypeFloat:
+      return @"PBFieldDescriptorProtoTypeTypeFloat";
+    case PBFieldDescriptorProtoTypeTypeInt64:
+      return @"PBFieldDescriptorProtoTypeTypeInt64";
+    case PBFieldDescriptorProtoTypeTypeUint64:
+      return @"PBFieldDescriptorProtoTypeTypeUint64";
+    case PBFieldDescriptorProtoTypeTypeInt32:
+      return @"PBFieldDescriptorProtoTypeTypeInt32";
+    case PBFieldDescriptorProtoTypeTypeFixed64:
+      return @"PBFieldDescriptorProtoTypeTypeFixed64";
+    case PBFieldDescriptorProtoTypeTypeFixed32:
+      return @"PBFieldDescriptorProtoTypeTypeFixed32";
+    case PBFieldDescriptorProtoTypeTypeBool:
+      return @"PBFieldDescriptorProtoTypeTypeBool";
+    case PBFieldDescriptorProtoTypeTypeString:
+      return @"PBFieldDescriptorProtoTypeTypeString";
+    case PBFieldDescriptorProtoTypeTypeGroup:
+      return @"PBFieldDescriptorProtoTypeTypeGroup";
+    case PBFieldDescriptorProtoTypeTypeMessage:
+      return @"PBFieldDescriptorProtoTypeTypeMessage";
+    case PBFieldDescriptorProtoTypeTypeBytes:
+      return @"PBFieldDescriptorProtoTypeTypeBytes";
+    case PBFieldDescriptorProtoTypeTypeUint32:
+      return @"PBFieldDescriptorProtoTypeTypeUint32";
+    case PBFieldDescriptorProtoTypeTypeEnum:
+      return @"PBFieldDescriptorProtoTypeTypeEnum";
+    case PBFieldDescriptorProtoTypeTypeSfixed32:
+      return @"PBFieldDescriptorProtoTypeTypeSfixed32";
+    case PBFieldDescriptorProtoTypeTypeSfixed64:
+      return @"PBFieldDescriptorProtoTypeTypeSfixed64";
+    case PBFieldDescriptorProtoTypeTypeSint32:
+      return @"PBFieldDescriptorProtoTypeTypeSint32";
+    case PBFieldDescriptorProtoTypeTypeSint64:
+      return @"PBFieldDescriptorProtoTypeTypeSint64";
+    default:
+      return nil;
+  }
+}
+
 BOOL PBFieldDescriptorProtoLabelIsValidValue(PBFieldDescriptorProtoLabel value) {
   switch (value) {
     case PBFieldDescriptorProtoLabelLabelOptional:
@@ -2339,6 +2382,19 @@ BOOL PBFieldDescriptorProtoLabelIsValidValue(PBFieldDescriptorProtoLabel value) 
       return NO;
   }
 }
+NSString *NSStringFromPBFieldDescriptorProtoLabel(PBFieldDescriptorProtoLabel value) {
+  switch (value) {
+    case PBFieldDescriptorProtoLabelLabelOptional:
+      return @"PBFieldDescriptorProtoLabelLabelOptional";
+    case PBFieldDescriptorProtoLabelLabelRequired:
+      return @"PBFieldDescriptorProtoLabelLabelRequired";
+    case PBFieldDescriptorProtoLabelLabelRepeated:
+      return @"PBFieldDescriptorProtoLabelLabelRepeated";
+    default:
+      return nil;
+  }
+}
+
 @interface PBFieldDescriptorProtoBuilder()
 @property (strong) PBFieldDescriptorProto* resultFieldDescriptorProto;
 @end
@@ -4510,7 +4566,7 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"javaOuterClassname", self.javaOuterClassname];
   }
   if (self.hasOptimizeFor) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"optimizeFor", [NSNumber numberWithInteger:self.optimizeFor]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"optimizeFor", NSStringFromPBFileOptionsOptimizeMode(self.optimizeFor)];
   }
   if (self.hasJavaMultipleFiles) {
     [output appendFormat:@"%@%@: %@\n", indent, @"javaMultipleFiles", [NSNumber numberWithBool:self.javaMultipleFiles]];
@@ -4638,6 +4694,19 @@ BOOL PBFileOptionsOptimizeModeIsValidValue(PBFileOptionsOptimizeMode value) {
       return NO;
   }
 }
+NSString *NSStringFromPBFileOptionsOptimizeMode(PBFileOptionsOptimizeMode value) {
+  switch (value) {
+    case PBFileOptionsOptimizeModeSpeed:
+      return @"PBFileOptionsOptimizeModeSpeed";
+    case PBFileOptionsOptimizeModeCodeSize:
+      return @"PBFileOptionsOptimizeModeCodeSize";
+    case PBFileOptionsOptimizeModeLiteRuntime:
+      return @"PBFileOptionsOptimizeModeLiteRuntime";
+    default:
+      return nil;
+  }
+}
+
 @interface PBFileOptionsBuilder()
 @property (strong) PBFileOptions* resultFileOptions;
 @end
@@ -5595,7 +5664,7 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
 }
 - (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
   if (self.hasCtype) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"ctype", [NSNumber numberWithInteger:self.ctype]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"ctype", NSStringFromPBFieldOptionsCType(self.ctype)];
   }
   if (self.hasPacked) {
     [output appendFormat:@"%@%@: %@\n", indent, @"packed", [NSNumber numberWithBool:self.packed]];
@@ -5689,6 +5758,19 @@ BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value) {
       return NO;
   }
 }
+NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value) {
+  switch (value) {
+    case PBFieldOptionsCTypeString:
+      return @"PBFieldOptionsCTypeString";
+    case PBFieldOptionsCTypeCord:
+      return @"PBFieldOptionsCTypeCord";
+    case PBFieldOptionsCTypeStringPiece:
+      return @"PBFieldOptionsCTypeStringPiece";
+    default:
+      return nil;
+  }
+}
+
 @interface PBFieldOptionsBuilder()
 @property (strong) PBFieldOptions* resultFieldOptions;
 @end

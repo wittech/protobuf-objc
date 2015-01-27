@@ -23,6 +23,7 @@ typedef NS_ENUM(SInt32, TestEnum) {
 };
 
 BOOL TestEnumIsValidValue(TestEnum value);
+NSString *NSStringFromTestEnum(TestEnum value);
 
 
 @interface UnittestNoGenericServicesRoot : NSObject {
@@ -32,7 +33,7 @@ BOOL TestEnumIsValidValue(TestEnum value);
 + (id<PBExtensionField>) testExtension;
 @end
 
-@interface TestMessage : PBExtendableMessage {
+@interface TestMessage : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
   SInt32 a;

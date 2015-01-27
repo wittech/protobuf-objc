@@ -1310,6 +1310,19 @@ BOOL ForeignEnumLiteIsValidValue(ForeignEnumLite value) {
       return NO;
   }
 }
+NSString *NSStringFromForeignEnumLite(ForeignEnumLite value) {
+  switch (value) {
+    case ForeignEnumLiteForeignLiteFoo:
+      return @"ForeignEnumLiteForeignLiteFoo";
+    case ForeignEnumLiteForeignLiteBar:
+      return @"ForeignEnumLiteForeignLiteBar";
+    case ForeignEnumLiteForeignLiteBaz:
+      return @"ForeignEnumLiteForeignLiteBaz";
+    default:
+      return nil;
+  }
+}
+
 @interface TestAllTypesLite ()
 @property SInt32 optionalInt32;
 @property SInt64 optionalInt64;
@@ -2758,13 +2771,13 @@ static TestAllTypesLite* defaultTestAllTypesLiteInstance = nil;
     [output appendFormat:@"%@}\n", indent];
   }
   if (self.hasOptionalNestedEnum) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"optionalNestedEnum", [NSNumber numberWithInteger:self.optionalNestedEnum]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"optionalNestedEnum", NSStringFromTestAllTypesLiteNestedEnum(self.optionalNestedEnum)];
   }
   if (self.hasOptionalForeignEnum) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"optionalForeignEnum", [NSNumber numberWithInteger:self.optionalForeignEnum]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"optionalForeignEnum", NSStringFromForeignEnumLite(self.optionalForeignEnum)];
   }
   if (self.hasOptionalImportEnum) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"optionalImportEnum", [NSNumber numberWithInteger:self.optionalImportEnum]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"optionalImportEnum", NSStringFromImportEnumLite(self.optionalImportEnum)];
   }
   if (self.hasOptionalStringPiece) {
     [output appendFormat:@"%@%@: %@\n", indent, @"optionalStringPiece", self.optionalStringPiece];
@@ -2854,13 +2867,13 @@ static TestAllTypesLite* defaultTestAllTypesLiteInstance = nil;
     [output appendFormat:@"%@}\n", indent];
   }];
   [self.repeatedNestedEnumArray enumerateObjectsUsingBlock:^(id element, NSUInteger idx, BOOL *stop) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"repeatedNestedEnum", element];
+    [output appendFormat:@"%@%@: %@\n", indent, @"repeatedNestedEnum", NSStringFromTestAllTypesLiteNestedEnum([(NSNumber *)element intValue])];
   }];
   [self.repeatedForeignEnumArray enumerateObjectsUsingBlock:^(id element, NSUInteger idx, BOOL *stop) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"repeatedForeignEnum", element];
+    [output appendFormat:@"%@%@: %@\n", indent, @"repeatedForeignEnum", NSStringFromForeignEnumLite([(NSNumber *)element intValue])];
   }];
   [self.repeatedImportEnumArray enumerateObjectsUsingBlock:^(id element, NSUInteger idx, BOOL *stop) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"repeatedImportEnum", element];
+    [output appendFormat:@"%@%@: %@\n", indent, @"repeatedImportEnum", NSStringFromImportEnumLite([(NSNumber *)element intValue])];
   }];
   [self.repeatedStringPieceArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
     [output appendFormat:@"%@%@: %@\n", indent, @"repeatedStringPiece", obj];
@@ -2920,13 +2933,13 @@ static TestAllTypesLite* defaultTestAllTypesLiteInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"defaultBytes", self.defaultBytes];
   }
   if (self.hasDefaultNestedEnum) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"defaultNestedEnum", [NSNumber numberWithInteger:self.defaultNestedEnum]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"defaultNestedEnum", NSStringFromTestAllTypesLiteNestedEnum(self.defaultNestedEnum)];
   }
   if (self.hasDefaultForeignEnum) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"defaultForeignEnum", [NSNumber numberWithInteger:self.defaultForeignEnum]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"defaultForeignEnum", NSStringFromForeignEnumLite(self.defaultForeignEnum)];
   }
   if (self.hasDefaultImportEnum) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"defaultImportEnum", [NSNumber numberWithInteger:self.defaultImportEnum]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"defaultImportEnum", NSStringFromImportEnumLite(self.defaultImportEnum)];
   }
   if (self.hasDefaultStringPiece) {
     [output appendFormat:@"%@%@: %@\n", indent, @"defaultStringPiece", self.defaultStringPiece];
@@ -3329,6 +3342,19 @@ BOOL TestAllTypesLiteNestedEnumIsValidValue(TestAllTypesLiteNestedEnum value) {
       return NO;
   }
 }
+NSString *NSStringFromTestAllTypesLiteNestedEnum(TestAllTypesLiteNestedEnum value) {
+  switch (value) {
+    case TestAllTypesLiteNestedEnumFoo:
+      return @"TestAllTypesLiteNestedEnumFoo";
+    case TestAllTypesLiteNestedEnumBar:
+      return @"TestAllTypesLiteNestedEnumBar";
+    case TestAllTypesLiteNestedEnumBaz:
+      return @"TestAllTypesLiteNestedEnumBaz";
+    default:
+      return nil;
+  }
+}
+
 @interface TestAllTypesLiteNestedMessage ()
 @property SInt32 bb;
 @end
@@ -6932,7 +6958,7 @@ static TestPackedTypesLite* defaultTestPackedTypesLiteInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"packedBool", obj];
   }];
   [self.packedEnumArray enumerateObjectsUsingBlock:^(id element, NSUInteger idx, BOOL *stop) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"packedEnum", element];
+    [output appendFormat:@"%@%@: %@\n", indent, @"packedEnum", NSStringFromForeignEnumLite([(NSNumber *)element intValue])];
   }];
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }

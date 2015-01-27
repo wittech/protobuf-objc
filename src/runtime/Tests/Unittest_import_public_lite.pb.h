@@ -25,7 +25,7 @@
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
-@interface PublicImportMessageLite : PBGeneratedMessage {
+@interface PublicImportMessageLite : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasE_:1;
   SInt32 e;

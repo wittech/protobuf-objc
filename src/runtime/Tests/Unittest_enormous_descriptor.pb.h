@@ -25,7 +25,7 @@
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
-@interface TestEnormousDescriptor : PBGeneratedMessage {
+@interface TestEnormousDescriptor : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasLongFieldNameIsLooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong1_:1;
   BOOL hasLongFieldNameIsLooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong2_:1;

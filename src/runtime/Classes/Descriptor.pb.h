@@ -80,6 +80,7 @@ typedef NS_ENUM(SInt32, PBFieldDescriptorProtoType) {
 };
 
 BOOL PBFieldDescriptorProtoTypeIsValidValue(PBFieldDescriptorProtoType value);
+NSString *NSStringFromPBFieldDescriptorProtoType(PBFieldDescriptorProtoType value);
 
 typedef NS_ENUM(SInt32, PBFieldDescriptorProtoLabel) {
   PBFieldDescriptorProtoLabelLabelOptional = 1,
@@ -88,6 +89,7 @@ typedef NS_ENUM(SInt32, PBFieldDescriptorProtoLabel) {
 };
 
 BOOL PBFieldDescriptorProtoLabelIsValidValue(PBFieldDescriptorProtoLabel value);
+NSString *NSStringFromPBFieldDescriptorProtoLabel(PBFieldDescriptorProtoLabel value);
 
 typedef NS_ENUM(SInt32, PBFileOptionsOptimizeMode) {
   PBFileOptionsOptimizeModeSpeed = 1,
@@ -96,6 +98,7 @@ typedef NS_ENUM(SInt32, PBFileOptionsOptimizeMode) {
 };
 
 BOOL PBFileOptionsOptimizeModeIsValidValue(PBFileOptionsOptimizeMode value);
+NSString *NSStringFromPBFileOptionsOptimizeMode(PBFileOptionsOptimizeMode value);
 
 typedef NS_ENUM(SInt32, PBFieldOptionsCType) {
   PBFieldOptionsCTypeString = 0,
@@ -104,6 +107,7 @@ typedef NS_ENUM(SInt32, PBFieldOptionsCType) {
 };
 
 BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value);
+NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 
 
 @interface PBDescriptorRoot : NSObject {
@@ -112,7 +116,7 @@ BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value);
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
-@interface PBFileDescriptorSet : PBGeneratedMessage {
+@interface PBFileDescriptorSet : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   NSMutableArray * fileArray;
 }
@@ -161,7 +165,7 @@ BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value);
 - (PBFileDescriptorSetBuilder *)clearFile;
 @end
 
-@interface PBFileDescriptorProto : PBGeneratedMessage {
+@interface PBFileDescriptorProto : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasName_:1;
   BOOL hasPackage_:1;
@@ -306,7 +310,7 @@ BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value);
 - (PBFileDescriptorProtoBuilder*) clearSourceCodeInfo;
 @end
 
-@interface PBDescriptorProto : PBGeneratedMessage {
+@interface PBDescriptorProto : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasName_:1;
   BOOL hasOptions_:1;
@@ -354,7 +358,7 @@ BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value);
 + (PBDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBDescriptorProtoExtensionRange : PBGeneratedMessage {
+@interface PBDescriptorProtoExtensionRange : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasStart_:1;
   BOOL hasEnd_:1;
@@ -478,7 +482,7 @@ BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value);
 - (PBDescriptorProtoBuilder*) clearOptions;
 @end
 
-@interface PBFieldDescriptorProto : PBGeneratedMessage {
+@interface PBFieldDescriptorProto : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasNumber_:1;
   BOOL hasOneofIndex_:1;
@@ -601,7 +605,7 @@ BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value);
 - (PBFieldDescriptorProtoBuilder*) clearOptions;
 @end
 
-@interface PBOneofDescriptorProto : PBGeneratedMessage {
+@interface PBOneofDescriptorProto : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasName_:1;
   NSString* name;
@@ -650,7 +654,7 @@ BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value);
 - (PBOneofDescriptorProtoBuilder*) clearName;
 @end
 
-@interface PBEnumDescriptorProto : PBGeneratedMessage {
+@interface PBEnumDescriptorProto : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasName_:1;
   BOOL hasOptions_:1;
@@ -719,7 +723,7 @@ BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value);
 - (PBEnumDescriptorProtoBuilder*) clearOptions;
 @end
 
-@interface PBEnumValueDescriptorProto : PBGeneratedMessage {
+@interface PBEnumValueDescriptorProto : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasNumber_:1;
   BOOL hasName_:1;
@@ -788,7 +792,7 @@ BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value);
 - (PBEnumValueDescriptorProtoBuilder*) clearOptions;
 @end
 
-@interface PBServiceDescriptorProto : PBGeneratedMessage {
+@interface PBServiceDescriptorProto : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasName_:1;
   BOOL hasOptions_:1;
@@ -857,7 +861,7 @@ BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value);
 - (PBServiceDescriptorProtoBuilder*) clearOptions;
 @end
 
-@interface PBMethodDescriptorProto : PBGeneratedMessage {
+@interface PBMethodDescriptorProto : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasName_:1;
   BOOL hasInputType_:1;
@@ -935,7 +939,7 @@ BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value);
 - (PBMethodDescriptorProtoBuilder*) clearOptions;
 @end
 
-@interface PBFileOptions : PBExtendableMessage {
+@interface PBFileOptions : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasJavaMultipleFiles_:1;
   BOOL hasJavaGenerateEqualsAndHash_:1;
@@ -1083,7 +1087,7 @@ BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value);
 - (PBFileOptionsBuilder *)clearUninterpretedOption;
 @end
 
-@interface PBMessageOptions : PBExtendableMessage {
+@interface PBMessageOptions : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasMessageSetWireFormat_:1;
   BOOL hasNoStandardDescriptorAccessor_:1;
@@ -1159,7 +1163,7 @@ BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value);
 - (PBMessageOptionsBuilder *)clearUninterpretedOption;
 @end
 
-@interface PBFieldOptions : PBExtendableMessage {
+@interface PBFieldOptions : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasPacked_:1;
   BOOL hasLazy_:1;
@@ -1262,7 +1266,7 @@ BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value);
 - (PBFieldOptionsBuilder *)clearUninterpretedOption;
 @end
 
-@interface PBEnumOptions : PBExtendableMessage {
+@interface PBEnumOptions : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasAllowAlias_:1;
   BOOL hasDeprecated_:1;
@@ -1329,7 +1333,7 @@ BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value);
 - (PBEnumOptionsBuilder *)clearUninterpretedOption;
 @end
 
-@interface PBEnumValueOptions : PBExtendableMessage {
+@interface PBEnumValueOptions : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasDeprecated_:1;
   BOOL deprecated_:1;
@@ -1387,7 +1391,7 @@ BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value);
 - (PBEnumValueOptionsBuilder *)clearUninterpretedOption;
 @end
 
-@interface PBServiceOptions : PBExtendableMessage {
+@interface PBServiceOptions : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasDeprecated_:1;
   BOOL deprecated_:1;
@@ -1445,7 +1449,7 @@ BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value);
 - (PBServiceOptionsBuilder *)clearUninterpretedOption;
 @end
 
-@interface PBMethodOptions : PBExtendableMessage {
+@interface PBMethodOptions : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasDeprecated_:1;
   BOOL deprecated_:1;
@@ -1503,7 +1507,7 @@ BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value);
 - (PBMethodOptionsBuilder *)clearUninterpretedOption;
 @end
 
-@interface PBUninterpretedOption : PBGeneratedMessage {
+@interface PBUninterpretedOption : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasDoubleValue_:1;
   BOOL hasNegativeIntValue_:1;
@@ -1552,7 +1556,7 @@ BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value);
 + (PBUninterpretedOption*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBUninterpretedOptionNamePart : PBGeneratedMessage {
+@interface PBUninterpretedOptionNamePart : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasIsExtension_:1;
   BOOL hasNamePart_:1;
@@ -1664,7 +1668,7 @@ BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value);
 - (PBUninterpretedOptionBuilder*) clearAggregateValue;
 @end
 
-@interface PBSourceCodeInfo : PBGeneratedMessage {
+@interface PBSourceCodeInfo : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   NSMutableArray * locationArray;
 }
@@ -1689,7 +1693,7 @@ BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value);
 + (PBSourceCodeInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBSourceCodeInfoLocation : PBGeneratedMessage {
+@interface PBSourceCodeInfoLocation : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasLeadingComments_:1;
   BOOL hasTrailingComments_:1;

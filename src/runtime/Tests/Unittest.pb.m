@@ -1567,6 +1567,19 @@ BOOL ForeignEnumIsValidValue(ForeignEnum value) {
       return NO;
   }
 }
+NSString *NSStringFromForeignEnum(ForeignEnum value) {
+  switch (value) {
+    case ForeignEnumForeignFoo:
+      return @"ForeignEnumForeignFoo";
+    case ForeignEnumForeignBar:
+      return @"ForeignEnumForeignBar";
+    case ForeignEnumForeignBaz:
+      return @"ForeignEnumForeignBaz";
+    default:
+      return nil;
+  }
+}
+
 BOOL TestEnumWithDupValueIsValidValue(TestEnumWithDupValue value) {
   switch (value) {
     case TestEnumWithDupValueFoo1:
@@ -1577,6 +1590,19 @@ BOOL TestEnumWithDupValueIsValidValue(TestEnumWithDupValue value) {
       return NO;
   }
 }
+NSString *NSStringFromTestEnumWithDupValue(TestEnumWithDupValue value) {
+  switch (value) {
+    case TestEnumWithDupValueFoo1:
+      return @"TestEnumWithDupValueFoo1";
+    case TestEnumWithDupValueBar1:
+      return @"TestEnumWithDupValueBar1";
+    case TestEnumWithDupValueBaz:
+      return @"TestEnumWithDupValueBaz";
+    default:
+      return nil;
+  }
+}
+
 BOOL TestSparseEnumIsValidValue(TestSparseEnum value) {
   switch (value) {
     case TestSparseEnumSparseA:
@@ -1591,6 +1617,27 @@ BOOL TestSparseEnumIsValidValue(TestSparseEnum value) {
       return NO;
   }
 }
+NSString *NSStringFromTestSparseEnum(TestSparseEnum value) {
+  switch (value) {
+    case TestSparseEnumSparseA:
+      return @"TestSparseEnumSparseA";
+    case TestSparseEnumSparseB:
+      return @"TestSparseEnumSparseB";
+    case TestSparseEnumSparseC:
+      return @"TestSparseEnumSparseC";
+    case TestSparseEnumSparseD:
+      return @"TestSparseEnumSparseD";
+    case TestSparseEnumSparseE:
+      return @"TestSparseEnumSparseE";
+    case TestSparseEnumSparseF:
+      return @"TestSparseEnumSparseF";
+    case TestSparseEnumSparseG:
+      return @"TestSparseEnumSparseG";
+    default:
+      return nil;
+  }
+}
+
 @interface TestAllTypes ()
 @property SInt32 optionalInt32;
 @property SInt64 optionalInt64;
@@ -3039,13 +3086,13 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
     [output appendFormat:@"%@}\n", indent];
   }
   if (self.hasOptionalNestedEnum) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"optionalNestedEnum", [NSNumber numberWithInteger:self.optionalNestedEnum]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"optionalNestedEnum", NSStringFromTestAllTypesNestedEnum(self.optionalNestedEnum)];
   }
   if (self.hasOptionalForeignEnum) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"optionalForeignEnum", [NSNumber numberWithInteger:self.optionalForeignEnum]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"optionalForeignEnum", NSStringFromForeignEnum(self.optionalForeignEnum)];
   }
   if (self.hasOptionalImportEnum) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"optionalImportEnum", [NSNumber numberWithInteger:self.optionalImportEnum]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"optionalImportEnum", NSStringFromImportEnum(self.optionalImportEnum)];
   }
   if (self.hasOptionalStringPiece) {
     [output appendFormat:@"%@%@: %@\n", indent, @"optionalStringPiece", self.optionalStringPiece];
@@ -3135,13 +3182,13 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
     [output appendFormat:@"%@}\n", indent];
   }];
   [self.repeatedNestedEnumArray enumerateObjectsUsingBlock:^(id element, NSUInteger idx, BOOL *stop) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"repeatedNestedEnum", element];
+    [output appendFormat:@"%@%@: %@\n", indent, @"repeatedNestedEnum", NSStringFromTestAllTypesNestedEnum([(NSNumber *)element intValue])];
   }];
   [self.repeatedForeignEnumArray enumerateObjectsUsingBlock:^(id element, NSUInteger idx, BOOL *stop) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"repeatedForeignEnum", element];
+    [output appendFormat:@"%@%@: %@\n", indent, @"repeatedForeignEnum", NSStringFromForeignEnum([(NSNumber *)element intValue])];
   }];
   [self.repeatedImportEnumArray enumerateObjectsUsingBlock:^(id element, NSUInteger idx, BOOL *stop) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"repeatedImportEnum", element];
+    [output appendFormat:@"%@%@: %@\n", indent, @"repeatedImportEnum", NSStringFromImportEnum([(NSNumber *)element intValue])];
   }];
   [self.repeatedStringPieceArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
     [output appendFormat:@"%@%@: %@\n", indent, @"repeatedStringPiece", obj];
@@ -3201,13 +3248,13 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"defaultBytes", self.defaultBytes];
   }
   if (self.hasDefaultNestedEnum) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"defaultNestedEnum", [NSNumber numberWithInteger:self.defaultNestedEnum]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"defaultNestedEnum", NSStringFromTestAllTypesNestedEnum(self.defaultNestedEnum)];
   }
   if (self.hasDefaultForeignEnum) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"defaultForeignEnum", [NSNumber numberWithInteger:self.defaultForeignEnum]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"defaultForeignEnum", NSStringFromForeignEnum(self.defaultForeignEnum)];
   }
   if (self.hasDefaultImportEnum) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"defaultImportEnum", [NSNumber numberWithInteger:self.defaultImportEnum]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"defaultImportEnum", NSStringFromImportEnum(self.defaultImportEnum)];
   }
   if (self.hasDefaultStringPiece) {
     [output appendFormat:@"%@%@: %@\n", indent, @"defaultStringPiece", self.defaultStringPiece];
@@ -3611,6 +3658,21 @@ BOOL TestAllTypesNestedEnumIsValidValue(TestAllTypesNestedEnum value) {
       return NO;
   }
 }
+NSString *NSStringFromTestAllTypesNestedEnum(TestAllTypesNestedEnum value) {
+  switch (value) {
+    case TestAllTypesNestedEnumFoo:
+      return @"TestAllTypesNestedEnumFoo";
+    case TestAllTypesNestedEnumBar:
+      return @"TestAllTypesNestedEnumBar";
+    case TestAllTypesNestedEnumBaz:
+      return @"TestAllTypesNestedEnumBaz";
+    case TestAllTypesNestedEnumNeg:
+      return @"TestAllTypesNestedEnumNeg";
+    default:
+      return nil;
+  }
+}
+
 @interface TestAllTypesNestedMessage ()
 @property SInt32 bb;
 @end
@@ -13640,7 +13702,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"stringField", self.stringField];
   }
   if (self.hasEnumField) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"enumField", [NSNumber numberWithInteger:self.enumField]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"enumField", NSStringFromForeignEnum(self.enumField)];
   }
   if (self.hasMessageField) {
     [output appendFormat:@"%@%@ {\n", indent, @"messageField"];
@@ -13661,7 +13723,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"repeatedStringField", obj];
   }];
   [self.repeatedEnumFieldArray enumerateObjectsUsingBlock:^(id element, NSUInteger idx, BOOL *stop) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"repeatedEnumField", element];
+    [output appendFormat:@"%@%@: %@\n", indent, @"repeatedEnumField", NSStringFromForeignEnum([(NSNumber *)element intValue])];
   }];
   [self.repeatedMessageFieldArray enumerateObjectsUsingBlock:^(ForeignMessage *element, NSUInteger idx, BOOL *stop) {
     [output appendFormat:@"%@%@ {\n", indent, @"repeatedMessageField"];
@@ -15981,7 +16043,7 @@ static SparseEnumMessage* defaultSparseEnumMessageInstance = nil;
 }
 - (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
   if (self.hasSparseEnum) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"sparseEnum", [NSNumber numberWithInteger:self.sparseEnum]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"sparseEnum", NSStringFromTestSparseEnum(self.sparseEnum)];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
@@ -19530,7 +19592,7 @@ static TestOneof2* defaultTestOneof2Instance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"fooBytes", self.fooBytes];
   }
   if (self.hasFooEnum) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"fooEnum", [NSNumber numberWithInteger:self.fooEnum]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"fooEnum", NSStringFromTestOneof2NestedEnum(self.fooEnum)];
   }
   if (self.hasFooMessage) {
     [output appendFormat:@"%@%@ {\n", indent, @"fooMessage"];
@@ -19566,7 +19628,7 @@ static TestOneof2* defaultTestOneof2Instance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"barBytes", self.barBytes];
   }
   if (self.hasBarEnum) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"barEnum", [NSNumber numberWithInteger:self.barEnum]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"barEnum", NSStringFromTestOneof2NestedEnum(self.barEnum)];
   }
   if (self.hasBazInt) {
     [output appendFormat:@"%@%@: %@\n", indent, @"bazInt", [NSNumber numberWithInteger:self.bazInt]];
@@ -19689,6 +19751,19 @@ BOOL TestOneof2NestedEnumIsValidValue(TestOneof2NestedEnum value) {
       return NO;
   }
 }
+NSString *NSStringFromTestOneof2NestedEnum(TestOneof2NestedEnum value) {
+  switch (value) {
+    case TestOneof2NestedEnumFoo:
+      return @"TestOneof2NestedEnumFoo";
+    case TestOneof2NestedEnumBar:
+      return @"TestOneof2NestedEnumBar";
+    case TestOneof2NestedEnumBaz:
+      return @"TestOneof2NestedEnumBaz";
+    default:
+      return nil;
+  }
+}
+
 @interface TestOneof2FooGroup ()
 @property SInt32 a;
 @property (strong) NSString* b;
@@ -21785,7 +21860,7 @@ static TestPackedTypes* defaultTestPackedTypesInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"packedBool", obj];
   }];
   [self.packedEnumArray enumerateObjectsUsingBlock:^(id element, NSUInteger idx, BOOL *stop) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"packedEnum", element];
+    [output appendFormat:@"%@%@: %@\n", indent, @"packedEnum", NSStringFromForeignEnum([(NSNumber *)element intValue])];
   }];
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
@@ -22996,7 +23071,7 @@ static TestUnpackedTypes* defaultTestUnpackedTypesInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"unpackedBool", obj];
   }];
   [self.unpackedEnumArray enumerateObjectsUsingBlock:^(id element, NSUInteger idx, BOOL *stop) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"unpackedEnum", element];
+    [output appendFormat:@"%@%@: %@\n", indent, @"unpackedEnum", NSStringFromForeignEnum([(NSNumber *)element intValue])];
   }];
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
@@ -24187,10 +24262,10 @@ static TestDynamicExtensions* defaultTestDynamicExtensionsInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"scalarExtension", [NSNumber numberWithInteger:self.scalarExtension]];
   }
   if (self.hasEnumExtension) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"enumExtension", [NSNumber numberWithInteger:self.enumExtension]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"enumExtension", NSStringFromForeignEnum(self.enumExtension)];
   }
   if (self.hasDynamicEnumExtension) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"dynamicEnumExtension", [NSNumber numberWithInteger:self.dynamicEnumExtension]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"dynamicEnumExtension", NSStringFromTestDynamicExtensionsDynamicEnumType(self.dynamicEnumExtension)];
   }
   if (self.hasMessageExtension) {
     [output appendFormat:@"%@%@ {\n", indent, @"messageExtension"];
@@ -24273,6 +24348,19 @@ BOOL TestDynamicExtensionsDynamicEnumTypeIsValidValue(TestDynamicExtensionsDynam
       return NO;
   }
 }
+NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensionsDynamicEnumType value) {
+  switch (value) {
+    case TestDynamicExtensionsDynamicEnumTypeDynamicFoo:
+      return @"TestDynamicExtensionsDynamicEnumTypeDynamicFoo";
+    case TestDynamicExtensionsDynamicEnumTypeDynamicBar:
+      return @"TestDynamicExtensionsDynamicEnumTypeDynamicBar";
+    case TestDynamicExtensionsDynamicEnumTypeDynamicBaz:
+      return @"TestDynamicExtensionsDynamicEnumTypeDynamicBaz";
+    default:
+      return nil;
+  }
+}
+
 @interface TestDynamicExtensionsDynamicMessageType ()
 @property SInt32 dynamicField;
 @end

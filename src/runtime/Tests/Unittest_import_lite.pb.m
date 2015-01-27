@@ -31,6 +31,19 @@ BOOL ImportEnumLiteIsValidValue(ImportEnumLite value) {
       return NO;
   }
 }
+NSString *NSStringFromImportEnumLite(ImportEnumLite value) {
+  switch (value) {
+    case ImportEnumLiteImportLiteFoo:
+      return @"ImportEnumLiteImportLiteFoo";
+    case ImportEnumLiteImportLiteBar:
+      return @"ImportEnumLiteImportLiteBar";
+    case ImportEnumLiteImportLiteBaz:
+      return @"ImportEnumLiteImportLiteBaz";
+    default:
+      return nil;
+  }
+}
+
 @interface ImportMessageLite ()
 @property SInt32 d;
 @end
