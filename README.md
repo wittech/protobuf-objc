@@ -18,7 +18,7 @@ How To Install Protobuf
 
 3.`brew install libtool`
 
-4.`brew instal protobuf`
+4.`brew install protobuf`
 
 5.`ln -s /usr/local/Cellar/protobuf/2.6.1/bin/protoc /usr/local/bin` (optional)
 
