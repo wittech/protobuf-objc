@@ -12,31 +12,51 @@ This fork contains only ARC version of library.
 How To Install Protobuf
 -----------------------
 
-1.`ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+### Building the Objective-C Protobuf compiler
 
-2.`brew install automake`
+1. Check if you have Homebrew:
 
-3.`brew install libtool`
+`brew -v`
 
-4.`brew instal protobuf`
+2. If you don't already have Homebrew, then install it:
 
-5.`ln -s /usr/local/Cellar/protobuf/2.6.1/bin/protoc /usr/local/bin` (optional)
+`ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
-6.`git clone git@github.com:alexeyxo/protobuf-objc.git`
+3. Install the main Protobuf compiler and required tools:
 
-7.`./build.sh`
+```
+brew install automake
+brew install libtool
+brew install protobuf
+```
 
-8.Add `/src/runtime/ProtocolBuffers.xcodeproj` in your project.
+4. (optional) Create a symlink to your Protobuf compiler: 
 
-##Installing from CocoaPods
+`ln -s /usr/local/Cellar/protobuf/2.6.1/bin/protoc /usr/local/bin`
+
+5. Clone this repository.
+
+`git clone git@github.com:alexeyxo/protobuf-objc.git`
+
+6. Build it!
+ 
+`./build.sh`
+
+### Adding to your project as a sub project
 
 ...
 
-8.`cd <your .xcodeproj directory>`
+7.Add `/src/runtime/ProtocolBuffers.xcodeproj` in your project.
 
-9.`echo -e "platform :ios , 6.0 \nlink_with '<YourAppTarget>', '<YourAppTarget_Test>' \npod 'ProtocolBuffers', '1.9.3' " > Podfile`
+### Adding to your project as a CocoaPod
 
-10.`pod install`
+...
+
+7.`cd <your .xcodeproj directory>`
+
+8.`echo -e "platform :ios , 6.0 \nlink_with '<YourAppTarget>', '<YourAppTarget_Test>' \npod 'ProtocolBuffers', '1.9.3' " > Podfile`
+
+9.`pod install`
 
 Compile ".proto" files.
 -----------------------
