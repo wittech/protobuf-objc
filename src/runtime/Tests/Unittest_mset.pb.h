@@ -16,17 +16,7 @@
 @class TestMessageSetExtension1Builder;
 @class TestMessageSetExtension2;
 @class TestMessageSetExtension2Builder;
-#ifndef __has_feature
-  #define __has_feature(x) 0 // Compatibility with non-clang compilers.
-#endif // __has_feature
 
-#ifndef NS_RETURNS_NOT_RETAINED
-  #if __has_feature(attribute_ns_returns_not_retained)
-    #define NS_RETURNS_NOT_RETAINED __attribute__((ns_returns_not_retained))
-  #else
-    #define NS_RETURNS_NOT_RETAINED
-  #endif
-#endif
 
 
 @interface UnittestMsetRoot : NSObject {
@@ -75,6 +65,7 @@
 - (TestMessageSetBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define TestMessageSetContainer_message_set @"messageSet"
 @interface TestMessageSetContainer : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasMessageSet_:1;
@@ -126,6 +117,7 @@
 - (TestMessageSetContainerBuilder*) clearMessageSet;
 @end
 
+#define TestMessageSetExtension1_i @"i"
 @interface TestMessageSetExtension1 : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasI_:1;
@@ -176,6 +168,7 @@
 - (TestMessageSetExtension1Builder*) clearI;
 @end
 
+#define TestMessageSetExtension2_str @"str"
 @interface TestMessageSetExtension2 : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasStr_:1;
@@ -226,6 +219,7 @@
 - (TestMessageSetExtension2Builder*) clearStr;
 @end
 
+#define RawMessageSet_item @"item"
 @interface RawMessageSet : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   NSMutableArray * itemArray;
@@ -251,6 +245,8 @@
 + (RawMessageSet*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define Item_type_id @"typeId"
+#define Item_message @"message"
 @interface RawMessageSetItem : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasTypeId_:1;

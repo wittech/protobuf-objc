@@ -9,17 +9,7 @@
 @class ImportMessageBuilder;
 @class PublicImportMessage;
 @class PublicImportMessageBuilder;
-#ifndef __has_feature
-  #define __has_feature(x) 0 // Compatibility with non-clang compilers.
-#endif // __has_feature
 
-#ifndef NS_RETURNS_NOT_RETAINED
-  #if __has_feature(attribute_ns_returns_not_retained)
-    #define NS_RETURNS_NOT_RETAINED __attribute__((ns_returns_not_retained))
-  #else
-    #define NS_RETURNS_NOT_RETAINED
-  #endif
-#endif
 
 typedef NS_ENUM(SInt32, ImportEnum) {
   ImportEnumImportFoo = 7,
@@ -37,6 +27,7 @@ NSString *NSStringFromImportEnum(ImportEnum value);
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
+#define ImportMessage_d @"d"
 @interface ImportMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasD_:1;

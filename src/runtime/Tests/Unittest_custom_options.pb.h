@@ -97,17 +97,7 @@
 @class TestMessageWithCustomOptionsBuilder;
 @class VariousComplexOptions;
 @class VariousComplexOptionsBuilder;
-#ifndef __has_feature
-  #define __has_feature(x) 0 // Compatibility with non-clang compilers.
-#endif // __has_feature
 
-#ifndef NS_RETURNS_NOT_RETAINED
-  #if __has_feature(attribute_ns_returns_not_retained)
-    #define NS_RETURNS_NOT_RETAINED __attribute__((ns_returns_not_retained))
-  #else
-    #define NS_RETURNS_NOT_RETAINED
-  #endif
-#endif
 
 typedef NS_ENUM(SInt32, MethodOpt1) {
   MethodOpt1Methodopt1Val1 = 1,
@@ -194,6 +184,7 @@ NSString *NSStringFromNestedOptionTypeNestedEnum(NestedOptionTypeNestedEnum valu
 + (id<PBExtensionField>) methodopt;
 @end
 
+#define TestMessageWithCustomOptions_field1 @"field1"
 @interface TestMessageWithCustomOptions : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasField1_:1;
@@ -683,6 +674,10 @@ NSString *NSStringFromNestedOptionTypeNestedEnum(NestedOptionTypeNestedEnum valu
 - (SettingRealsFromNegativeIntsBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define ComplexOptionType1_foo @"foo"
+#define ComplexOptionType1_foo2 @"foo2"
+#define ComplexOptionType1_foo3 @"foo3"
+#define ComplexOptionType1_foo4 @"foo4"
 @interface ComplexOptionType1 : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasFoo_:1;
@@ -760,6 +755,10 @@ NSString *NSStringFromNestedOptionTypeNestedEnum(NestedOptionTypeNestedEnum valu
 - (ComplexOptionType1Builder *)clearFoo4;
 @end
 
+#define ComplexOptionType2_bar @"bar"
+#define ComplexOptionType2_baz @"baz"
+#define ComplexOptionType2_fred @"fred"
+#define ComplexOptionType2_barney @"barney"
 @interface ComplexOptionType2 : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasBaz_:1;
@@ -797,6 +796,7 @@ NSString *NSStringFromNestedOptionTypeNestedEnum(NestedOptionTypeNestedEnum valu
 + (ComplexOptionType2*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define ComplexOptionType4_waldo @"waldo"
 @interface ComplexOptionType2ComplexOptionType4 : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasWaldo_:1;
@@ -890,6 +890,8 @@ NSString *NSStringFromNestedOptionTypeNestedEnum(NestedOptionTypeNestedEnum valu
 - (ComplexOptionType2Builder *)clearBarney;
 @end
 
+#define ComplexOptionType3_qux @"qux"
+#define ComplexOptionType3_complexoptiontype5 @"complexOptionType5"
 @interface ComplexOptionType3 : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasQux_:1;
@@ -920,6 +922,7 @@ NSString *NSStringFromNestedOptionTypeNestedEnum(NestedOptionTypeNestedEnum valu
 + (ComplexOptionType3*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define ComplexOptionType5_plugh @"plugh"
 @interface ComplexOptionType3ComplexOptionType5 : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasPlugh_:1;
@@ -999,6 +1002,7 @@ NSString *NSStringFromNestedOptionTypeNestedEnum(NestedOptionTypeNestedEnum valu
 - (ComplexOptionType3Builder*) clearComplexOptionType5;
 @end
 
+#define ComplexOpt6_xyzzy @"xyzzy"
 @interface ComplexOpt6 : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasXyzzy_:1;
@@ -1128,6 +1132,7 @@ NSString *NSStringFromNestedOptionTypeNestedEnum(NestedOptionTypeNestedEnum valu
 - (AggregateMessageSetBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define AggregateMessageSetElement_s @"s"
 @interface AggregateMessageSetElement : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasS_:1;
@@ -1178,6 +1183,11 @@ NSString *NSStringFromNestedOptionTypeNestedEnum(NestedOptionTypeNestedEnum valu
 - (AggregateMessageSetElementBuilder*) clearS;
 @end
 
+#define Aggregate_i @"i"
+#define Aggregate_s @"s"
+#define Aggregate_sub @"sub"
+#define Aggregate_file @"file"
+#define Aggregate_mset @"mset"
 @interface Aggregate : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasI_:1;
@@ -1270,6 +1280,7 @@ NSString *NSStringFromNestedOptionTypeNestedEnum(NestedOptionTypeNestedEnum valu
 - (AggregateBuilder*) clearMset;
 @end
 
+#define AggregateMessage_fieldname @"fieldname"
 @interface AggregateMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasFieldname_:1;
@@ -1342,6 +1353,7 @@ NSString *NSStringFromNestedOptionTypeNestedEnum(NestedOptionTypeNestedEnum valu
 + (NestedOptionType*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define NestedMessage_nested_field @"nestedField"
 @interface NestedOptionTypeNestedMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasNestedField_:1;

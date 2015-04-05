@@ -60,8 +60,8 @@ NSString *NSStringFromTestEnum(TestEnum value) {
 - (BOOL) hasA {
   return !!hasA_;
 }
-- (void) setHasA:(BOOL) value_ {
-  hasA_ = !!value_;
+- (void) setHasA:(BOOL) _value_ {
+  hasA_ = !!_value_;
 }
 @synthesize a;
 - (instancetype) init {
@@ -151,6 +151,12 @@ static TestMessage* defaultTestMessageInstance = nil;
                                               to:536870912
                                       withIndent:indent];
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasA) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.a] forKey: @"a"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {

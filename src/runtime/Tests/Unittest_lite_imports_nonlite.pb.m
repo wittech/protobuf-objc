@@ -30,8 +30,8 @@ static PBExtensionRegistry* extensionRegistry = nil;
 - (BOOL) hasMessage {
   return !!hasMessage_;
 }
-- (void) setHasMessage:(BOOL) value_ {
-  hasMessage_ = !!value_;
+- (void) setHasMessage:(BOOL) _value_ {
+  hasMessage_ = !!_value_;
 }
 @synthesize message;
 - (instancetype) init {
@@ -113,6 +113,14 @@ static TestLiteImportsNonlite* defaultTestLiteImportsNonliteInstance = nil;
     [output appendFormat:@"%@}\n", indent];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasMessage) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.message storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"message"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {

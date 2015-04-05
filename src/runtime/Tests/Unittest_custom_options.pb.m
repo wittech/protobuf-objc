@@ -671,8 +671,8 @@ NSString *NSStringFromAggregateEnum(AggregateEnum value) {
 - (BOOL) hasField1 {
   return !!hasField1_;
 }
-- (void) setHasField1:(BOOL) value_ {
-  hasField1_ = !!value_;
+- (void) setHasField1:(BOOL) _value_ {
+  hasField1_ = !!_value_;
 }
 @synthesize field1;
 - (instancetype) init {
@@ -751,6 +751,12 @@ static TestMessageWithCustomOptions* defaultTestMessageWithCustomOptionsInstance
     [output appendFormat:@"%@%@: %@\n", indent, @"field1", self.field1];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasField1) {
+    [dictionary setObject: self.field1 forKey: @"field1"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -954,6 +960,9 @@ static CustomOptionFooRequest* defaultCustomOptionFooRequestInstance = nil;
 - (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -1107,6 +1116,9 @@ static CustomOptionFooResponse* defaultCustomOptionFooResponseInstance = nil;
 }
 - (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -1262,6 +1274,9 @@ static CustomOptionFooClientMessage* defaultCustomOptionFooClientMessageInstance
 - (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -1416,6 +1431,9 @@ static CustomOptionFooServerMessage* defaultCustomOptionFooServerMessageInstance
 - (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -1569,6 +1587,9 @@ static DummyMessageContainingEnum* defaultDummyMessageContainingEnumInstance = n
 }
 - (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -1744,6 +1765,9 @@ static DummyMessageInvalidAsOptionType* defaultDummyMessageInvalidAsOptionTypeIn
 - (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -1897,6 +1921,9 @@ static CustomOptionMinIntegerValues* defaultCustomOptionMinIntegerValuesInstance
 }
 - (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -2052,6 +2079,9 @@ static CustomOptionMaxIntegerValues* defaultCustomOptionMaxIntegerValuesInstance
 - (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -2205,6 +2235,9 @@ static CustomOptionOtherValues* defaultCustomOptionOtherValuesInstance = nil;
 }
 - (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -2360,6 +2393,9 @@ static SettingRealsFromPositiveInts* defaultSettingRealsFromPositiveIntsInstance
 - (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -2514,6 +2550,9 @@ static SettingRealsFromNegativeInts* defaultSettingRealsFromNegativeIntsInstance
 - (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -2608,22 +2647,22 @@ static SettingRealsFromNegativeInts* defaultSettingRealsFromNegativeIntsInstance
 - (BOOL) hasFoo {
   return !!hasFoo_;
 }
-- (void) setHasFoo:(BOOL) value_ {
-  hasFoo_ = !!value_;
+- (void) setHasFoo:(BOOL) _value_ {
+  hasFoo_ = !!_value_;
 }
 @synthesize foo;
 - (BOOL) hasFoo2 {
   return !!hasFoo2_;
 }
-- (void) setHasFoo2:(BOOL) value_ {
-  hasFoo2_ = !!value_;
+- (void) setHasFoo2:(BOOL) _value_ {
+  hasFoo2_ = !!_value_;
 }
 @synthesize foo2;
 - (BOOL) hasFoo3 {
   return !!hasFoo3_;
 }
-- (void) setHasFoo3:(BOOL) value_ {
-  hasFoo3_ = !!value_;
+- (void) setHasFoo3:(BOOL) _value_ {
+  hasFoo3_ = !!_value_;
 }
 @synthesize foo3;
 @synthesize foo4Array;
@@ -2761,6 +2800,24 @@ static ComplexOptionType1* defaultComplexOptionType1Instance = nil;
                                               to:536870912
                                       withIndent:indent];
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasFoo) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.foo] forKey: @"foo"];
+  }
+  if (self.hasFoo2) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.foo2] forKey: @"foo2"];
+  }
+  if (self.hasFoo3) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.foo3] forKey: @"foo3"];
+  }
+  NSMutableArray * foo4ArrayArray = [NSMutableArray new];
+  NSUInteger foo4ArrayCount=self.foo4Array.count;
+  for(int i=0;i<foo4ArrayCount;i++){
+    [foo4ArrayArray addObject: @([self.foo4Array int32AtIndex:i])];
+  }
+  [dictionary setObject: foo4ArrayArray forKey: @"foo4"];
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -2984,22 +3041,22 @@ static ComplexOptionType1* defaultComplexOptionType1Instance = nil;
 - (BOOL) hasBar {
   return !!hasBar_;
 }
-- (void) setHasBar:(BOOL) value_ {
-  hasBar_ = !!value_;
+- (void) setHasBar:(BOOL) _value_ {
+  hasBar_ = !!_value_;
 }
 @synthesize bar;
 - (BOOL) hasBaz {
   return !!hasBaz_;
 }
-- (void) setHasBaz:(BOOL) value_ {
-  hasBaz_ = !!value_;
+- (void) setHasBaz:(BOOL) _value_ {
+  hasBaz_ = !!_value_;
 }
 @synthesize baz;
 - (BOOL) hasFred {
   return !!hasFred_;
 }
-- (void) setHasFred:(BOOL) value_ {
-  hasFred_ = !!value_;
+- (void) setHasFred:(BOOL) _value_ {
+  hasFred_ = !!_value_;
 }
 @synthesize fred;
 @synthesize barneyArray;
@@ -3141,6 +3198,27 @@ static ComplexOptionType2* defaultComplexOptionType2Instance = nil;
                                       withIndent:indent];
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasBar) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.bar storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"bar"];
+  }
+  if (self.hasBaz) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.baz] forKey: @"baz"];
+  }
+  if (self.hasFred) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.fred storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"fred"];
+  }
+  for (ComplexOptionType2ComplexOptionType4* element in self.barneyArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"barney"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -3190,8 +3268,8 @@ static ComplexOptionType2* defaultComplexOptionType2Instance = nil;
 - (BOOL) hasWaldo {
   return !!hasWaldo_;
 }
-- (void) setHasWaldo:(BOOL) value_ {
-  hasWaldo_ = !!value_;
+- (void) setHasWaldo:(BOOL) _value_ {
+  hasWaldo_ = !!_value_;
 }
 @synthesize waldo;
 - (instancetype) init {
@@ -3273,6 +3351,12 @@ static ComplexOptionType2ComplexOptionType4* defaultComplexOptionType2ComplexOpt
     [output appendFormat:@"%@%@: %@\n", indent, @"waldo", [NSNumber numberWithInteger:self.waldo]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasWaldo) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.waldo] forKey: @"waldo"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -3600,15 +3684,15 @@ static ComplexOptionType2ComplexOptionType4* defaultComplexOptionType2ComplexOpt
 - (BOOL) hasQux {
   return !!hasQux_;
 }
-- (void) setHasQux:(BOOL) value_ {
-  hasQux_ = !!value_;
+- (void) setHasQux:(BOOL) _value_ {
+  hasQux_ = !!_value_;
 }
 @synthesize qux;
 - (BOOL) hasComplexOptionType5 {
   return !!hasComplexOptionType5_;
 }
-- (void) setHasComplexOptionType5:(BOOL) value_ {
-  hasComplexOptionType5_ = !!value_;
+- (void) setHasComplexOptionType5:(BOOL) _value_ {
+  hasComplexOptionType5_ = !!_value_;
 }
 @synthesize complexOptionType5;
 - (instancetype) init {
@@ -3701,6 +3785,17 @@ static ComplexOptionType3* defaultComplexOptionType3Instance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasQux) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.qux] forKey: @"qux"];
+  }
+  if (self.hasComplexOptionType5) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.complexOptionType5 storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"complexOptionType5"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -3738,8 +3833,8 @@ static ComplexOptionType3* defaultComplexOptionType3Instance = nil;
 - (BOOL) hasPlugh {
   return !!hasPlugh_;
 }
-- (void) setHasPlugh:(BOOL) value_ {
-  hasPlugh_ = !!value_;
+- (void) setHasPlugh:(BOOL) _value_ {
+  hasPlugh_ = !!_value_;
 }
 @synthesize plugh;
 - (instancetype) init {
@@ -3818,6 +3913,12 @@ static ComplexOptionType3ComplexOptionType5* defaultComplexOptionType3ComplexOpt
     [output appendFormat:@"%@%@: %@\n", indent, @"plugh", [NSNumber numberWithInteger:self.plugh]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasPlugh) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.plugh] forKey: @"plugh"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -4067,8 +4168,8 @@ static ComplexOptionType3ComplexOptionType5* defaultComplexOptionType3ComplexOpt
 - (BOOL) hasXyzzy {
   return !!hasXyzzy_;
 }
-- (void) setHasXyzzy:(BOOL) value_ {
-  hasXyzzy_ = !!value_;
+- (void) setHasXyzzy:(BOOL) _value_ {
+  hasXyzzy_ = !!_value_;
 }
 @synthesize xyzzy;
 - (instancetype) init {
@@ -4147,6 +4248,12 @@ static ComplexOpt6* defaultComplexOpt6Instance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"xyzzy", [NSNumber numberWithInteger:self.xyzzy]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasXyzzy) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.xyzzy] forKey: @"xyzzy"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -4330,6 +4437,9 @@ static VariousComplexOptions* defaultVariousComplexOptionsInstance = nil;
 - (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -4495,6 +4605,9 @@ static AggregateMessageSet* defaultAggregateMessageSetInstance = nil;
                                       withIndent:indent];
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -4590,8 +4703,8 @@ static AggregateMessageSet* defaultAggregateMessageSetInstance = nil;
 - (BOOL) hasS {
   return !!hasS_;
 }
-- (void) setHasS:(BOOL) value_ {
-  hasS_ = !!value_;
+- (void) setHasS:(BOOL) _value_ {
+  hasS_ = !!_value_;
 }
 @synthesize s;
 - (instancetype) init {
@@ -4673,6 +4786,12 @@ static AggregateMessageSetElement* defaultAggregateMessageSetElementInstance = n
     [output appendFormat:@"%@%@: %@\n", indent, @"s", self.s];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasS) {
+    [dictionary setObject: self.s forKey: @"s"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -4797,36 +4916,36 @@ static AggregateMessageSetElement* defaultAggregateMessageSetElementInstance = n
 - (BOOL) hasI {
   return !!hasI_;
 }
-- (void) setHasI:(BOOL) value_ {
-  hasI_ = !!value_;
+- (void) setHasI:(BOOL) _value_ {
+  hasI_ = !!_value_;
 }
 @synthesize i;
 - (BOOL) hasS {
   return !!hasS_;
 }
-- (void) setHasS:(BOOL) value_ {
-  hasS_ = !!value_;
+- (void) setHasS:(BOOL) _value_ {
+  hasS_ = !!_value_;
 }
 @synthesize s;
 - (BOOL) hasSub {
   return !!hasSub_;
 }
-- (void) setHasSub:(BOOL) value_ {
-  hasSub_ = !!value_;
+- (void) setHasSub:(BOOL) _value_ {
+  hasSub_ = !!_value_;
 }
 @synthesize sub;
 - (BOOL) hasFile {
   return !!hasFile_;
 }
-- (void) setHasFile:(BOOL) value_ {
-  hasFile_ = !!value_;
+- (void) setHasFile:(BOOL) _value_ {
+  hasFile_ = !!_value_;
 }
 @synthesize file;
 - (BOOL) hasMset {
   return !!hasMset_;
 }
-- (void) setHasMset:(BOOL) value_ {
-  hasMset_ = !!value_;
+- (void) setHasMset:(BOOL) _value_ {
+  hasMset_ = !!_value_;
 }
 @synthesize mset;
 - (instancetype) init {
@@ -4972,6 +5091,30 @@ static Aggregate* defaultAggregateInstance = nil;
     [output appendFormat:@"%@}\n", indent];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasI) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.i] forKey: @"i"];
+  }
+  if (self.hasS) {
+    [dictionary setObject: self.s forKey: @"s"];
+  }
+  if (self.hasSub) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.sub storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"sub"];
+  }
+  if (self.hasFile) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.file storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"file"];
+  }
+  if (self.hasMset) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.mset storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"mset"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -5261,8 +5404,8 @@ static Aggregate* defaultAggregateInstance = nil;
 - (BOOL) hasFieldname {
   return !!hasFieldname_;
 }
-- (void) setHasFieldname:(BOOL) value_ {
-  hasFieldname_ = !!value_;
+- (void) setHasFieldname:(BOOL) _value_ {
+  hasFieldname_ = !!_value_;
 }
 @synthesize fieldname;
 - (instancetype) init {
@@ -5341,6 +5484,12 @@ static AggregateMessage* defaultAggregateMessageInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"fieldname", [NSNumber numberWithInteger:self.fieldname]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasFieldname) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.fieldname] forKey: @"fieldname"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -5527,6 +5676,9 @@ static NestedOptionType* defaultNestedOptionTypeInstance = nil;
 - (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -5571,8 +5723,8 @@ NSString *NSStringFromNestedOptionTypeNestedEnum(NestedOptionTypeNestedEnum valu
 - (BOOL) hasNestedField {
   return !!hasNestedField_;
 }
-- (void) setHasNestedField:(BOOL) value_ {
-  hasNestedField_ = !!value_;
+- (void) setHasNestedField:(BOOL) _value_ {
+  hasNestedField_ = !!_value_;
 }
 @synthesize nestedField;
 - (instancetype) init {
@@ -5651,6 +5803,12 @@ static NestedOptionTypeNestedMessage* defaultNestedOptionTypeNestedMessageInstan
     [output appendFormat:@"%@%@: %@\n", indent, @"nestedField", [NSNumber numberWithInteger:self.nestedField]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasNestedField) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.nestedField] forKey: @"nestedField"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {

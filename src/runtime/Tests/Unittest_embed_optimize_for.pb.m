@@ -31,8 +31,8 @@ static PBExtensionRegistry* extensionRegistry = nil;
 - (BOOL) hasOptionalMessage {
   return !!hasOptionalMessage_;
 }
-- (void) setHasOptionalMessage:(BOOL) value_ {
-  hasOptionalMessage_ = !!value_;
+- (void) setHasOptionalMessage:(BOOL) _value_ {
+  hasOptionalMessage_ = !!_value_;
 }
 @synthesize optionalMessage;
 @synthesize repeatedMessageArray;
@@ -147,6 +147,19 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
     [output appendFormat:@"%@}\n", indent];
   }];
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasOptionalMessage) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.optionalMessage storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"optionalMessage"];
+  }
+  for (TestOptimizedForSize* element in self.repeatedMessageArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"repeatedMessage"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {

@@ -155,17 +155,7 @@
 @class Uint32MessageBuilder;
 @class Uint64Message;
 @class Uint64MessageBuilder;
-#ifndef __has_feature
-  #define __has_feature(x) 0 // Compatibility with non-clang compilers.
-#endif // __has_feature
 
-#ifndef NS_RETURNS_NOT_RETAINED
-  #if __has_feature(attribute_ns_returns_not_retained)
-    #define NS_RETURNS_NOT_RETAINED __attribute__((ns_returns_not_retained))
-  #else
-    #define NS_RETURNS_NOT_RETAINED
-  #endif
-#endif
 
 
 @interface UnittestOptimizeForRoot : NSObject {
@@ -174,6 +164,10 @@
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
+#define TestOptimizedForSize_i @"i"
+#define TestOptimizedForSize_msg @"msg"
+#define TestOptimizedForSize_integer_field @"integerField"
+#define TestOptimizedForSize_string_field @"stringField"
 @interface TestOptimizedForSize : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasI_:1;
@@ -254,6 +248,7 @@
 - (TestOptimizedForSizeBuilder*) clearStringField;
 @end
 
+#define TestRequiredOptimizedForSize_x @"x"
 @interface TestRequiredOptimizedForSize : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasX_:1;
@@ -303,6 +298,7 @@
 - (TestRequiredOptimizedForSizeBuilder*) clearX;
 @end
 
+#define TestOptionalOptimizedForSize_o @"o"
 @interface TestOptionalOptimizedForSize : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasO_:1;

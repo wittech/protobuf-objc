@@ -149,17 +149,7 @@
 @class Uint32MessageBuilder;
 @class Uint64Message;
 @class Uint64MessageBuilder;
-#ifndef __has_feature
-  #define __has_feature(x) 0 // Compatibility with non-clang compilers.
-#endif // __has_feature
 
-#ifndef NS_RETURNS_NOT_RETAINED
-  #if __has_feature(attribute_ns_returns_not_retained)
-    #define NS_RETURNS_NOT_RETAINED __attribute__((ns_returns_not_retained))
-  #else
-    #define NS_RETURNS_NOT_RETAINED
-  #endif
-#endif
 
 typedef NS_ENUM(SInt32, ForeignEnum) {
   ForeignEnumForeignFoo = 4,
@@ -332,6 +322,81 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 + (id<PBExtensionField>) unpackedEnumExtension;
 @end
 
+#define TestAllTypes_optional_int32 @"optionalInt32"
+#define TestAllTypes_optional_int64 @"optionalInt64"
+#define TestAllTypes_optional_uint32 @"optionalUint32"
+#define TestAllTypes_optional_uint64 @"optionalUint64"
+#define TestAllTypes_optional_sint32 @"optionalSint32"
+#define TestAllTypes_optional_sint64 @"optionalSint64"
+#define TestAllTypes_optional_fixed32 @"optionalFixed32"
+#define TestAllTypes_optional_fixed64 @"optionalFixed64"
+#define TestAllTypes_optional_sfixed32 @"optionalSfixed32"
+#define TestAllTypes_optional_sfixed64 @"optionalSfixed64"
+#define TestAllTypes_optional_float @"optionalFloat"
+#define TestAllTypes_optional_double @"optionalDouble"
+#define TestAllTypes_optional_bool @"optionalBool"
+#define TestAllTypes_optional_string @"optionalString"
+#define TestAllTypes_optional_bytes @"optionalBytes"
+#define TestAllTypes_optionalgroup @"optionalGroup"
+#define TestAllTypes_optional_nested_message @"optionalNestedMessage"
+#define TestAllTypes_optional_foreign_message @"optionalForeignMessage"
+#define TestAllTypes_optional_import_message @"optionalImportMessage"
+#define TestAllTypes_optional_nested_enum @"optionalNestedEnum"
+#define TestAllTypes_optional_foreign_enum @"optionalForeignEnum"
+#define TestAllTypes_optional_import_enum @"optionalImportEnum"
+#define TestAllTypes_optional_string_piece @"optionalStringPiece"
+#define TestAllTypes_optional_cord @"optionalCord"
+#define TestAllTypes_optional_public_import_message @"optionalPublicImportMessage"
+#define TestAllTypes_optional_lazy_message @"optionalLazyMessage"
+#define TestAllTypes_repeated_int32 @"repeatedInt32"
+#define TestAllTypes_repeated_int64 @"repeatedInt64"
+#define TestAllTypes_repeated_uint32 @"repeatedUint32"
+#define TestAllTypes_repeated_uint64 @"repeatedUint64"
+#define TestAllTypes_repeated_sint32 @"repeatedSint32"
+#define TestAllTypes_repeated_sint64 @"repeatedSint64"
+#define TestAllTypes_repeated_fixed32 @"repeatedFixed32"
+#define TestAllTypes_repeated_fixed64 @"repeatedFixed64"
+#define TestAllTypes_repeated_sfixed32 @"repeatedSfixed32"
+#define TestAllTypes_repeated_sfixed64 @"repeatedSfixed64"
+#define TestAllTypes_repeated_float @"repeatedFloat"
+#define TestAllTypes_repeated_double @"repeatedDouble"
+#define TestAllTypes_repeated_bool @"repeatedBool"
+#define TestAllTypes_repeated_string @"repeatedString"
+#define TestAllTypes_repeated_bytes @"repeatedBytes"
+#define TestAllTypes_repeatedgroup @"repeatedGroup"
+#define TestAllTypes_repeated_nested_message @"repeatedNestedMessage"
+#define TestAllTypes_repeated_foreign_message @"repeatedForeignMessage"
+#define TestAllTypes_repeated_import_message @"repeatedImportMessage"
+#define TestAllTypes_repeated_nested_enum @"repeatedNestedEnum"
+#define TestAllTypes_repeated_foreign_enum @"repeatedForeignEnum"
+#define TestAllTypes_repeated_import_enum @"repeatedImportEnum"
+#define TestAllTypes_repeated_string_piece @"repeatedStringPiece"
+#define TestAllTypes_repeated_cord @"repeatedCord"
+#define TestAllTypes_repeated_lazy_message @"repeatedLazyMessage"
+#define TestAllTypes_default_int32 @"defaultInt32"
+#define TestAllTypes_default_int64 @"defaultInt64"
+#define TestAllTypes_default_uint32 @"defaultUint32"
+#define TestAllTypes_default_uint64 @"defaultUint64"
+#define TestAllTypes_default_sint32 @"defaultSint32"
+#define TestAllTypes_default_sint64 @"defaultSint64"
+#define TestAllTypes_default_fixed32 @"defaultFixed32"
+#define TestAllTypes_default_fixed64 @"defaultFixed64"
+#define TestAllTypes_default_sfixed32 @"defaultSfixed32"
+#define TestAllTypes_default_sfixed64 @"defaultSfixed64"
+#define TestAllTypes_default_float @"defaultFloat"
+#define TestAllTypes_default_double @"defaultDouble"
+#define TestAllTypes_default_bool @"defaultBool"
+#define TestAllTypes_default_string @"defaultString"
+#define TestAllTypes_default_bytes @"defaultBytes"
+#define TestAllTypes_default_nested_enum @"defaultNestedEnum"
+#define TestAllTypes_default_foreign_enum @"defaultForeignEnum"
+#define TestAllTypes_default_import_enum @"defaultImportEnum"
+#define TestAllTypes_default_string_piece @"defaultStringPiece"
+#define TestAllTypes_default_cord @"defaultCord"
+#define TestAllTypes_oneof_uint32 @"oneofUint32"
+#define TestAllTypes_oneof_nested_message @"oneofNestedMessage"
+#define TestAllTypes_oneof_string @"oneofString"
+#define TestAllTypes_oneof_bytes @"oneofBytes"
 @interface TestAllTypes : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasOptionalBool_:1;
@@ -629,6 +694,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 + (TestAllTypes*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define NestedMessage_bb @"bb"
 @interface TestAllTypesNestedMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasBb_:1;
@@ -678,6 +744,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestAllTypesNestedMessageBuilder*) clearBb;
 @end
 
+#define OptionalGroup_a @"a"
 @interface TestAllTypesOptionalGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
@@ -727,6 +794,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestAllTypesOptionalGroupBuilder*) clearA;
 @end
 
+#define RepeatedGroup_a @"a"
 @interface TestAllTypesRepeatedGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
@@ -1224,6 +1292,8 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestAllTypesBuilder*) clearOneofBytes;
 @end
 
+#define NestedTestAllTypes_child @"child"
+#define NestedTestAllTypes_payload @"payload"
 @interface NestedTestAllTypes : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasChild_:1;
@@ -1286,6 +1356,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (NestedTestAllTypesBuilder*) clearPayload;
 @end
 
+#define TestDeprecatedFields_deprecated_int32 @"deprecatedInt32"
 @interface TestDeprecatedFields : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasDeprecatedInt32_:1;
@@ -1335,6 +1406,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestDeprecatedFieldsBuilder*) clearDeprecatedInt32;
 @end
 
+#define ForeignMessage_c @"c"
 @interface ForeignMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasC_:1;
@@ -1424,6 +1496,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestAllExtensionsBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define OptionalGroup_extension_a @"a"
 @interface OptionalGroup_extension : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
@@ -1473,6 +1546,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (OptionalGroup_extensionBuilder*) clearA;
 @end
 
+#define RepeatedGroup_extension_a @"a"
 @interface RepeatedGroup_extension : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
@@ -1564,6 +1638,39 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestNestedExtensionBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define TestRequired_a @"a"
+#define TestRequired_dummy2 @"dummy2"
+#define TestRequired_b @"b"
+#define TestRequired_dummy4 @"dummy4"
+#define TestRequired_dummy5 @"dummy5"
+#define TestRequired_dummy6 @"dummy6"
+#define TestRequired_dummy7 @"dummy7"
+#define TestRequired_dummy8 @"dummy8"
+#define TestRequired_dummy9 @"dummy9"
+#define TestRequired_dummy10 @"dummy10"
+#define TestRequired_dummy11 @"dummy11"
+#define TestRequired_dummy12 @"dummy12"
+#define TestRequired_dummy13 @"dummy13"
+#define TestRequired_dummy14 @"dummy14"
+#define TestRequired_dummy15 @"dummy15"
+#define TestRequired_dummy16 @"dummy16"
+#define TestRequired_dummy17 @"dummy17"
+#define TestRequired_dummy18 @"dummy18"
+#define TestRequired_dummy19 @"dummy19"
+#define TestRequired_dummy20 @"dummy20"
+#define TestRequired_dummy21 @"dummy21"
+#define TestRequired_dummy22 @"dummy22"
+#define TestRequired_dummy23 @"dummy23"
+#define TestRequired_dummy24 @"dummy24"
+#define TestRequired_dummy25 @"dummy25"
+#define TestRequired_dummy26 @"dummy26"
+#define TestRequired_dummy27 @"dummy27"
+#define TestRequired_dummy28 @"dummy28"
+#define TestRequired_dummy29 @"dummy29"
+#define TestRequired_dummy30 @"dummy30"
+#define TestRequired_dummy31 @"dummy31"
+#define TestRequired_dummy32 @"dummy32"
+#define TestRequired_c @"c"
 @interface TestRequired : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
@@ -1903,6 +2010,9 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestRequiredBuilder*) clearC;
 @end
 
+#define TestRequiredForeign_optional_message @"optionalMessage"
+#define TestRequiredForeign_repeated_message @"repeatedMessage"
+#define TestRequiredForeign_dummy @"dummy"
 @interface TestRequiredForeign : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasDummy_:1;
@@ -1972,6 +2082,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestRequiredForeignBuilder*) clearDummy;
 @end
 
+#define TestForeignNested_foreign_nested @"foreignNested"
 @interface TestForeignNested : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasForeignNested_:1;
@@ -2143,6 +2254,8 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestMultipleExtensionRangesBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define TestReallyLargeTagNumber_a @"a"
+#define TestReallyLargeTagNumber_bb @"bb"
 @interface TestReallyLargeTagNumber : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
@@ -2201,6 +2314,8 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestReallyLargeTagNumberBuilder*) clearBb;
 @end
 
+#define TestRecursiveMessage_a @"a"
+#define TestRecursiveMessage_i @"i"
 @interface TestRecursiveMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasI_:1;
@@ -2261,6 +2376,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestRecursiveMessageBuilder*) clearI;
 @end
 
+#define TestMutualRecursionA_bb @"bb"
 @interface TestMutualRecursionA : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasBb_:1;
@@ -2312,6 +2428,8 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestMutualRecursionABuilder*) clearBb;
 @end
 
+#define TestMutualRecursionB_a @"a"
+#define TestMutualRecursionB_optional_int32 @"optionalInt32"
 @interface TestMutualRecursionB : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasOptionalInt32_:1;
@@ -2372,6 +2490,9 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestMutualRecursionBBuilder*) clearOptionalInt32;
 @end
 
+#define TestDupFieldNumber_a @"a"
+#define TestDupFieldNumber_foo @"foo"
+#define TestDupFieldNumber_bar @"bar"
 @interface TestDupFieldNumber : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
@@ -2406,6 +2527,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 + (TestDupFieldNumber*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define Foo_a @"a"
 @interface TestDupFieldNumberFoo : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
@@ -2455,6 +2577,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestDupFieldNumberFooBuilder*) clearA;
 @end
 
+#define Bar_a @"a"
 @interface TestDupFieldNumberBar : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
@@ -2541,6 +2664,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestDupFieldNumberBuilder*) clearBar;
 @end
 
+#define TestEagerMessage_sub_message @"subMessage"
 @interface TestEagerMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasSubMessage_:1;
@@ -2592,6 +2716,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestEagerMessageBuilder*) clearSubMessage;
 @end
 
+#define TestLazyMessage_sub_message @"subMessage"
 @interface TestLazyMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasSubMessage_:1;
@@ -2643,6 +2768,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestLazyMessageBuilder*) clearSubMessage;
 @end
 
+#define TestNestedMessageHasBits_optional_nested_message @"optionalNestedMessage"
 @interface TestNestedMessageHasBits : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasOptionalNestedMessage_:1;
@@ -2669,6 +2795,8 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 + (TestNestedMessageHasBits*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define NestedMessage_nestedmessage_repeated_int32 @"nestedmessageRepeatedInt32"
+#define NestedMessage_nestedmessage_repeated_foreignmessage @"nestedmessageRepeatedForeignmessage"
 @interface TestNestedMessageHasBitsNestedMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   PBAppendableArray * nestedmessageRepeatedInt32Array;
@@ -2753,6 +2881,18 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestNestedMessageHasBitsBuilder*) clearOptionalNestedMessage;
 @end
 
+#define TestCamelCaseFieldNames_PrimitiveField @"primitiveField"
+#define TestCamelCaseFieldNames_StringField @"stringField"
+#define TestCamelCaseFieldNames_EnumField @"enumField"
+#define TestCamelCaseFieldNames_MessageField @"messageField"
+#define TestCamelCaseFieldNames_StringPieceField @"stringPieceField"
+#define TestCamelCaseFieldNames_CordField @"cordField"
+#define TestCamelCaseFieldNames_RepeatedPrimitiveField @"repeatedPrimitiveField"
+#define TestCamelCaseFieldNames_RepeatedStringField @"repeatedStringField"
+#define TestCamelCaseFieldNames_RepeatedEnumField @"repeatedEnumField"
+#define TestCamelCaseFieldNames_RepeatedMessageField @"repeatedMessageField"
+#define TestCamelCaseFieldNames_RepeatedStringPieceField @"repeatedStringPieceField"
+#define TestCamelCaseFieldNames_RepeatedCordField @"repeatedCordField"
 @interface TestCamelCaseFieldNames : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasPrimitiveField_:1;
@@ -2905,6 +3045,9 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestCamelCaseFieldNamesBuilder *)clearRepeatedCordField;
 @end
 
+#define TestFieldOrderings_my_string @"myString"
+#define TestFieldOrderings_my_int @"myInt"
+#define TestFieldOrderings_my_float @"myFloat"
 @interface TestFieldOrderings : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasMyFloat_:1;
@@ -2972,6 +3115,33 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestFieldOrderingsBuilder*) clearMyFloat;
 @end
 
+#define TestExtremeDefaultValues_escaped_bytes @"escapedBytes"
+#define TestExtremeDefaultValues_large_uint32 @"largeUint32"
+#define TestExtremeDefaultValues_large_uint64 @"largeUint64"
+#define TestExtremeDefaultValues_small_int32 @"smallInt32"
+#define TestExtremeDefaultValues_small_int64 @"smallInt64"
+#define TestExtremeDefaultValues_really_small_int32 @"reallySmallInt32"
+#define TestExtremeDefaultValues_really_small_int64 @"reallySmallInt64"
+#define TestExtremeDefaultValues_utf8_string @"utf8String"
+#define TestExtremeDefaultValues_zero_float @"zeroFloat"
+#define TestExtremeDefaultValues_one_float @"oneFloat"
+#define TestExtremeDefaultValues_small_float @"smallFloat"
+#define TestExtremeDefaultValues_negative_one_float @"negativeOneFloat"
+#define TestExtremeDefaultValues_negative_float @"negativeFloat"
+#define TestExtremeDefaultValues_large_float @"largeFloat"
+#define TestExtremeDefaultValues_small_negative_float @"smallNegativeFloat"
+#define TestExtremeDefaultValues_inf_double @"infDouble"
+#define TestExtremeDefaultValues_neg_inf_double @"negInfDouble"
+#define TestExtremeDefaultValues_nan_double @"nanDouble"
+#define TestExtremeDefaultValues_inf_float @"infFloat"
+#define TestExtremeDefaultValues_neg_inf_float @"negInfFloat"
+#define TestExtremeDefaultValues_nan_float @"nanFloat"
+#define TestExtremeDefaultValues_cpp_trigraph @"cppTrigraph"
+#define TestExtremeDefaultValues_string_with_zero @"stringWithZero"
+#define TestExtremeDefaultValues_bytes_with_zero @"bytesWithZero"
+#define TestExtremeDefaultValues_string_piece_with_zero @"stringPieceWithZero"
+#define TestExtremeDefaultValues_cord_with_zero @"cordWithZero"
+#define TestExtremeDefaultValues_replacement_string @"replacementString"
 @interface TestExtremeDefaultValues : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasInfDouble_:1;
@@ -3255,6 +3425,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestExtremeDefaultValuesBuilder*) clearReplacementString;
 @end
 
+#define SparseEnumMessage_sparse_enum @"sparseEnum"
 @interface SparseEnumMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasSparseEnum_:1;
@@ -3304,6 +3475,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (SparseEnumMessageBuilder*) clearSparseEnum;
 @end
 
+#define OneString_data @"data"
 @interface OneString : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasData_:1;
@@ -3353,6 +3525,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (OneStringBuilder*) clearData;
 @end
 
+#define MoreString_data @"data"
 @interface MoreString : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   NSMutableArray * dataArray;
@@ -3402,6 +3575,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (MoreStringBuilder *)clearData;
 @end
 
+#define OneBytes_data @"data"
 @interface OneBytes : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasData_:1;
@@ -3451,6 +3625,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (OneBytesBuilder*) clearData;
 @end
 
+#define MoreBytes_data @"data"
 @interface MoreBytes : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   NSMutableArray * dataArray;
@@ -3500,6 +3675,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (MoreBytesBuilder *)clearData;
 @end
 
+#define Int32Message_data @"data"
 @interface Int32Message : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasData_:1;
@@ -3549,6 +3725,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (Int32MessageBuilder*) clearData;
 @end
 
+#define Uint32Message_data @"data"
 @interface Uint32Message : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasData_:1;
@@ -3598,6 +3775,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (Uint32MessageBuilder*) clearData;
 @end
 
+#define Int64Message_data @"data"
 @interface Int64Message : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasData_:1;
@@ -3647,6 +3825,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (Int64MessageBuilder*) clearData;
 @end
 
+#define Uint64Message_data @"data"
 @interface Uint64Message : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasData_:1;
@@ -3696,6 +3875,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (Uint64MessageBuilder*) clearData;
 @end
 
+#define BoolMessage_data @"data"
 @interface BoolMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasData_:1;
@@ -3745,6 +3925,10 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (BoolMessageBuilder*) clearData;
 @end
 
+#define TestOneof_foo_int @"fooInt"
+#define TestOneof_foo_string @"fooString"
+#define TestOneof_foo_message @"fooMessage"
+#define TestOneof_foogroup @"fooGroup"
 @interface TestOneof : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasFooInt_:1;
@@ -3783,6 +3967,8 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 + (TestOneof*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define FooGroup_a @"a"
+#define FooGroup_b @"b"
 @interface TestOneofFooGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
@@ -3883,6 +4069,10 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestOneofBuilder*) clearFooGroup;
 @end
 
+#define TestOneofBackwardsCompatible_foo_int @"fooInt"
+#define TestOneofBackwardsCompatible_foo_string @"fooString"
+#define TestOneofBackwardsCompatible_foo_message @"fooMessage"
+#define TestOneofBackwardsCompatible_foogroup @"fooGroup"
 @interface TestOneofBackwardsCompatible : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasFooInt_:1;
@@ -3921,6 +4111,8 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 + (TestOneofBackwardsCompatible*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define FooGroup_a @"a"
+#define FooGroup_b @"b"
 @interface TestOneofBackwardsCompatibleFooGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
@@ -4021,6 +4213,23 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestOneofBackwardsCompatibleBuilder*) clearFooGroup;
 @end
 
+#define TestOneof2_foo_int @"fooInt"
+#define TestOneof2_foo_string @"fooString"
+#define TestOneof2_foo_cord @"fooCord"
+#define TestOneof2_foo_string_piece @"fooStringPiece"
+#define TestOneof2_foo_bytes @"fooBytes"
+#define TestOneof2_foo_enum @"fooEnum"
+#define TestOneof2_foo_message @"fooMessage"
+#define TestOneof2_foogroup @"fooGroup"
+#define TestOneof2_foo_lazy_message @"fooLazyMessage"
+#define TestOneof2_bar_int @"barInt"
+#define TestOneof2_bar_string @"barString"
+#define TestOneof2_bar_cord @"barCord"
+#define TestOneof2_bar_string_piece @"barStringPiece"
+#define TestOneof2_bar_bytes @"barBytes"
+#define TestOneof2_bar_enum @"barEnum"
+#define TestOneof2_baz_int @"bazInt"
+#define TestOneof2_baz_string @"bazString"
 @interface TestOneof2 : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasFooInt_:1;
@@ -4111,6 +4320,8 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 + (TestOneof2*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define FooGroup_a @"a"
+#define FooGroup_b @"b"
 @interface TestOneof2FooGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
@@ -4169,6 +4380,8 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestOneof2FooGroupBuilder*) clearB;
 @end
 
+#define NestedMessage_qux_int @"quxInt"
+#define NestedMessage_corge_int @"corgeInt"
 @interface TestOneof2NestedMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasQuxInt_:1;
@@ -4337,6 +4550,9 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestOneof2Builder*) clearBazString;
 @end
 
+#define TestRequiredOneof_foo_int @"fooInt"
+#define TestRequiredOneof_foo_string @"fooString"
+#define TestRequiredOneof_foo_message @"fooMessage"
 @interface TestRequiredOneof : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasFooInt_:1;
@@ -4371,6 +4587,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 + (TestRequiredOneof*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define NestedMessage_required_double @"requiredDouble"
 @interface TestRequiredOneofNestedMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasRequiredDouble_:1;
@@ -4455,6 +4672,20 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestRequiredOneofBuilder*) clearFooMessage;
 @end
 
+#define TestPackedTypes_packed_int32 @"packedInt32"
+#define TestPackedTypes_packed_int64 @"packedInt64"
+#define TestPackedTypes_packed_uint32 @"packedUint32"
+#define TestPackedTypes_packed_uint64 @"packedUint64"
+#define TestPackedTypes_packed_sint32 @"packedSint32"
+#define TestPackedTypes_packed_sint64 @"packedSint64"
+#define TestPackedTypes_packed_fixed32 @"packedFixed32"
+#define TestPackedTypes_packed_fixed64 @"packedFixed64"
+#define TestPackedTypes_packed_sfixed32 @"packedSfixed32"
+#define TestPackedTypes_packed_sfixed64 @"packedSfixed64"
+#define TestPackedTypes_packed_float @"packedFloat"
+#define TestPackedTypes_packed_double @"packedDouble"
+#define TestPackedTypes_packed_bool @"packedBool"
+#define TestPackedTypes_packed_enum @"packedEnum"
 @interface TestPackedTypes : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   PBAppendableArray * packedBoolArray;
@@ -4649,6 +4880,20 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestPackedTypesBuilder *)clearPackedEnum;
 @end
 
+#define TestUnpackedTypes_unpacked_int32 @"unpackedInt32"
+#define TestUnpackedTypes_unpacked_int64 @"unpackedInt64"
+#define TestUnpackedTypes_unpacked_uint32 @"unpackedUint32"
+#define TestUnpackedTypes_unpacked_uint64 @"unpackedUint64"
+#define TestUnpackedTypes_unpacked_sint32 @"unpackedSint32"
+#define TestUnpackedTypes_unpacked_sint64 @"unpackedSint64"
+#define TestUnpackedTypes_unpacked_fixed32 @"unpackedFixed32"
+#define TestUnpackedTypes_unpacked_fixed64 @"unpackedFixed64"
+#define TestUnpackedTypes_unpacked_sfixed32 @"unpackedSfixed32"
+#define TestUnpackedTypes_unpacked_sfixed64 @"unpackedSfixed64"
+#define TestUnpackedTypes_unpacked_float @"unpackedFloat"
+#define TestUnpackedTypes_unpacked_double @"unpackedDouble"
+#define TestUnpackedTypes_unpacked_bool @"unpackedBool"
+#define TestUnpackedTypes_unpacked_enum @"unpackedEnum"
 @interface TestUnpackedTypes : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   PBAppendableArray * unpackedBoolArray;
@@ -4909,6 +5154,13 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestUnpackedExtensionsBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define TestDynamicExtensions_scalar_extension @"scalarExtension"
+#define TestDynamicExtensions_enum_extension @"enumExtension"
+#define TestDynamicExtensions_dynamic_enum_extension @"dynamicEnumExtension"
+#define TestDynamicExtensions_message_extension @"messageExtension"
+#define TestDynamicExtensions_dynamic_message_extension @"dynamicMessageExtension"
+#define TestDynamicExtensions_repeated_extension @"repeatedExtension"
+#define TestDynamicExtensions_packed_extension @"packedExtension"
 @interface TestDynamicExtensions : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasScalarExtension_:1;
@@ -4958,6 +5210,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 + (TestDynamicExtensions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define DynamicMessageType_dynamic_field @"dynamicField"
 @interface TestDynamicExtensionsDynamicMessageType : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasDynamicField_:1;
@@ -5067,6 +5320,12 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestDynamicExtensionsBuilder *)clearPackedExtension;
 @end
 
+#define TestRepeatedScalarDifferentTagSizes_repeated_fixed32 @"repeatedFixed32"
+#define TestRepeatedScalarDifferentTagSizes_repeated_int32 @"repeatedInt32"
+#define TestRepeatedScalarDifferentTagSizes_repeated_fixed64 @"repeatedFixed64"
+#define TestRepeatedScalarDifferentTagSizes_repeated_int64 @"repeatedInt64"
+#define TestRepeatedScalarDifferentTagSizes_repeated_float @"repeatedFloat"
+#define TestRepeatedScalarDifferentTagSizes_repeated_uint64 @"repeatedUint64"
 @interface TestRepeatedScalarDifferentTagSizes : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   PBAppendableArray * repeatedFloatArray;
@@ -5167,6 +5426,11 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestRepeatedScalarDifferentTagSizesBuilder *)clearRepeatedUint64;
 @end
 
+#define TestParsingMerge_required_all_types @"requiredAllTypes"
+#define TestParsingMerge_optional_all_types @"optionalAllTypes"
+#define TestParsingMerge_repeated_all_types @"repeatedAllTypes"
+#define TestParsingMerge_optionalgroup @"optionalGroup"
+#define TestParsingMerge_repeatedgroup @"repeatedGroup"
 @interface TestParsingMerge : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasOptionalGroup_:1;
@@ -5209,6 +5473,13 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 + (TestParsingMerge*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define RepeatedFieldsGenerator_field1 @"field1"
+#define RepeatedFieldsGenerator_field2 @"field2"
+#define RepeatedFieldsGenerator_field3 @"field3"
+#define RepeatedFieldsGenerator_group1 @"group1"
+#define RepeatedFieldsGenerator_group2 @"group2"
+#define RepeatedFieldsGenerator_ext1 @"ext1"
+#define RepeatedFieldsGenerator_ext2 @"ext2"
 @interface TestParsingMergeRepeatedFieldsGenerator : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   NSMutableArray * group1Array;
@@ -5252,6 +5523,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 + (TestParsingMergeRepeatedFieldsGenerator*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define Group1_field1 @"field1"
 @interface TestParsingMergeRepeatedFieldsGeneratorGroup1 : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasField1_:1;
@@ -5303,6 +5575,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestParsingMergeRepeatedFieldsGeneratorGroup1Builder*) clearField1;
 @end
 
+#define Group2_field1 @"field1"
 @interface TestParsingMergeRepeatedFieldsGeneratorGroup2 : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasField1_:1;
@@ -5414,6 +5687,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestParsingMergeRepeatedFieldsGeneratorBuilder *)clearExt2;
 @end
 
+#define OptionalGroup_optional_group_all_types @"optionalGroupAllTypes"
 @interface TestParsingMergeOptionalGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasOptionalGroupAllTypes_:1;
@@ -5465,6 +5739,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestParsingMergeOptionalGroupBuilder*) clearOptionalGroupAllTypes;
 @end
 
+#define RepeatedGroup_repeated_group_all_types @"repeatedGroupAllTypes"
 @interface TestParsingMergeRepeatedGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasRepeatedGroupAllTypes_:1;
@@ -5567,6 +5842,7 @@ NSString *NSStringFromTestDynamicExtensionsDynamicEnumType(TestDynamicExtensions
 - (TestParsingMergeBuilder *)clearRepeatedGroup;
 @end
 
+#define TestCommentInjectionMessage_a @"a"
 @interface TestCommentInjectionMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;

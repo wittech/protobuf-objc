@@ -125,6 +125,9 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
                                       withIndent:indent];
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -220,8 +223,8 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
 - (BOOL) hasMessageSet {
   return !!hasMessageSet_;
 }
-- (void) setHasMessageSet:(BOOL) value_ {
-  hasMessageSet_ = !!value_;
+- (void) setHasMessageSet:(BOOL) _value_ {
+  hasMessageSet_ = !!_value_;
 }
 @synthesize messageSet;
 - (instancetype) init {
@@ -308,6 +311,14 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
     [output appendFormat:@"%@}\n", indent];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasMessageSet) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.messageSet storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"messageSet"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -447,8 +458,8 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
 - (BOOL) hasI {
   return !!hasI_;
 }
-- (void) setHasI:(BOOL) value_ {
-  hasI_ = !!value_;
+- (void) setHasI:(BOOL) _value_ {
+  hasI_ = !!_value_;
 }
 @synthesize i;
 - (instancetype) init {
@@ -530,6 +541,12 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"i", [NSNumber numberWithInteger:self.i]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasI) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.i] forKey: @"i"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -650,8 +667,8 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
 - (BOOL) hasStr {
   return !!hasStr_;
 }
-- (void) setHasStr:(BOOL) value_ {
-  hasStr_ = !!value_;
+- (void) setHasStr:(BOOL) _value_ {
+  hasStr_ = !!_value_;
 }
 @synthesize str;
 - (instancetype) init {
@@ -733,6 +750,12 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"str", self.str];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasStr) {
+    [dictionary setObject: self.str forKey: @"str"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -945,6 +968,14 @@ static RawMessageSet* defaultRawMessageSetInstance = nil;
   }];
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  for (RawMessageSetItem* element in self.itemArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"item"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -977,15 +1008,15 @@ static RawMessageSet* defaultRawMessageSetInstance = nil;
 - (BOOL) hasTypeId {
   return !!hasTypeId_;
 }
-- (void) setHasTypeId:(BOOL) value_ {
-  hasTypeId_ = !!value_;
+- (void) setHasTypeId:(BOOL) _value_ {
+  hasTypeId_ = !!_value_;
 }
 @synthesize typeId;
 - (BOOL) hasMessage {
   return !!hasMessage_;
 }
-- (void) setHasMessage:(BOOL) value_ {
-  hasMessage_ = !!value_;
+- (void) setHasMessage:(BOOL) _value_ {
+  hasMessage_ = !!_value_;
 }
 @synthesize message;
 - (instancetype) init {
@@ -1080,6 +1111,15 @@ static RawMessageSetItem* defaultRawMessageSetItemInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"message", self.message];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasTypeId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.typeId] forKey: @"typeId"];
+  }
+  if (self.hasMessage) {
+    [dictionary setObject: self.message forKey: @"message"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {

@@ -1,9 +1,11 @@
 language: objective-c
 before_install:
-- brew update
-- brew unlink xctool
-- brew install xctool --HEAD
-- brew install protobuf
-- ./build.sh
-- ./travis/travis.sh
+  - brew update
+  - brew uninstall xctool
+  - brew install xctool --HEAD
+  - xctool -v
+  - brew install protobuf
+install:
+  - scripts/build.sh
+  - scripts/makeTests.sh
 script: xctool -project ./src/runtime/ProtocolBuffers.xcodeproj -sdk iphonesimulator -scheme ProtocolBuffers build test

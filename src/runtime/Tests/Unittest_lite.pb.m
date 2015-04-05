@@ -1406,188 +1406,188 @@ NSString *NSStringFromForeignEnumLite(ForeignEnumLite value) {
 - (BOOL) hasOptionalInt32 {
   return !!hasOptionalInt32_;
 }
-- (void) setHasOptionalInt32:(BOOL) value_ {
-  hasOptionalInt32_ = !!value_;
+- (void) setHasOptionalInt32:(BOOL) _value_ {
+  hasOptionalInt32_ = !!_value_;
 }
 @synthesize optionalInt32;
 - (BOOL) hasOptionalInt64 {
   return !!hasOptionalInt64_;
 }
-- (void) setHasOptionalInt64:(BOOL) value_ {
-  hasOptionalInt64_ = !!value_;
+- (void) setHasOptionalInt64:(BOOL) _value_ {
+  hasOptionalInt64_ = !!_value_;
 }
 @synthesize optionalInt64;
 - (BOOL) hasOptionalUint32 {
   return !!hasOptionalUint32_;
 }
-- (void) setHasOptionalUint32:(BOOL) value_ {
-  hasOptionalUint32_ = !!value_;
+- (void) setHasOptionalUint32:(BOOL) _value_ {
+  hasOptionalUint32_ = !!_value_;
 }
 @synthesize optionalUint32;
 - (BOOL) hasOptionalUint64 {
   return !!hasOptionalUint64_;
 }
-- (void) setHasOptionalUint64:(BOOL) value_ {
-  hasOptionalUint64_ = !!value_;
+- (void) setHasOptionalUint64:(BOOL) _value_ {
+  hasOptionalUint64_ = !!_value_;
 }
 @synthesize optionalUint64;
 - (BOOL) hasOptionalSint32 {
   return !!hasOptionalSint32_;
 }
-- (void) setHasOptionalSint32:(BOOL) value_ {
-  hasOptionalSint32_ = !!value_;
+- (void) setHasOptionalSint32:(BOOL) _value_ {
+  hasOptionalSint32_ = !!_value_;
 }
 @synthesize optionalSint32;
 - (BOOL) hasOptionalSint64 {
   return !!hasOptionalSint64_;
 }
-- (void) setHasOptionalSint64:(BOOL) value_ {
-  hasOptionalSint64_ = !!value_;
+- (void) setHasOptionalSint64:(BOOL) _value_ {
+  hasOptionalSint64_ = !!_value_;
 }
 @synthesize optionalSint64;
 - (BOOL) hasOptionalFixed32 {
   return !!hasOptionalFixed32_;
 }
-- (void) setHasOptionalFixed32:(BOOL) value_ {
-  hasOptionalFixed32_ = !!value_;
+- (void) setHasOptionalFixed32:(BOOL) _value_ {
+  hasOptionalFixed32_ = !!_value_;
 }
 @synthesize optionalFixed32;
 - (BOOL) hasOptionalFixed64 {
   return !!hasOptionalFixed64_;
 }
-- (void) setHasOptionalFixed64:(BOOL) value_ {
-  hasOptionalFixed64_ = !!value_;
+- (void) setHasOptionalFixed64:(BOOL) _value_ {
+  hasOptionalFixed64_ = !!_value_;
 }
 @synthesize optionalFixed64;
 - (BOOL) hasOptionalSfixed32 {
   return !!hasOptionalSfixed32_;
 }
-- (void) setHasOptionalSfixed32:(BOOL) value_ {
-  hasOptionalSfixed32_ = !!value_;
+- (void) setHasOptionalSfixed32:(BOOL) _value_ {
+  hasOptionalSfixed32_ = !!_value_;
 }
 @synthesize optionalSfixed32;
 - (BOOL) hasOptionalSfixed64 {
   return !!hasOptionalSfixed64_;
 }
-- (void) setHasOptionalSfixed64:(BOOL) value_ {
-  hasOptionalSfixed64_ = !!value_;
+- (void) setHasOptionalSfixed64:(BOOL) _value_ {
+  hasOptionalSfixed64_ = !!_value_;
 }
 @synthesize optionalSfixed64;
 - (BOOL) hasOptionalFloat {
   return !!hasOptionalFloat_;
 }
-- (void) setHasOptionalFloat:(BOOL) value_ {
-  hasOptionalFloat_ = !!value_;
+- (void) setHasOptionalFloat:(BOOL) _value_ {
+  hasOptionalFloat_ = !!_value_;
 }
 @synthesize optionalFloat;
 - (BOOL) hasOptionalDouble {
   return !!hasOptionalDouble_;
 }
-- (void) setHasOptionalDouble:(BOOL) value_ {
-  hasOptionalDouble_ = !!value_;
+- (void) setHasOptionalDouble:(BOOL) _value_ {
+  hasOptionalDouble_ = !!_value_;
 }
 @synthesize optionalDouble;
 - (BOOL) hasOptionalBool {
   return !!hasOptionalBool_;
 }
-- (void) setHasOptionalBool:(BOOL) value_ {
-  hasOptionalBool_ = !!value_;
+- (void) setHasOptionalBool:(BOOL) _value_ {
+  hasOptionalBool_ = !!_value_;
 }
 - (BOOL) optionalBool {
   return !!optionalBool_;
 }
-- (void) setOptionalBool:(BOOL) value_ {
-  optionalBool_ = !!value_;
+- (void) setOptionalBool:(BOOL) _value_ {
+  optionalBool_ = !!_value_;
 }
 - (BOOL) hasOptionalString {
   return !!hasOptionalString_;
 }
-- (void) setHasOptionalString:(BOOL) value_ {
-  hasOptionalString_ = !!value_;
+- (void) setHasOptionalString:(BOOL) _value_ {
+  hasOptionalString_ = !!_value_;
 }
 @synthesize optionalString;
 - (BOOL) hasOptionalBytes {
   return !!hasOptionalBytes_;
 }
-- (void) setHasOptionalBytes:(BOOL) value_ {
-  hasOptionalBytes_ = !!value_;
+- (void) setHasOptionalBytes:(BOOL) _value_ {
+  hasOptionalBytes_ = !!_value_;
 }
 @synthesize optionalBytes;
 - (BOOL) hasOptionalGroup {
   return !!hasOptionalGroup_;
 }
-- (void) setHasOptionalGroup:(BOOL) value_ {
-  hasOptionalGroup_ = !!value_;
+- (void) setHasOptionalGroup:(BOOL) _value_ {
+  hasOptionalGroup_ = !!_value_;
 }
 @synthesize optionalGroup;
 - (BOOL) hasOptionalNestedMessage {
   return !!hasOptionalNestedMessage_;
 }
-- (void) setHasOptionalNestedMessage:(BOOL) value_ {
-  hasOptionalNestedMessage_ = !!value_;
+- (void) setHasOptionalNestedMessage:(BOOL) _value_ {
+  hasOptionalNestedMessage_ = !!_value_;
 }
 @synthesize optionalNestedMessage;
 - (BOOL) hasOptionalForeignMessage {
   return !!hasOptionalForeignMessage_;
 }
-- (void) setHasOptionalForeignMessage:(BOOL) value_ {
-  hasOptionalForeignMessage_ = !!value_;
+- (void) setHasOptionalForeignMessage:(BOOL) _value_ {
+  hasOptionalForeignMessage_ = !!_value_;
 }
 @synthesize optionalForeignMessage;
 - (BOOL) hasOptionalImportMessage {
   return !!hasOptionalImportMessage_;
 }
-- (void) setHasOptionalImportMessage:(BOOL) value_ {
-  hasOptionalImportMessage_ = !!value_;
+- (void) setHasOptionalImportMessage:(BOOL) _value_ {
+  hasOptionalImportMessage_ = !!_value_;
 }
 @synthesize optionalImportMessage;
 - (BOOL) hasOptionalNestedEnum {
   return !!hasOptionalNestedEnum_;
 }
-- (void) setHasOptionalNestedEnum:(BOOL) value_ {
-  hasOptionalNestedEnum_ = !!value_;
+- (void) setHasOptionalNestedEnum:(BOOL) _value_ {
+  hasOptionalNestedEnum_ = !!_value_;
 }
 @synthesize optionalNestedEnum;
 - (BOOL) hasOptionalForeignEnum {
   return !!hasOptionalForeignEnum_;
 }
-- (void) setHasOptionalForeignEnum:(BOOL) value_ {
-  hasOptionalForeignEnum_ = !!value_;
+- (void) setHasOptionalForeignEnum:(BOOL) _value_ {
+  hasOptionalForeignEnum_ = !!_value_;
 }
 @synthesize optionalForeignEnum;
 - (BOOL) hasOptionalImportEnum {
   return !!hasOptionalImportEnum_;
 }
-- (void) setHasOptionalImportEnum:(BOOL) value_ {
-  hasOptionalImportEnum_ = !!value_;
+- (void) setHasOptionalImportEnum:(BOOL) _value_ {
+  hasOptionalImportEnum_ = !!_value_;
 }
 @synthesize optionalImportEnum;
 - (BOOL) hasOptionalStringPiece {
   return !!hasOptionalStringPiece_;
 }
-- (void) setHasOptionalStringPiece:(BOOL) value_ {
-  hasOptionalStringPiece_ = !!value_;
+- (void) setHasOptionalStringPiece:(BOOL) _value_ {
+  hasOptionalStringPiece_ = !!_value_;
 }
 @synthesize optionalStringPiece;
 - (BOOL) hasOptionalCord {
   return !!hasOptionalCord_;
 }
-- (void) setHasOptionalCord:(BOOL) value_ {
-  hasOptionalCord_ = !!value_;
+- (void) setHasOptionalCord:(BOOL) _value_ {
+  hasOptionalCord_ = !!_value_;
 }
 @synthesize optionalCord;
 - (BOOL) hasOptionalPublicImportMessage {
   return !!hasOptionalPublicImportMessage_;
 }
-- (void) setHasOptionalPublicImportMessage:(BOOL) value_ {
-  hasOptionalPublicImportMessage_ = !!value_;
+- (void) setHasOptionalPublicImportMessage:(BOOL) _value_ {
+  hasOptionalPublicImportMessage_ = !!_value_;
 }
 @synthesize optionalPublicImportMessage;
 - (BOOL) hasOptionalLazyMessage {
   return !!hasOptionalLazyMessage_;
 }
-- (void) setHasOptionalLazyMessage:(BOOL) value_ {
-  hasOptionalLazyMessage_ = !!value_;
+- (void) setHasOptionalLazyMessage:(BOOL) _value_ {
+  hasOptionalLazyMessage_ = !!_value_;
 }
 @synthesize optionalLazyMessage;
 @synthesize repeatedInt32Array;
@@ -1643,174 +1643,174 @@ NSString *NSStringFromForeignEnumLite(ForeignEnumLite value) {
 - (BOOL) hasDefaultInt32 {
   return !!hasDefaultInt32_;
 }
-- (void) setHasDefaultInt32:(BOOL) value_ {
-  hasDefaultInt32_ = !!value_;
+- (void) setHasDefaultInt32:(BOOL) _value_ {
+  hasDefaultInt32_ = !!_value_;
 }
 @synthesize defaultInt32;
 - (BOOL) hasDefaultInt64 {
   return !!hasDefaultInt64_;
 }
-- (void) setHasDefaultInt64:(BOOL) value_ {
-  hasDefaultInt64_ = !!value_;
+- (void) setHasDefaultInt64:(BOOL) _value_ {
+  hasDefaultInt64_ = !!_value_;
 }
 @synthesize defaultInt64;
 - (BOOL) hasDefaultUint32 {
   return !!hasDefaultUint32_;
 }
-- (void) setHasDefaultUint32:(BOOL) value_ {
-  hasDefaultUint32_ = !!value_;
+- (void) setHasDefaultUint32:(BOOL) _value_ {
+  hasDefaultUint32_ = !!_value_;
 }
 @synthesize defaultUint32;
 - (BOOL) hasDefaultUint64 {
   return !!hasDefaultUint64_;
 }
-- (void) setHasDefaultUint64:(BOOL) value_ {
-  hasDefaultUint64_ = !!value_;
+- (void) setHasDefaultUint64:(BOOL) _value_ {
+  hasDefaultUint64_ = !!_value_;
 }
 @synthesize defaultUint64;
 - (BOOL) hasDefaultSint32 {
   return !!hasDefaultSint32_;
 }
-- (void) setHasDefaultSint32:(BOOL) value_ {
-  hasDefaultSint32_ = !!value_;
+- (void) setHasDefaultSint32:(BOOL) _value_ {
+  hasDefaultSint32_ = !!_value_;
 }
 @synthesize defaultSint32;
 - (BOOL) hasDefaultSint64 {
   return !!hasDefaultSint64_;
 }
-- (void) setHasDefaultSint64:(BOOL) value_ {
-  hasDefaultSint64_ = !!value_;
+- (void) setHasDefaultSint64:(BOOL) _value_ {
+  hasDefaultSint64_ = !!_value_;
 }
 @synthesize defaultSint64;
 - (BOOL) hasDefaultFixed32 {
   return !!hasDefaultFixed32_;
 }
-- (void) setHasDefaultFixed32:(BOOL) value_ {
-  hasDefaultFixed32_ = !!value_;
+- (void) setHasDefaultFixed32:(BOOL) _value_ {
+  hasDefaultFixed32_ = !!_value_;
 }
 @synthesize defaultFixed32;
 - (BOOL) hasDefaultFixed64 {
   return !!hasDefaultFixed64_;
 }
-- (void) setHasDefaultFixed64:(BOOL) value_ {
-  hasDefaultFixed64_ = !!value_;
+- (void) setHasDefaultFixed64:(BOOL) _value_ {
+  hasDefaultFixed64_ = !!_value_;
 }
 @synthesize defaultFixed64;
 - (BOOL) hasDefaultSfixed32 {
   return !!hasDefaultSfixed32_;
 }
-- (void) setHasDefaultSfixed32:(BOOL) value_ {
-  hasDefaultSfixed32_ = !!value_;
+- (void) setHasDefaultSfixed32:(BOOL) _value_ {
+  hasDefaultSfixed32_ = !!_value_;
 }
 @synthesize defaultSfixed32;
 - (BOOL) hasDefaultSfixed64 {
   return !!hasDefaultSfixed64_;
 }
-- (void) setHasDefaultSfixed64:(BOOL) value_ {
-  hasDefaultSfixed64_ = !!value_;
+- (void) setHasDefaultSfixed64:(BOOL) _value_ {
+  hasDefaultSfixed64_ = !!_value_;
 }
 @synthesize defaultSfixed64;
 - (BOOL) hasDefaultFloat {
   return !!hasDefaultFloat_;
 }
-- (void) setHasDefaultFloat:(BOOL) value_ {
-  hasDefaultFloat_ = !!value_;
+- (void) setHasDefaultFloat:(BOOL) _value_ {
+  hasDefaultFloat_ = !!_value_;
 }
 @synthesize defaultFloat;
 - (BOOL) hasDefaultDouble {
   return !!hasDefaultDouble_;
 }
-- (void) setHasDefaultDouble:(BOOL) value_ {
-  hasDefaultDouble_ = !!value_;
+- (void) setHasDefaultDouble:(BOOL) _value_ {
+  hasDefaultDouble_ = !!_value_;
 }
 @synthesize defaultDouble;
 - (BOOL) hasDefaultBool {
   return !!hasDefaultBool_;
 }
-- (void) setHasDefaultBool:(BOOL) value_ {
-  hasDefaultBool_ = !!value_;
+- (void) setHasDefaultBool:(BOOL) _value_ {
+  hasDefaultBool_ = !!_value_;
 }
 - (BOOL) defaultBool {
   return !!defaultBool_;
 }
-- (void) setDefaultBool:(BOOL) value_ {
-  defaultBool_ = !!value_;
+- (void) setDefaultBool:(BOOL) _value_ {
+  defaultBool_ = !!_value_;
 }
 - (BOOL) hasDefaultString {
   return !!hasDefaultString_;
 }
-- (void) setHasDefaultString:(BOOL) value_ {
-  hasDefaultString_ = !!value_;
+- (void) setHasDefaultString:(BOOL) _value_ {
+  hasDefaultString_ = !!_value_;
 }
 @synthesize defaultString;
 - (BOOL) hasDefaultBytes {
   return !!hasDefaultBytes_;
 }
-- (void) setHasDefaultBytes:(BOOL) value_ {
-  hasDefaultBytes_ = !!value_;
+- (void) setHasDefaultBytes:(BOOL) _value_ {
+  hasDefaultBytes_ = !!_value_;
 }
 @synthesize defaultBytes;
 - (BOOL) hasDefaultNestedEnum {
   return !!hasDefaultNestedEnum_;
 }
-- (void) setHasDefaultNestedEnum:(BOOL) value_ {
-  hasDefaultNestedEnum_ = !!value_;
+- (void) setHasDefaultNestedEnum:(BOOL) _value_ {
+  hasDefaultNestedEnum_ = !!_value_;
 }
 @synthesize defaultNestedEnum;
 - (BOOL) hasDefaultForeignEnum {
   return !!hasDefaultForeignEnum_;
 }
-- (void) setHasDefaultForeignEnum:(BOOL) value_ {
-  hasDefaultForeignEnum_ = !!value_;
+- (void) setHasDefaultForeignEnum:(BOOL) _value_ {
+  hasDefaultForeignEnum_ = !!_value_;
 }
 @synthesize defaultForeignEnum;
 - (BOOL) hasDefaultImportEnum {
   return !!hasDefaultImportEnum_;
 }
-- (void) setHasDefaultImportEnum:(BOOL) value_ {
-  hasDefaultImportEnum_ = !!value_;
+- (void) setHasDefaultImportEnum:(BOOL) _value_ {
+  hasDefaultImportEnum_ = !!_value_;
 }
 @synthesize defaultImportEnum;
 - (BOOL) hasDefaultStringPiece {
   return !!hasDefaultStringPiece_;
 }
-- (void) setHasDefaultStringPiece:(BOOL) value_ {
-  hasDefaultStringPiece_ = !!value_;
+- (void) setHasDefaultStringPiece:(BOOL) _value_ {
+  hasDefaultStringPiece_ = !!_value_;
 }
 @synthesize defaultStringPiece;
 - (BOOL) hasDefaultCord {
   return !!hasDefaultCord_;
 }
-- (void) setHasDefaultCord:(BOOL) value_ {
-  hasDefaultCord_ = !!value_;
+- (void) setHasDefaultCord:(BOOL) _value_ {
+  hasDefaultCord_ = !!_value_;
 }
 @synthesize defaultCord;
 - (BOOL) hasOneofUint32 {
   return !!hasOneofUint32_;
 }
-- (void) setHasOneofUint32:(BOOL) value_ {
-  hasOneofUint32_ = !!value_;
+- (void) setHasOneofUint32:(BOOL) _value_ {
+  hasOneofUint32_ = !!_value_;
 }
 @synthesize oneofUint32;
 - (BOOL) hasOneofNestedMessage {
   return !!hasOneofNestedMessage_;
 }
-- (void) setHasOneofNestedMessage:(BOOL) value_ {
-  hasOneofNestedMessage_ = !!value_;
+- (void) setHasOneofNestedMessage:(BOOL) _value_ {
+  hasOneofNestedMessage_ = !!_value_;
 }
 @synthesize oneofNestedMessage;
 - (BOOL) hasOneofString {
   return !!hasOneofString_;
 }
-- (void) setHasOneofString:(BOOL) value_ {
-  hasOneofString_ = !!value_;
+- (void) setHasOneofString:(BOOL) _value_ {
+  hasOneofString_ = !!_value_;
 }
 @synthesize oneofString;
 - (BOOL) hasOneofBytes {
   return !!hasOneofBytes_;
 }
-- (void) setHasOneofBytes:(BOOL) value_ {
-  hasOneofBytes_ = !!value_;
+- (void) setHasOneofBytes:(BOOL) _value_ {
+  hasOneofBytes_ = !!_value_;
 }
 @synthesize oneofBytes;
 - (instancetype) init {
@@ -2964,6 +2964,307 @@ static TestAllTypesLite* defaultTestAllTypesLiteInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasOptionalInt32) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.optionalInt32] forKey: @"optionalInt32"];
+  }
+  if (self.hasOptionalInt64) {
+    [dictionary setObject: [NSNumber numberWithLongLong:self.optionalInt64] forKey: @"optionalInt64"];
+  }
+  if (self.hasOptionalUint32) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.optionalUint32] forKey: @"optionalUint32"];
+  }
+  if (self.hasOptionalUint64) {
+    [dictionary setObject: [NSNumber numberWithLongLong:self.optionalUint64] forKey: @"optionalUint64"];
+  }
+  if (self.hasOptionalSint32) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.optionalSint32] forKey: @"optionalSint32"];
+  }
+  if (self.hasOptionalSint64) {
+    [dictionary setObject: [NSNumber numberWithLongLong:self.optionalSint64] forKey: @"optionalSint64"];
+  }
+  if (self.hasOptionalFixed32) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.optionalFixed32] forKey: @"optionalFixed32"];
+  }
+  if (self.hasOptionalFixed64) {
+    [dictionary setObject: [NSNumber numberWithLongLong:self.optionalFixed64] forKey: @"optionalFixed64"];
+  }
+  if (self.hasOptionalSfixed32) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.optionalSfixed32] forKey: @"optionalSfixed32"];
+  }
+  if (self.hasOptionalSfixed64) {
+    [dictionary setObject: [NSNumber numberWithLongLong:self.optionalSfixed64] forKey: @"optionalSfixed64"];
+  }
+  if (self.hasOptionalFloat) {
+    [dictionary setObject: [NSNumber numberWithFloat:self.optionalFloat] forKey: @"optionalFloat"];
+  }
+  if (self.hasOptionalDouble) {
+    [dictionary setObject: [NSNumber numberWithDouble:self.optionalDouble] forKey: @"optionalDouble"];
+  }
+  if (self.hasOptionalBool) {
+    [dictionary setObject: [NSNumber numberWithBool:self.optionalBool] forKey: @"optionalBool"];
+  }
+  if (self.hasOptionalString) {
+    [dictionary setObject: self.optionalString forKey: @"optionalString"];
+  }
+  if (self.hasOptionalBytes) {
+    [dictionary setObject: self.optionalBytes forKey: @"optionalBytes"];
+  }
+  if (self.hasOptionalGroup) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.optionalGroup storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"optionalGroup"];
+  }
+  if (self.hasOptionalNestedMessage) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.optionalNestedMessage storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"optionalNestedMessage"];
+  }
+  if (self.hasOptionalForeignMessage) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.optionalForeignMessage storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"optionalForeignMessage"];
+  }
+  if (self.hasOptionalImportMessage) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.optionalImportMessage storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"optionalImportMessage"];
+  }
+  if (self.hasOptionalNestedEnum) {
+    [dictionary setObject: @(self.optionalNestedEnum) forKey: @"optionalNestedEnum"];
+  }
+  if (self.hasOptionalForeignEnum) {
+    [dictionary setObject: @(self.optionalForeignEnum) forKey: @"optionalForeignEnum"];
+  }
+  if (self.hasOptionalImportEnum) {
+    [dictionary setObject: @(self.optionalImportEnum) forKey: @"optionalImportEnum"];
+  }
+  if (self.hasOptionalStringPiece) {
+    [dictionary setObject: self.optionalStringPiece forKey: @"optionalStringPiece"];
+  }
+  if (self.hasOptionalCord) {
+    [dictionary setObject: self.optionalCord forKey: @"optionalCord"];
+  }
+  if (self.hasOptionalPublicImportMessage) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.optionalPublicImportMessage storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"optionalPublicImportMessage"];
+  }
+  if (self.hasOptionalLazyMessage) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.optionalLazyMessage storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"optionalLazyMessage"];
+  }
+  NSMutableArray * repeatedInt32ArrayArray = [NSMutableArray new];
+  NSUInteger repeatedInt32ArrayCount=self.repeatedInt32Array.count;
+  for(int i=0;i<repeatedInt32ArrayCount;i++){
+    [repeatedInt32ArrayArray addObject: @([self.repeatedInt32Array int32AtIndex:i])];
+  }
+  [dictionary setObject: repeatedInt32ArrayArray forKey: @"repeatedInt32"];
+  NSMutableArray * repeatedInt64ArrayArray = [NSMutableArray new];
+  NSUInteger repeatedInt64ArrayCount=self.repeatedInt64Array.count;
+  for(int i=0;i<repeatedInt64ArrayCount;i++){
+    [repeatedInt64ArrayArray addObject: @([self.repeatedInt64Array int64AtIndex:i])];
+  }
+  [dictionary setObject: repeatedInt64ArrayArray forKey: @"repeatedInt64"];
+  NSMutableArray * repeatedUint32ArrayArray = [NSMutableArray new];
+  NSUInteger repeatedUint32ArrayCount=self.repeatedUint32Array.count;
+  for(int i=0;i<repeatedUint32ArrayCount;i++){
+    [repeatedUint32ArrayArray addObject: @([self.repeatedUint32Array uint32AtIndex:i])];
+  }
+  [dictionary setObject: repeatedUint32ArrayArray forKey: @"repeatedUint32"];
+  NSMutableArray * repeatedUint64ArrayArray = [NSMutableArray new];
+  NSUInteger repeatedUint64ArrayCount=self.repeatedUint64Array.count;
+  for(int i=0;i<repeatedUint64ArrayCount;i++){
+    [repeatedUint64ArrayArray addObject: @([self.repeatedUint64Array uint64AtIndex:i])];
+  }
+  [dictionary setObject: repeatedUint64ArrayArray forKey: @"repeatedUint64"];
+  NSMutableArray * repeatedSint32ArrayArray = [NSMutableArray new];
+  NSUInteger repeatedSint32ArrayCount=self.repeatedSint32Array.count;
+  for(int i=0;i<repeatedSint32ArrayCount;i++){
+    [repeatedSint32ArrayArray addObject: @([self.repeatedSint32Array int32AtIndex:i])];
+  }
+  [dictionary setObject: repeatedSint32ArrayArray forKey: @"repeatedSint32"];
+  NSMutableArray * repeatedSint64ArrayArray = [NSMutableArray new];
+  NSUInteger repeatedSint64ArrayCount=self.repeatedSint64Array.count;
+  for(int i=0;i<repeatedSint64ArrayCount;i++){
+    [repeatedSint64ArrayArray addObject: @([self.repeatedSint64Array int64AtIndex:i])];
+  }
+  [dictionary setObject: repeatedSint64ArrayArray forKey: @"repeatedSint64"];
+  NSMutableArray * repeatedFixed32ArrayArray = [NSMutableArray new];
+  NSUInteger repeatedFixed32ArrayCount=self.repeatedFixed32Array.count;
+  for(int i=0;i<repeatedFixed32ArrayCount;i++){
+    [repeatedFixed32ArrayArray addObject: @([self.repeatedFixed32Array uint32AtIndex:i])];
+  }
+  [dictionary setObject: repeatedFixed32ArrayArray forKey: @"repeatedFixed32"];
+  NSMutableArray * repeatedFixed64ArrayArray = [NSMutableArray new];
+  NSUInteger repeatedFixed64ArrayCount=self.repeatedFixed64Array.count;
+  for(int i=0;i<repeatedFixed64ArrayCount;i++){
+    [repeatedFixed64ArrayArray addObject: @([self.repeatedFixed64Array uint64AtIndex:i])];
+  }
+  [dictionary setObject: repeatedFixed64ArrayArray forKey: @"repeatedFixed64"];
+  NSMutableArray * repeatedSfixed32ArrayArray = [NSMutableArray new];
+  NSUInteger repeatedSfixed32ArrayCount=self.repeatedSfixed32Array.count;
+  for(int i=0;i<repeatedSfixed32ArrayCount;i++){
+    [repeatedSfixed32ArrayArray addObject: @([self.repeatedSfixed32Array int32AtIndex:i])];
+  }
+  [dictionary setObject: repeatedSfixed32ArrayArray forKey: @"repeatedSfixed32"];
+  NSMutableArray * repeatedSfixed64ArrayArray = [NSMutableArray new];
+  NSUInteger repeatedSfixed64ArrayCount=self.repeatedSfixed64Array.count;
+  for(int i=0;i<repeatedSfixed64ArrayCount;i++){
+    [repeatedSfixed64ArrayArray addObject: @([self.repeatedSfixed64Array int64AtIndex:i])];
+  }
+  [dictionary setObject: repeatedSfixed64ArrayArray forKey: @"repeatedSfixed64"];
+  NSMutableArray * repeatedFloatArrayArray = [NSMutableArray new];
+  NSUInteger repeatedFloatArrayCount=self.repeatedFloatArray.count;
+  for(int i=0;i<repeatedFloatArrayCount;i++){
+    [repeatedFloatArrayArray addObject: @([self.repeatedFloatArray floatAtIndex:i])];
+  }
+  [dictionary setObject: repeatedFloatArrayArray forKey: @"repeatedFloat"];
+  NSMutableArray * repeatedDoubleArrayArray = [NSMutableArray new];
+  NSUInteger repeatedDoubleArrayCount=self.repeatedDoubleArray.count;
+  for(int i=0;i<repeatedDoubleArrayCount;i++){
+    [repeatedDoubleArrayArray addObject: @([self.repeatedDoubleArray doubleAtIndex:i])];
+  }
+  [dictionary setObject: repeatedDoubleArrayArray forKey: @"repeatedDouble"];
+  NSMutableArray * repeatedBoolArrayArray = [NSMutableArray new];
+  NSUInteger repeatedBoolArrayCount=self.repeatedBoolArray.count;
+  for(int i=0;i<repeatedBoolArrayCount;i++){
+    [repeatedBoolArrayArray addObject: @([self.repeatedBoolArray boolAtIndex:i])];
+  }
+  [dictionary setObject: repeatedBoolArrayArray forKey: @"repeatedBool"];
+  [dictionary setObject:self.repeatedString forKey: @"repeatedString"];
+  [dictionary setObject:self.repeatedBytes forKey: @"repeatedBytes"];
+  for (TestAllTypesLiteRepeatedGroup* element in self.repeatedGroupArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"repeatedGroup"];
+  }
+  for (TestAllTypesLiteNestedMessage* element in self.repeatedNestedMessageArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"repeatedNestedMessage"];
+  }
+  for (ForeignMessageLite* element in self.repeatedForeignMessageArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"repeatedForeignMessage"];
+  }
+  for (ImportMessageLite* element in self.repeatedImportMessageArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"repeatedImportMessage"];
+  }
+  const NSUInteger repeatedNestedEnumArrayCount = self.repeatedNestedEnumArray.count;
+  if (repeatedNestedEnumArrayCount > 0) {
+    const TestAllTypesLiteNestedEnum *repeatedNestedEnumArrayValues = (const TestAllTypesLiteNestedEnum *)self.repeatedNestedEnumArray.data;
+    NSMutableArray * repeatedNestedEnumArrayArray = [NSMutableArray new];
+    for (NSUInteger i = 0; i < repeatedNestedEnumArrayCount; ++i) {
+      [repeatedNestedEnumArrayArray addObject: @(repeatedNestedEnumArrayValues[i])];
+    }
+    [dictionary setObject: repeatedNestedEnumArrayArray forKey: @"repeatedNestedEnum"];
+  }
+  const NSUInteger repeatedForeignEnumArrayCount = self.repeatedForeignEnumArray.count;
+  if (repeatedForeignEnumArrayCount > 0) {
+    const ForeignEnumLite *repeatedForeignEnumArrayValues = (const ForeignEnumLite *)self.repeatedForeignEnumArray.data;
+    NSMutableArray * repeatedForeignEnumArrayArray = [NSMutableArray new];
+    for (NSUInteger i = 0; i < repeatedForeignEnumArrayCount; ++i) {
+      [repeatedForeignEnumArrayArray addObject: @(repeatedForeignEnumArrayValues[i])];
+    }
+    [dictionary setObject: repeatedForeignEnumArrayArray forKey: @"repeatedForeignEnum"];
+  }
+  const NSUInteger repeatedImportEnumArrayCount = self.repeatedImportEnumArray.count;
+  if (repeatedImportEnumArrayCount > 0) {
+    const ImportEnumLite *repeatedImportEnumArrayValues = (const ImportEnumLite *)self.repeatedImportEnumArray.data;
+    NSMutableArray * repeatedImportEnumArrayArray = [NSMutableArray new];
+    for (NSUInteger i = 0; i < repeatedImportEnumArrayCount; ++i) {
+      [repeatedImportEnumArrayArray addObject: @(repeatedImportEnumArrayValues[i])];
+    }
+    [dictionary setObject: repeatedImportEnumArrayArray forKey: @"repeatedImportEnum"];
+  }
+  [dictionary setObject:self.repeatedStringPiece forKey: @"repeatedStringPiece"];
+  [dictionary setObject:self.repeatedCord forKey: @"repeatedCord"];
+  for (TestAllTypesLiteNestedMessage* element in self.repeatedLazyMessageArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"repeatedLazyMessage"];
+  }
+  if (self.hasDefaultInt32) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.defaultInt32] forKey: @"defaultInt32"];
+  }
+  if (self.hasDefaultInt64) {
+    [dictionary setObject: [NSNumber numberWithLongLong:self.defaultInt64] forKey: @"defaultInt64"];
+  }
+  if (self.hasDefaultUint32) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.defaultUint32] forKey: @"defaultUint32"];
+  }
+  if (self.hasDefaultUint64) {
+    [dictionary setObject: [NSNumber numberWithLongLong:self.defaultUint64] forKey: @"defaultUint64"];
+  }
+  if (self.hasDefaultSint32) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.defaultSint32] forKey: @"defaultSint32"];
+  }
+  if (self.hasDefaultSint64) {
+    [dictionary setObject: [NSNumber numberWithLongLong:self.defaultSint64] forKey: @"defaultSint64"];
+  }
+  if (self.hasDefaultFixed32) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.defaultFixed32] forKey: @"defaultFixed32"];
+  }
+  if (self.hasDefaultFixed64) {
+    [dictionary setObject: [NSNumber numberWithLongLong:self.defaultFixed64] forKey: @"defaultFixed64"];
+  }
+  if (self.hasDefaultSfixed32) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.defaultSfixed32] forKey: @"defaultSfixed32"];
+  }
+  if (self.hasDefaultSfixed64) {
+    [dictionary setObject: [NSNumber numberWithLongLong:self.defaultSfixed64] forKey: @"defaultSfixed64"];
+  }
+  if (self.hasDefaultFloat) {
+    [dictionary setObject: [NSNumber numberWithFloat:self.defaultFloat] forKey: @"defaultFloat"];
+  }
+  if (self.hasDefaultDouble) {
+    [dictionary setObject: [NSNumber numberWithDouble:self.defaultDouble] forKey: @"defaultDouble"];
+  }
+  if (self.hasDefaultBool) {
+    [dictionary setObject: [NSNumber numberWithBool:self.defaultBool] forKey: @"defaultBool"];
+  }
+  if (self.hasDefaultString) {
+    [dictionary setObject: self.defaultString forKey: @"defaultString"];
+  }
+  if (self.hasDefaultBytes) {
+    [dictionary setObject: self.defaultBytes forKey: @"defaultBytes"];
+  }
+  if (self.hasDefaultNestedEnum) {
+    [dictionary setObject: @(self.defaultNestedEnum) forKey: @"defaultNestedEnum"];
+  }
+  if (self.hasDefaultForeignEnum) {
+    [dictionary setObject: @(self.defaultForeignEnum) forKey: @"defaultForeignEnum"];
+  }
+  if (self.hasDefaultImportEnum) {
+    [dictionary setObject: @(self.defaultImportEnum) forKey: @"defaultImportEnum"];
+  }
+  if (self.hasDefaultStringPiece) {
+    [dictionary setObject: self.defaultStringPiece forKey: @"defaultStringPiece"];
+  }
+  if (self.hasDefaultCord) {
+    [dictionary setObject: self.defaultCord forKey: @"defaultCord"];
+  }
+  if (self.hasOneofUint32) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.oneofUint32] forKey: @"oneofUint32"];
+  }
+  if (self.hasOneofNestedMessage) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.oneofNestedMessage storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"oneofNestedMessage"];
+  }
+  if (self.hasOneofString) {
+    [dictionary setObject: self.oneofString forKey: @"oneofString"];
+  }
+  if (self.hasOneofBytes) {
+    [dictionary setObject: self.oneofBytes forKey: @"oneofBytes"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -3219,10 +3520,10 @@ static TestAllTypesLite* defaultTestAllTypesLiteInstance = nil;
   [self.repeatedBoolArray enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
     hashCode = hashCode * 31 + [obj longValue];
   }];
-  [self.repeatedStringArray enumerateObjectsUsingBlock:^(id element, NSUInteger idx, BOOL *stop) {
+  [self.repeatedStringArray enumerateObjectsUsingBlock:^(NSString *element, NSUInteger idx, BOOL *stop) {
     hashCode = hashCode * 31 + [element hash];
   }];
-  [self.repeatedBytesArray enumerateObjectsUsingBlock:^(id element, NSUInteger idx, BOOL *stop) {
+  [self.repeatedBytesArray enumerateObjectsUsingBlock:^(NSData *element, NSUInteger idx, BOOL *stop) {
     hashCode = hashCode * 31 + [element hash];
   }];
   [self.repeatedGroupArray enumerateObjectsUsingBlock:^(TestAllTypesLiteRepeatedGroup *element, NSUInteger idx, BOOL *stop) {
@@ -3246,10 +3547,10 @@ static TestAllTypesLite* defaultTestAllTypesLiteInstance = nil;
   [self.repeatedImportEnumArray enumerateObjectsUsingBlock:^(NSNumber* element, NSUInteger idx, BOOL *stop) {
     hashCode = hashCode * 31 + element.longValue;
   }];
-  [self.repeatedStringPieceArray enumerateObjectsUsingBlock:^(id element, NSUInteger idx, BOOL *stop) {
+  [self.repeatedStringPieceArray enumerateObjectsUsingBlock:^(NSString *element, NSUInteger idx, BOOL *stop) {
     hashCode = hashCode * 31 + [element hash];
   }];
-  [self.repeatedCordArray enumerateObjectsUsingBlock:^(id element, NSUInteger idx, BOOL *stop) {
+  [self.repeatedCordArray enumerateObjectsUsingBlock:^(NSString *element, NSUInteger idx, BOOL *stop) {
     hashCode = hashCode * 31 + [element hash];
   }];
   [self.repeatedLazyMessageArray enumerateObjectsUsingBlock:^(TestAllTypesLiteNestedMessage *element, NSUInteger idx, BOOL *stop) {
@@ -3364,8 +3665,8 @@ NSString *NSStringFromTestAllTypesLiteNestedEnum(TestAllTypesLiteNestedEnum valu
 - (BOOL) hasBb {
   return !!hasBb_;
 }
-- (void) setHasBb:(BOOL) value_ {
-  hasBb_ = !!value_;
+- (void) setHasBb:(BOOL) _value_ {
+  hasBb_ = !!_value_;
 }
 @synthesize bb;
 - (instancetype) init {
@@ -3444,6 +3745,12 @@ static TestAllTypesLiteNestedMessage* defaultTestAllTypesLiteNestedMessageInstan
     [output appendFormat:@"%@%@: %@\n", indent, @"bb", [NSNumber numberWithInteger:self.bb]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasBb) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.bb] forKey: @"bb"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -3564,8 +3871,8 @@ static TestAllTypesLiteNestedMessage* defaultTestAllTypesLiteNestedMessageInstan
 - (BOOL) hasA {
   return !!hasA_;
 }
-- (void) setHasA:(BOOL) value_ {
-  hasA_ = !!value_;
+- (void) setHasA:(BOOL) _value_ {
+  hasA_ = !!_value_;
 }
 @synthesize a;
 - (instancetype) init {
@@ -3644,6 +3951,12 @@ static TestAllTypesLiteOptionalGroup* defaultTestAllTypesLiteOptionalGroupInstan
     [output appendFormat:@"%@%@: %@\n", indent, @"a", [NSNumber numberWithInteger:self.a]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasA) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.a] forKey: @"a"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -3764,8 +4077,8 @@ static TestAllTypesLiteOptionalGroup* defaultTestAllTypesLiteOptionalGroupInstan
 - (BOOL) hasA {
   return !!hasA_;
 }
-- (void) setHasA:(BOOL) value_ {
-  hasA_ = !!value_;
+- (void) setHasA:(BOOL) _value_ {
+  hasA_ = !!_value_;
 }
 @synthesize a;
 - (instancetype) init {
@@ -3844,6 +4157,12 @@ static TestAllTypesLiteRepeatedGroup* defaultTestAllTypesLiteRepeatedGroupInstan
     [output appendFormat:@"%@%@: %@\n", indent, @"a", [NSNumber numberWithInteger:self.a]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasA) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.a] forKey: @"a"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -6230,8 +6549,8 @@ static TestAllTypesLiteRepeatedGroup* defaultTestAllTypesLiteRepeatedGroupInstan
 - (BOOL) hasC {
   return !!hasC_;
 }
-- (void) setHasC:(BOOL) value_ {
-  hasC_ = !!value_;
+- (void) setHasC:(BOOL) _value_ {
+  hasC_ = !!_value_;
 }
 @synthesize c;
 - (instancetype) init {
@@ -6310,6 +6629,12 @@ static ForeignMessageLite* defaultForeignMessageLiteInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"c", [NSNumber numberWithInteger:self.c]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasC) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.c] forKey: @"c"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -6961,6 +7286,96 @@ static TestPackedTypesLite* defaultTestPackedTypesLiteInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"packedEnum", NSStringFromForeignEnumLite([(NSNumber *)element intValue])];
   }];
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  NSMutableArray * packedInt32ArrayArray = [NSMutableArray new];
+  NSUInteger packedInt32ArrayCount=self.packedInt32Array.count;
+  for(int i=0;i<packedInt32ArrayCount;i++){
+    [packedInt32ArrayArray addObject: @([self.packedInt32Array int32AtIndex:i])];
+  }
+  [dictionary setObject: packedInt32ArrayArray forKey: @"packedInt32"];
+  NSMutableArray * packedInt64ArrayArray = [NSMutableArray new];
+  NSUInteger packedInt64ArrayCount=self.packedInt64Array.count;
+  for(int i=0;i<packedInt64ArrayCount;i++){
+    [packedInt64ArrayArray addObject: @([self.packedInt64Array int64AtIndex:i])];
+  }
+  [dictionary setObject: packedInt64ArrayArray forKey: @"packedInt64"];
+  NSMutableArray * packedUint32ArrayArray = [NSMutableArray new];
+  NSUInteger packedUint32ArrayCount=self.packedUint32Array.count;
+  for(int i=0;i<packedUint32ArrayCount;i++){
+    [packedUint32ArrayArray addObject: @([self.packedUint32Array uint32AtIndex:i])];
+  }
+  [dictionary setObject: packedUint32ArrayArray forKey: @"packedUint32"];
+  NSMutableArray * packedUint64ArrayArray = [NSMutableArray new];
+  NSUInteger packedUint64ArrayCount=self.packedUint64Array.count;
+  for(int i=0;i<packedUint64ArrayCount;i++){
+    [packedUint64ArrayArray addObject: @([self.packedUint64Array uint64AtIndex:i])];
+  }
+  [dictionary setObject: packedUint64ArrayArray forKey: @"packedUint64"];
+  NSMutableArray * packedSint32ArrayArray = [NSMutableArray new];
+  NSUInteger packedSint32ArrayCount=self.packedSint32Array.count;
+  for(int i=0;i<packedSint32ArrayCount;i++){
+    [packedSint32ArrayArray addObject: @([self.packedSint32Array int32AtIndex:i])];
+  }
+  [dictionary setObject: packedSint32ArrayArray forKey: @"packedSint32"];
+  NSMutableArray * packedSint64ArrayArray = [NSMutableArray new];
+  NSUInteger packedSint64ArrayCount=self.packedSint64Array.count;
+  for(int i=0;i<packedSint64ArrayCount;i++){
+    [packedSint64ArrayArray addObject: @([self.packedSint64Array int64AtIndex:i])];
+  }
+  [dictionary setObject: packedSint64ArrayArray forKey: @"packedSint64"];
+  NSMutableArray * packedFixed32ArrayArray = [NSMutableArray new];
+  NSUInteger packedFixed32ArrayCount=self.packedFixed32Array.count;
+  for(int i=0;i<packedFixed32ArrayCount;i++){
+    [packedFixed32ArrayArray addObject: @([self.packedFixed32Array uint32AtIndex:i])];
+  }
+  [dictionary setObject: packedFixed32ArrayArray forKey: @"packedFixed32"];
+  NSMutableArray * packedFixed64ArrayArray = [NSMutableArray new];
+  NSUInteger packedFixed64ArrayCount=self.packedFixed64Array.count;
+  for(int i=0;i<packedFixed64ArrayCount;i++){
+    [packedFixed64ArrayArray addObject: @([self.packedFixed64Array uint64AtIndex:i])];
+  }
+  [dictionary setObject: packedFixed64ArrayArray forKey: @"packedFixed64"];
+  NSMutableArray * packedSfixed32ArrayArray = [NSMutableArray new];
+  NSUInteger packedSfixed32ArrayCount=self.packedSfixed32Array.count;
+  for(int i=0;i<packedSfixed32ArrayCount;i++){
+    [packedSfixed32ArrayArray addObject: @([self.packedSfixed32Array int32AtIndex:i])];
+  }
+  [dictionary setObject: packedSfixed32ArrayArray forKey: @"packedSfixed32"];
+  NSMutableArray * packedSfixed64ArrayArray = [NSMutableArray new];
+  NSUInteger packedSfixed64ArrayCount=self.packedSfixed64Array.count;
+  for(int i=0;i<packedSfixed64ArrayCount;i++){
+    [packedSfixed64ArrayArray addObject: @([self.packedSfixed64Array int64AtIndex:i])];
+  }
+  [dictionary setObject: packedSfixed64ArrayArray forKey: @"packedSfixed64"];
+  NSMutableArray * packedFloatArrayArray = [NSMutableArray new];
+  NSUInteger packedFloatArrayCount=self.packedFloatArray.count;
+  for(int i=0;i<packedFloatArrayCount;i++){
+    [packedFloatArrayArray addObject: @([self.packedFloatArray floatAtIndex:i])];
+  }
+  [dictionary setObject: packedFloatArrayArray forKey: @"packedFloat"];
+  NSMutableArray * packedDoubleArrayArray = [NSMutableArray new];
+  NSUInteger packedDoubleArrayCount=self.packedDoubleArray.count;
+  for(int i=0;i<packedDoubleArrayCount;i++){
+    [packedDoubleArrayArray addObject: @([self.packedDoubleArray doubleAtIndex:i])];
+  }
+  [dictionary setObject: packedDoubleArrayArray forKey: @"packedDouble"];
+  NSMutableArray * packedBoolArrayArray = [NSMutableArray new];
+  NSUInteger packedBoolArrayCount=self.packedBoolArray.count;
+  for(int i=0;i<packedBoolArrayCount;i++){
+    [packedBoolArrayArray addObject: @([self.packedBoolArray boolAtIndex:i])];
+  }
+  [dictionary setObject: packedBoolArrayArray forKey: @"packedBool"];
+  const NSUInteger packedEnumArrayCount = self.packedEnumArray.count;
+  if (packedEnumArrayCount > 0) {
+    const ForeignEnumLite *packedEnumArrayValues = (const ForeignEnumLite *)self.packedEnumArray.data;
+    NSMutableArray * packedEnumArrayArray = [NSMutableArray new];
+    for (NSUInteger i = 0; i < packedEnumArrayCount; ++i) {
+      [packedEnumArrayArray addObject: @(packedEnumArrayValues[i])];
+    }
+    [dictionary setObject: packedEnumArrayArray forKey: @"packedEnum"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -7801,6 +8216,9 @@ static TestAllExtensionsLite* defaultTestAllExtensionsLiteInstance = nil;
                                       withIndent:indent];
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -7896,8 +8314,8 @@ static TestAllExtensionsLite* defaultTestAllExtensionsLiteInstance = nil;
 - (BOOL) hasA {
   return !!hasA_;
 }
-- (void) setHasA:(BOOL) value_ {
-  hasA_ = !!value_;
+- (void) setHasA:(BOOL) _value_ {
+  hasA_ = !!_value_;
 }
 @synthesize a;
 - (instancetype) init {
@@ -7976,6 +8394,12 @@ static OptionalGroup_extension_lite* defaultOptionalGroup_extension_liteInstance
     [output appendFormat:@"%@%@: %@\n", indent, @"a", [NSNumber numberWithInteger:self.a]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasA) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.a] forKey: @"a"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -8096,8 +8520,8 @@ static OptionalGroup_extension_lite* defaultOptionalGroup_extension_liteInstance
 - (BOOL) hasA {
   return !!hasA_;
 }
-- (void) setHasA:(BOOL) value_ {
-  hasA_ = !!value_;
+- (void) setHasA:(BOOL) _value_ {
+  hasA_ = !!_value_;
 }
 @synthesize a;
 - (instancetype) init {
@@ -8176,6 +8600,12 @@ static RepeatedGroup_extension_lite* defaultRepeatedGroup_extension_liteInstance
     [output appendFormat:@"%@%@: %@\n", indent, @"a", [NSNumber numberWithInteger:self.a]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasA) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.a] forKey: @"a"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -8370,6 +8800,9 @@ static TestPackedExtensionsLite* defaultTestPackedExtensionsLiteInstance = nil;
                                       withIndent:indent];
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -8531,6 +8964,9 @@ static TestNestedExtensionLite* defaultTestNestedExtensionLiteInstance = nil;
 - (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -8622,8 +9058,8 @@ static TestNestedExtensionLite* defaultTestNestedExtensionLiteInstance = nil;
 - (BOOL) hasDeprecatedField {
   return !!hasDeprecatedField_;
 }
-- (void) setHasDeprecatedField:(BOOL) value_ {
-  hasDeprecatedField_ = !!value_;
+- (void) setHasDeprecatedField:(BOOL) _value_ {
+  hasDeprecatedField_ = !!_value_;
 }
 @synthesize deprecatedField;
 - (instancetype) init {
@@ -8702,6 +9138,12 @@ static TestDeprecatedLite* defaultTestDeprecatedLiteInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"deprecatedField", [NSNumber numberWithInteger:self.deprecatedField]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasDeprecatedField) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.deprecatedField] forKey: @"deprecatedField"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -8826,15 +9268,15 @@ static TestDeprecatedLite* defaultTestDeprecatedLiteInstance = nil;
 - (BOOL) hasRequiredAllTypes {
   return !!hasRequiredAllTypes_;
 }
-- (void) setHasRequiredAllTypes:(BOOL) value_ {
-  hasRequiredAllTypes_ = !!value_;
+- (void) setHasRequiredAllTypes:(BOOL) _value_ {
+  hasRequiredAllTypes_ = !!_value_;
 }
 @synthesize requiredAllTypes;
 - (BOOL) hasOptionalAllTypes {
   return !!hasOptionalAllTypes_;
 }
-- (void) setHasOptionalAllTypes:(BOOL) value_ {
-  hasOptionalAllTypes_ = !!value_;
+- (void) setHasOptionalAllTypes:(BOOL) _value_ {
+  hasOptionalAllTypes_ = !!_value_;
 }
 @synthesize optionalAllTypes;
 @synthesize repeatedAllTypesArray;
@@ -8842,8 +9284,8 @@ static TestDeprecatedLite* defaultTestDeprecatedLiteInstance = nil;
 - (BOOL) hasOptionalGroup {
   return !!hasOptionalGroup_;
 }
-- (void) setHasOptionalGroup:(BOOL) value_ {
-  hasOptionalGroup_ = !!value_;
+- (void) setHasOptionalGroup:(BOOL) _value_ {
+  hasOptionalGroup_ = !!_value_;
 }
 @synthesize optionalGroup;
 @synthesize repeatedGroupArray;
@@ -9009,6 +9451,34 @@ static TestParsingMergeLite* defaultTestParsingMergeLiteInstance = nil;
                                               to:536870912
                                       withIndent:indent];
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasRequiredAllTypes) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.requiredAllTypes storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"requiredAllTypes"];
+  }
+  if (self.hasOptionalAllTypes) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.optionalAllTypes storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"optionalAllTypes"];
+  }
+  for (TestAllTypesLite* element in self.repeatedAllTypesArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"repeatedAllTypes"];
+  }
+  if (self.hasOptionalGroup) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.optionalGroup storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"optionalGroup"];
+  }
+  for (TestParsingMergeLiteRepeatedGroup* element in self.repeatedGroupArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"repeatedGroup"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -9273,6 +9743,44 @@ static TestParsingMergeLiteRepeatedFieldsGenerator* defaultTestParsingMergeLiteR
   }];
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  for (TestAllTypesLite* element in self.field1Array) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"field1"];
+  }
+  for (TestAllTypesLite* element in self.field2Array) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"field2"];
+  }
+  for (TestAllTypesLite* element in self.field3Array) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"field3"];
+  }
+  for (TestParsingMergeLiteRepeatedFieldsGeneratorGroup1* element in self.group1Array) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"group1"];
+  }
+  for (TestParsingMergeLiteRepeatedFieldsGeneratorGroup2* element in self.group2Array) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"group2"];
+  }
+  for (TestAllTypesLite* element in self.ext1Array) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"ext1"];
+  }
+  for (TestAllTypesLite* element in self.ext2Array) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"ext2"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -9328,8 +9836,8 @@ static TestParsingMergeLiteRepeatedFieldsGenerator* defaultTestParsingMergeLiteR
 - (BOOL) hasField1 {
   return !!hasField1_;
 }
-- (void) setHasField1:(BOOL) value_ {
-  hasField1_ = !!value_;
+- (void) setHasField1:(BOOL) _value_ {
+  hasField1_ = !!_value_;
 }
 @synthesize field1;
 - (instancetype) init {
@@ -9411,6 +9919,14 @@ static TestParsingMergeLiteRepeatedFieldsGeneratorGroup1* defaultTestParsingMerg
     [output appendFormat:@"%@}\n", indent];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasField1) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.field1 storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"field1"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -9550,8 +10066,8 @@ static TestParsingMergeLiteRepeatedFieldsGeneratorGroup1* defaultTestParsingMerg
 - (BOOL) hasField1 {
   return !!hasField1_;
 }
-- (void) setHasField1:(BOOL) value_ {
-  hasField1_ = !!value_;
+- (void) setHasField1:(BOOL) _value_ {
+  hasField1_ = !!_value_;
 }
 @synthesize field1;
 - (instancetype) init {
@@ -9633,6 +10149,14 @@ static TestParsingMergeLiteRepeatedFieldsGeneratorGroup2* defaultTestParsingMerg
     [output appendFormat:@"%@}\n", indent];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasField1) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.field1 storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"field1"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -10074,8 +10598,8 @@ static TestParsingMergeLiteRepeatedFieldsGeneratorGroup2* defaultTestParsingMerg
 - (BOOL) hasOptionalGroupAllTypes {
   return !!hasOptionalGroupAllTypes_;
 }
-- (void) setHasOptionalGroupAllTypes:(BOOL) value_ {
-  hasOptionalGroupAllTypes_ = !!value_;
+- (void) setHasOptionalGroupAllTypes:(BOOL) _value_ {
+  hasOptionalGroupAllTypes_ = !!_value_;
 }
 @synthesize optionalGroupAllTypes;
 - (instancetype) init {
@@ -10157,6 +10681,14 @@ static TestParsingMergeLiteOptionalGroup* defaultTestParsingMergeLiteOptionalGro
     [output appendFormat:@"%@}\n", indent];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasOptionalGroupAllTypes) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.optionalGroupAllTypes storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"optionalGroupAllTypes"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -10296,8 +10828,8 @@ static TestParsingMergeLiteOptionalGroup* defaultTestParsingMergeLiteOptionalGro
 - (BOOL) hasRepeatedGroupAllTypes {
   return !!hasRepeatedGroupAllTypes_;
 }
-- (void) setHasRepeatedGroupAllTypes:(BOOL) value_ {
-  hasRepeatedGroupAllTypes_ = !!value_;
+- (void) setHasRepeatedGroupAllTypes:(BOOL) _value_ {
+  hasRepeatedGroupAllTypes_ = !!_value_;
 }
 @synthesize repeatedGroupAllTypes;
 - (instancetype) init {
@@ -10379,6 +10911,14 @@ static TestParsingMergeLiteRepeatedGroup* defaultTestParsingMergeLiteRepeatedGro
     [output appendFormat:@"%@}\n", indent];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasRepeatedGroupAllTypes) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.repeatedGroupAllTypes storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"repeatedGroupAllTypes"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -10840,6 +11380,9 @@ static TestEmptyMessageLite* defaultTestEmptyMessageLiteInstance = nil;
 - (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -11004,6 +11547,9 @@ static TestEmptyMessageWithExtensionsLite* defaultTestEmptyMessageWithExtensions
                                               to:536870912
                                       withIndent:indent];
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {

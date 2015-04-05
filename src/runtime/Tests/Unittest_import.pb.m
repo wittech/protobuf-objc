@@ -53,8 +53,8 @@ NSString *NSStringFromImportEnum(ImportEnum value) {
 - (BOOL) hasD {
   return !!hasD_;
 }
-- (void) setHasD:(BOOL) value_ {
-  hasD_ = !!value_;
+- (void) setHasD:(BOOL) _value_ {
+  hasD_ = !!_value_;
 }
 @synthesize d;
 - (instancetype) init {
@@ -133,6 +133,12 @@ static ImportMessage* defaultImportMessageInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"d", [NSNumber numberWithInteger:self.d]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasD) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.d] forKey: @"d"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {

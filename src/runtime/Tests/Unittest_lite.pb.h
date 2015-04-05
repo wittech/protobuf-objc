@@ -49,17 +49,7 @@
 @class TestParsingMergeLiteRepeatedFieldsGeneratorGroup2Builder;
 @class TestParsingMergeLiteRepeatedGroup;
 @class TestParsingMergeLiteRepeatedGroupBuilder;
-#ifndef __has_feature
-  #define __has_feature(x) 0 // Compatibility with non-clang compilers.
-#endif // __has_feature
 
-#ifndef NS_RETURNS_NOT_RETAINED
-  #if __has_feature(attribute_ns_returns_not_retained)
-    #define NS_RETURNS_NOT_RETAINED __attribute__((ns_returns_not_retained))
-  #else
-    #define NS_RETURNS_NOT_RETAINED
-  #endif
-#endif
 
 typedef NS_ENUM(SInt32, ForeignEnumLite) {
   ForeignEnumLiteForeignLiteFoo = 4,
@@ -175,6 +165,81 @@ NSString *NSStringFromTestAllTypesLiteNestedEnum(TestAllTypesLiteNestedEnum valu
 + (id<PBExtensionField>) packedEnumExtensionLite;
 @end
 
+#define TestAllTypesLite_optional_int32 @"optionalInt32"
+#define TestAllTypesLite_optional_int64 @"optionalInt64"
+#define TestAllTypesLite_optional_uint32 @"optionalUint32"
+#define TestAllTypesLite_optional_uint64 @"optionalUint64"
+#define TestAllTypesLite_optional_sint32 @"optionalSint32"
+#define TestAllTypesLite_optional_sint64 @"optionalSint64"
+#define TestAllTypesLite_optional_fixed32 @"optionalFixed32"
+#define TestAllTypesLite_optional_fixed64 @"optionalFixed64"
+#define TestAllTypesLite_optional_sfixed32 @"optionalSfixed32"
+#define TestAllTypesLite_optional_sfixed64 @"optionalSfixed64"
+#define TestAllTypesLite_optional_float @"optionalFloat"
+#define TestAllTypesLite_optional_double @"optionalDouble"
+#define TestAllTypesLite_optional_bool @"optionalBool"
+#define TestAllTypesLite_optional_string @"optionalString"
+#define TestAllTypesLite_optional_bytes @"optionalBytes"
+#define TestAllTypesLite_optionalgroup @"optionalGroup"
+#define TestAllTypesLite_optional_nested_message @"optionalNestedMessage"
+#define TestAllTypesLite_optional_foreign_message @"optionalForeignMessage"
+#define TestAllTypesLite_optional_import_message @"optionalImportMessage"
+#define TestAllTypesLite_optional_nested_enum @"optionalNestedEnum"
+#define TestAllTypesLite_optional_foreign_enum @"optionalForeignEnum"
+#define TestAllTypesLite_optional_import_enum @"optionalImportEnum"
+#define TestAllTypesLite_optional_string_piece @"optionalStringPiece"
+#define TestAllTypesLite_optional_cord @"optionalCord"
+#define TestAllTypesLite_optional_public_import_message @"optionalPublicImportMessage"
+#define TestAllTypesLite_optional_lazy_message @"optionalLazyMessage"
+#define TestAllTypesLite_repeated_int32 @"repeatedInt32"
+#define TestAllTypesLite_repeated_int64 @"repeatedInt64"
+#define TestAllTypesLite_repeated_uint32 @"repeatedUint32"
+#define TestAllTypesLite_repeated_uint64 @"repeatedUint64"
+#define TestAllTypesLite_repeated_sint32 @"repeatedSint32"
+#define TestAllTypesLite_repeated_sint64 @"repeatedSint64"
+#define TestAllTypesLite_repeated_fixed32 @"repeatedFixed32"
+#define TestAllTypesLite_repeated_fixed64 @"repeatedFixed64"
+#define TestAllTypesLite_repeated_sfixed32 @"repeatedSfixed32"
+#define TestAllTypesLite_repeated_sfixed64 @"repeatedSfixed64"
+#define TestAllTypesLite_repeated_float @"repeatedFloat"
+#define TestAllTypesLite_repeated_double @"repeatedDouble"
+#define TestAllTypesLite_repeated_bool @"repeatedBool"
+#define TestAllTypesLite_repeated_string @"repeatedString"
+#define TestAllTypesLite_repeated_bytes @"repeatedBytes"
+#define TestAllTypesLite_repeatedgroup @"repeatedGroup"
+#define TestAllTypesLite_repeated_nested_message @"repeatedNestedMessage"
+#define TestAllTypesLite_repeated_foreign_message @"repeatedForeignMessage"
+#define TestAllTypesLite_repeated_import_message @"repeatedImportMessage"
+#define TestAllTypesLite_repeated_nested_enum @"repeatedNestedEnum"
+#define TestAllTypesLite_repeated_foreign_enum @"repeatedForeignEnum"
+#define TestAllTypesLite_repeated_import_enum @"repeatedImportEnum"
+#define TestAllTypesLite_repeated_string_piece @"repeatedStringPiece"
+#define TestAllTypesLite_repeated_cord @"repeatedCord"
+#define TestAllTypesLite_repeated_lazy_message @"repeatedLazyMessage"
+#define TestAllTypesLite_default_int32 @"defaultInt32"
+#define TestAllTypesLite_default_int64 @"defaultInt64"
+#define TestAllTypesLite_default_uint32 @"defaultUint32"
+#define TestAllTypesLite_default_uint64 @"defaultUint64"
+#define TestAllTypesLite_default_sint32 @"defaultSint32"
+#define TestAllTypesLite_default_sint64 @"defaultSint64"
+#define TestAllTypesLite_default_fixed32 @"defaultFixed32"
+#define TestAllTypesLite_default_fixed64 @"defaultFixed64"
+#define TestAllTypesLite_default_sfixed32 @"defaultSfixed32"
+#define TestAllTypesLite_default_sfixed64 @"defaultSfixed64"
+#define TestAllTypesLite_default_float @"defaultFloat"
+#define TestAllTypesLite_default_double @"defaultDouble"
+#define TestAllTypesLite_default_bool @"defaultBool"
+#define TestAllTypesLite_default_string @"defaultString"
+#define TestAllTypesLite_default_bytes @"defaultBytes"
+#define TestAllTypesLite_default_nested_enum @"defaultNestedEnum"
+#define TestAllTypesLite_default_foreign_enum @"defaultForeignEnum"
+#define TestAllTypesLite_default_import_enum @"defaultImportEnum"
+#define TestAllTypesLite_default_string_piece @"defaultStringPiece"
+#define TestAllTypesLite_default_cord @"defaultCord"
+#define TestAllTypesLite_oneof_uint32 @"oneofUint32"
+#define TestAllTypesLite_oneof_nested_message @"oneofNestedMessage"
+#define TestAllTypesLite_oneof_string @"oneofString"
+#define TestAllTypesLite_oneof_bytes @"oneofBytes"
 @interface TestAllTypesLite : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasOptionalBool_:1;
@@ -472,6 +537,7 @@ NSString *NSStringFromTestAllTypesLiteNestedEnum(TestAllTypesLiteNestedEnum valu
 + (TestAllTypesLite*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define NestedMessage_bb @"bb"
 @interface TestAllTypesLiteNestedMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasBb_:1;
@@ -521,6 +587,7 @@ NSString *NSStringFromTestAllTypesLiteNestedEnum(TestAllTypesLiteNestedEnum valu
 - (TestAllTypesLiteNestedMessageBuilder*) clearBb;
 @end
 
+#define OptionalGroup_a @"a"
 @interface TestAllTypesLiteOptionalGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
@@ -570,6 +637,7 @@ NSString *NSStringFromTestAllTypesLiteNestedEnum(TestAllTypesLiteNestedEnum valu
 - (TestAllTypesLiteOptionalGroupBuilder*) clearA;
 @end
 
+#define RepeatedGroup_a @"a"
 @interface TestAllTypesLiteRepeatedGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
@@ -1067,6 +1135,7 @@ NSString *NSStringFromTestAllTypesLiteNestedEnum(TestAllTypesLiteNestedEnum valu
 - (TestAllTypesLiteBuilder*) clearOneofBytes;
 @end
 
+#define ForeignMessageLite_c @"c"
 @interface ForeignMessageLite : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasC_:1;
@@ -1116,6 +1185,20 @@ NSString *NSStringFromTestAllTypesLiteNestedEnum(TestAllTypesLiteNestedEnum valu
 - (ForeignMessageLiteBuilder*) clearC;
 @end
 
+#define TestPackedTypesLite_packed_int32 @"packedInt32"
+#define TestPackedTypesLite_packed_int64 @"packedInt64"
+#define TestPackedTypesLite_packed_uint32 @"packedUint32"
+#define TestPackedTypesLite_packed_uint64 @"packedUint64"
+#define TestPackedTypesLite_packed_sint32 @"packedSint32"
+#define TestPackedTypesLite_packed_sint64 @"packedSint64"
+#define TestPackedTypesLite_packed_fixed32 @"packedFixed32"
+#define TestPackedTypesLite_packed_fixed64 @"packedFixed64"
+#define TestPackedTypesLite_packed_sfixed32 @"packedSfixed32"
+#define TestPackedTypesLite_packed_sfixed64 @"packedSfixed64"
+#define TestPackedTypesLite_packed_float @"packedFloat"
+#define TestPackedTypesLite_packed_double @"packedDouble"
+#define TestPackedTypesLite_packed_bool @"packedBool"
+#define TestPackedTypesLite_packed_enum @"packedEnum"
 @interface TestPackedTypesLite : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   PBAppendableArray * packedBoolArray;
@@ -1350,6 +1433,7 @@ NSString *NSStringFromTestAllTypesLiteNestedEnum(TestAllTypesLiteNestedEnum valu
 - (TestAllExtensionsLiteBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define OptionalGroup_extension_lite_a @"a"
 @interface OptionalGroup_extension_lite : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
@@ -1399,6 +1483,7 @@ NSString *NSStringFromTestAllTypesLiteNestedEnum(TestAllTypesLiteNestedEnum valu
 - (OptionalGroup_extension_liteBuilder*) clearA;
 @end
 
+#define RepeatedGroup_extension_lite_a @"a"
 @interface RepeatedGroup_extension_lite : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasA_:1;
@@ -1529,6 +1614,7 @@ NSString *NSStringFromTestAllTypesLiteNestedEnum(TestAllTypesLiteNestedEnum valu
 - (TestNestedExtensionLiteBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define TestDeprecatedLite_deprecated_field @"deprecatedField"
 @interface TestDeprecatedLite : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasDeprecatedField_:1;
@@ -1578,6 +1664,11 @@ NSString *NSStringFromTestAllTypesLiteNestedEnum(TestAllTypesLiteNestedEnum valu
 - (TestDeprecatedLiteBuilder*) clearDeprecatedField;
 @end
 
+#define TestParsingMergeLite_required_all_types @"requiredAllTypes"
+#define TestParsingMergeLite_optional_all_types @"optionalAllTypes"
+#define TestParsingMergeLite_repeated_all_types @"repeatedAllTypes"
+#define TestParsingMergeLite_optionalgroup @"optionalGroup"
+#define TestParsingMergeLite_repeatedgroup @"repeatedGroup"
 @interface TestParsingMergeLite : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasOptionalGroup_:1;
@@ -1620,6 +1711,13 @@ NSString *NSStringFromTestAllTypesLiteNestedEnum(TestAllTypesLiteNestedEnum valu
 + (TestParsingMergeLite*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define RepeatedFieldsGenerator_field1 @"field1"
+#define RepeatedFieldsGenerator_field2 @"field2"
+#define RepeatedFieldsGenerator_field3 @"field3"
+#define RepeatedFieldsGenerator_group1 @"group1"
+#define RepeatedFieldsGenerator_group2 @"group2"
+#define RepeatedFieldsGenerator_ext1 @"ext1"
+#define RepeatedFieldsGenerator_ext2 @"ext2"
 @interface TestParsingMergeLiteRepeatedFieldsGenerator : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   NSMutableArray * group1Array;
@@ -1663,6 +1761,7 @@ NSString *NSStringFromTestAllTypesLiteNestedEnum(TestAllTypesLiteNestedEnum valu
 + (TestParsingMergeLiteRepeatedFieldsGenerator*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
+#define Group1_field1 @"field1"
 @interface TestParsingMergeLiteRepeatedFieldsGeneratorGroup1 : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasField1_:1;
@@ -1714,6 +1813,7 @@ NSString *NSStringFromTestAllTypesLiteNestedEnum(TestAllTypesLiteNestedEnum valu
 - (TestParsingMergeLiteRepeatedFieldsGeneratorGroup1Builder*) clearField1;
 @end
 
+#define Group2_field1 @"field1"
 @interface TestParsingMergeLiteRepeatedFieldsGeneratorGroup2 : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasField1_:1;
@@ -1825,6 +1925,7 @@ NSString *NSStringFromTestAllTypesLiteNestedEnum(TestAllTypesLiteNestedEnum valu
 - (TestParsingMergeLiteRepeatedFieldsGeneratorBuilder *)clearExt2;
 @end
 
+#define OptionalGroup_optional_group_all_types @"optionalGroupAllTypes"
 @interface TestParsingMergeLiteOptionalGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasOptionalGroupAllTypes_:1;
@@ -1876,6 +1977,7 @@ NSString *NSStringFromTestAllTypesLiteNestedEnum(TestAllTypesLiteNestedEnum valu
 - (TestParsingMergeLiteOptionalGroupBuilder*) clearOptionalGroupAllTypes;
 @end
 
+#define RepeatedGroup_repeated_group_all_types @"repeatedGroupAllTypes"
 @interface TestParsingMergeLiteRepeatedGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasRepeatedGroupAllTypes_:1;

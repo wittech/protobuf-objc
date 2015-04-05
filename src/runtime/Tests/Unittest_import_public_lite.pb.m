@@ -29,8 +29,8 @@ static PBExtensionRegistry* extensionRegistry = nil;
 - (BOOL) hasE {
   return !!hasE_;
 }
-- (void) setHasE:(BOOL) value_ {
-  hasE_ = !!value_;
+- (void) setHasE:(BOOL) _value_ {
+  hasE_ = !!_value_;
 }
 @synthesize e;
 - (instancetype) init {
@@ -109,6 +109,12 @@ static PublicImportMessageLite* defaultPublicImportMessageLiteInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"e", [NSNumber numberWithInteger:self.e]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasE) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.e] forKey: @"e"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {

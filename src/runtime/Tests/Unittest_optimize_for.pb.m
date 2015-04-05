@@ -55,29 +55,29 @@ static PBExtensionRegistry* extensionRegistry = nil;
 - (BOOL) hasI {
   return !!hasI_;
 }
-- (void) setHasI:(BOOL) value_ {
-  hasI_ = !!value_;
+- (void) setHasI:(BOOL) _value_ {
+  hasI_ = !!_value_;
 }
 @synthesize i;
 - (BOOL) hasMsg {
   return !!hasMsg_;
 }
-- (void) setHasMsg:(BOOL) value_ {
-  hasMsg_ = !!value_;
+- (void) setHasMsg:(BOOL) _value_ {
+  hasMsg_ = !!_value_;
 }
 @synthesize msg;
 - (BOOL) hasIntegerField {
   return !!hasIntegerField_;
 }
-- (void) setHasIntegerField:(BOOL) value_ {
-  hasIntegerField_ = !!value_;
+- (void) setHasIntegerField:(BOOL) _value_ {
+  hasIntegerField_ = !!_value_;
 }
 @synthesize integerField;
 - (BOOL) hasStringField {
   return !!hasStringField_;
 }
-- (void) setHasStringField:(BOOL) value_ {
-  hasStringField_ = !!value_;
+- (void) setHasStringField:(BOOL) _value_ {
+  hasStringField_ = !!_value_;
 }
 @synthesize stringField;
 - (instancetype) init {
@@ -206,6 +206,23 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
                                               to:536870912
                                       withIndent:indent];
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasI) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.i] forKey: @"i"];
+  }
+  if (self.hasIntegerField) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.integerField] forKey: @"integerField"];
+  }
+  if (self.hasStringField) {
+    [dictionary setObject: self.stringField forKey: @"stringField"];
+  }
+  if (self.hasMsg) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.msg storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"msg"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -433,8 +450,8 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
 - (BOOL) hasX {
   return !!hasX_;
 }
-- (void) setHasX:(BOOL) value_ {
-  hasX_ = !!value_;
+- (void) setHasX:(BOOL) _value_ {
+  hasX_ = !!_value_;
 }
 @synthesize x;
 - (instancetype) init {
@@ -516,6 +533,12 @@ static TestRequiredOptimizedForSize* defaultTestRequiredOptimizedForSizeInstance
     [output appendFormat:@"%@%@: %@\n", indent, @"x", [NSNumber numberWithInteger:self.x]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasX) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.x] forKey: @"x"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -636,8 +659,8 @@ static TestRequiredOptimizedForSize* defaultTestRequiredOptimizedForSizeInstance
 - (BOOL) hasO {
   return !!hasO_;
 }
-- (void) setHasO:(BOOL) value_ {
-  hasO_ = !!value_;
+- (void) setHasO:(BOOL) _value_ {
+  hasO_ = !!_value_;
 }
 @synthesize o;
 - (instancetype) init {
@@ -724,6 +747,14 @@ static TestOptionalOptimizedForSize* defaultTestOptionalOptimizedForSizeInstance
     [output appendFormat:@"%@}\n", indent];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasO) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.o storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"o"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
