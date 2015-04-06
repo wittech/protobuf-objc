@@ -27,7 +27,7 @@ How To Install Protobuf
 5. Clone this repository.
 `git clone https://github.com/alexeyxo/protobuf-objc.git`
 6. Build it!
-`./build.sh`
+`./scripts/build.sh`
 
 ### Adding to your project as a sub project
 
