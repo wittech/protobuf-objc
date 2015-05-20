@@ -27,14 +27,15 @@
 #include "objc_helpers.h"
 
 namespace google { namespace protobuf { namespace compiler { namespace objectivec {
-    
-    EnumGenerator::EnumGenerator(const EnumDescriptor* descriptor)
-    : descriptor_(descriptor) {
+
+    EnumGenerator::EnumGenerator(const EnumDescriptor* descriptor, const FileDescriptor* file)
+    : descriptor_(descriptor)
+    , file_(file) {
         for (int i = 0; i < descriptor_->value_count(); i++) {
             const EnumValueDescriptor* value = descriptor_->value(i);
             const EnumValueDescriptor* canonical_value =
             descriptor_->FindValueByNumber(value->number());
-            
+
             if (value == canonical_value) {
                 canonical_values_.push_back(value);
             } else {
@@ -45,27 +46,27 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
             }
         }
     }
-    
-    
+
+
     EnumGenerator::~EnumGenerator() {
     }
-    
-    
+
+
     void EnumGenerator::GenerateHeader(io::Printer* printer) {
-        
-        
+
+
         printer->Print(
                        "typedef NS_ENUM(SInt32, $classname$) {\n",
                        "classname", ClassName(descriptor_));
         printer->Indent();
-        
+
         for (int i = 0; i < canonical_values_.size(); i++) {
             printer->Print(
                            "$name$ = $value$,\n",
-                           "name", EnumValueName(canonical_values_[i]),
+                           "name", EnumValueName(canonical_values_[i], file_),
                            "value", SimpleItoa(canonical_values_[i]->number()));
         }
-        
+
         printer->Outdent();
         printer->Print(
                        "};\n"
@@ -75,20 +76,20 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "\n",
                        "classname", ClassName(descriptor_));
     }
-    
-    
+
+
     void EnumGenerator::GenerateSource(io::Printer* printer) {
         printer->Print(
                        "BOOL $classname$IsValidValue($classname$ value) {\n"
                        "  switch (value) {\n",
                        "classname", ClassName(descriptor_));
-        
+
         for (int i = 0; i < canonical_values_.size(); i++) {
             printer->Print(
                            "    case $name$:\n",
-                           "name", EnumValueName(canonical_values_[i]));
+                           "name", EnumValueName(canonical_values_[i], file_));
         }
-        
+
         printer->Print(
                        "      return YES;\n"
                        "    default:\n"
@@ -99,14 +100,14 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "NSString *NSStringFrom$classname$($classname$ value) {\n"
                        "  switch (value) {\n",
                        "classname", ClassName(descriptor_));
-        
+
         for (int i = 0; i < canonical_values_.size(); i++) {
             printer->Print(
                            "    case $name$:\n"
                            "      return @\"$name$\";\n",
-                           "name", EnumValueName(canonical_values_[i]));
+                           "name", EnumValueName(canonical_values_[i], file_));
         }
-        
+
         printer->Print(
                        "    default:\n"
                        "      return nil;\n"

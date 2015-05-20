@@ -30,16 +30,16 @@ namespace google {
             class Printer;             // printer.h
         }
     }
-    
+
     namespace protobuf {
         namespace compiler {
             namespace objectivec {
-                
+
                 class MessageGenerator {
                 public:
-                    explicit MessageGenerator(const Descriptor* descriptor);
+                    explicit MessageGenerator(const Descriptor* descriptor, const FileDescriptor* file);
                     ~MessageGenerator();
-                    
+
                     void GenerateStaticVariablesHeader(io::Printer* printer);
                     void GenerateStaticVariablesInitialization(io::Printer* printer);
                     void GenerateStaticVariablesSource(io::Printer* printer);
@@ -48,7 +48,7 @@ namespace google {
                     void GenerateSource(io::Printer* printer);
                     void GenerateExtensionRegistrationSource(io::Printer* printer);
                     void DetermineDependencies(set<string>* dependencies);
-                    
+
                 private:
                     void GenerateMessageSerializationMethodsHeader(io::Printer* printer);
                     void GenerateParseFromMethodsHeader(io::Printer* printer);
@@ -56,26 +56,26 @@ namespace google {
                                                          const FieldDescriptor* field);
                     void GenerateSerializeOneExtensionRangeHeader(
                                                                   io::Printer* printer, const Descriptor::ExtensionRange* range);
-                    
+
                     void GenerateBuilderHeader(io::Printer* printer);
                     void GenerateCommonBuilderMethodsHeader(io::Printer* printer);
                     void GenerateBuilderParsingMethodsHeader(io::Printer* printer);
                     void GenerateIsInitializedHeader(io::Printer* printer);
-                    
-                    
+
+
                     void GenerateMessageSerializationMethodsSource(io::Printer* printer);
                     void GenerateParseFromMethodsSource(io::Printer* printer);
                     void GenerateSerializeOneFieldSource(io::Printer* printer,
                                                          const FieldDescriptor* field);
                     void GenerateSerializeOneExtensionRangeSource(
                                                                   io::Printer* printer, const Descriptor::ExtensionRange* range);
-                    
+
                     void GenerateMessageDescriptionSource(io::Printer* printer);
                     void GenerateDescriptionOneFieldSource(io::Printer* printer,
                                                            const FieldDescriptor* field);
                     void GenerateDescriptionOneExtensionRangeSource(
                                                                     io::Printer* printer, const Descriptor::ExtensionRange* range);
-                    
+
                     void GenerateMessageDictionarySource(io::Printer *printer);
                     void GenerateDictionaryOneFieldSource(io::Printer *printer,
                                                           const FieldDescriptor* field);
@@ -87,21 +87,22 @@ namespace google {
                                                        const FieldDescriptor* field);
                     void GenerateIsEqualOneExtensionRangeSource(
                                                                 io::Printer* printer, const Descriptor::ExtensionRange* range);
-                    
+
                     void GenerateMessageHashSource(io::Printer* printer);
                     void GenerateHashOneFieldSource(io::Printer* printer,
                                                     const FieldDescriptor* field);
                     void GenerateHashOneExtensionRangeSource(
                                                              io::Printer* printer, const Descriptor::ExtensionRange* range);
-                    
+
                     void GenerateBuilderSource(io::Printer* printer);
                     void GenerateCommonBuilderMethodsSource(io::Printer* printer);
                     void GenerateBuilderParsingMethodsSource(io::Printer* printer);
                     void GenerateIsInitializedSource(io::Printer* printer);
-                    
+
                     const Descriptor* descriptor_;
+                    const FileDescriptor* file_;
                     FieldGeneratorMap field_generators_;
-                    
+
                     GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(MessageGenerator);
                 };
             }  // namespace objectivec

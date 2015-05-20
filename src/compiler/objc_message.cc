@@ -31,10 +31,10 @@
 #include "objc_helpers.h"
 
 namespace google { namespace protobuf { namespace compiler { namespace objectivec {
-    
+
     using internal::WireFormat;
     using internal::WireFormatLite;
-    
+
     namespace {
         struct FieldOrderingByNumber {
             inline bool operator()(const FieldDescriptor* a,
@@ -42,37 +42,37 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                 return a->number() < b->number();
             }
         };
-        
+
         struct FieldOrderingByType {
             inline bool operator()(const FieldDescriptor* a, const FieldDescriptor* b) const {
                 // place collections at the end
                 if (a->is_repeated() != b->is_repeated()) {
                     return b->is_repeated();
                 }
-                
+
                 // we want BOOL fields to be placed first.  That way they will be packed
                 // in with the 'BOOL hasFoo' fields.
                 if (a->type() == FieldDescriptor::TYPE_BOOL &&
                     b->type() != FieldDescriptor::TYPE_BOOL) {
                     return true;
                 }
-                
+
                 if (a->type() != FieldDescriptor::TYPE_BOOL &&
                     b->type() == FieldDescriptor::TYPE_BOOL) {
                     return false;
                 }
-                
+
                 return a->type() < b->type();
             }
         };
-        
+
         struct ExtensionRangeOrdering {
             bool operator()(const Descriptor::ExtensionRange* a,
                             const Descriptor::ExtensionRange* b) const {
                 return a->start < b->start;
             }
         };
-        
+
         // Sort the fields of the given Descriptor by number into a new[]'d array
         // and return it.
         const FieldDescriptor** SortFieldsByNumber(const Descriptor* descriptor) {
@@ -83,7 +83,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
             sort(fields, fields + descriptor->field_count(), FieldOrderingByNumber());
             return fields;
         }
-        
+
         // Sort the fields of the given Descriptor by type into a new[]'d array
         // and return it.
         const FieldDescriptor** SortFieldsByType(const Descriptor* descriptor) {
@@ -94,14 +94,14 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
             sort(fields, fields + descriptor->field_count(), FieldOrderingByType());
             return fields;
         }
-        
+
         // Get an identifier that uniquely identifies this type within the file.
         // This is used to declare static variables related to this type at the
         // outermost file scope.
         string UniqueFileScopeIdentifier(const Descriptor* descriptor) {
             return "static_" + StringReplace(descriptor->full_name(), ".", "_", true);
         }
-        
+
         // Returns true if the message type has any required fields.  If it doesn't,
         // we can optimize out calls to its isInitialized() method.
         //
@@ -122,14 +122,14 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                 return false;
             }
             already_seen->insert(type);
-            
+
             // If the type has extensions, an extension with message type could contain
             // required fields, so we have to be conservative and assume such an
             // extension exists.
             if (type->extension_range_count() > 0) {
                 return true;
             }
-            
+
             for (int i = 0; i < type->field_count(); i++) {
                 const FieldDescriptor* field = type->field(i);
                 if (field->is_required()) {
@@ -141,120 +141,121 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                     }
                 }
             }
-            
+
             return false;
         }
-        
+
         static bool HasRequiredFields(const Descriptor* type) {
             hash_set<const Descriptor*> already_seen;
             return HasRequiredFields(type, &already_seen);
         }
     }  // namespace
-    
-    
-    MessageGenerator::MessageGenerator(const Descriptor* descriptor)
-    : descriptor_(descriptor),
-    field_generators_(descriptor) {
+
+
+    MessageGenerator::MessageGenerator(const Descriptor* descriptor, const FileDescriptor* file)
+    : descriptor_(descriptor)
+    , file_(file)
+    , field_generators_(descriptor, file) {
     }
-    
-    
+
+
     MessageGenerator::~MessageGenerator() {
     }
-    
-    
+
+
     void MessageGenerator::GenerateStaticVariablesHeader(io::Printer* printer) {
         map<string, string> vars;
         vars["identifier"] = UniqueFileScopeIdentifier(descriptor_);
         vars["index"] = SimpleItoa(descriptor_->index());
         vars["classname"] = ClassName(descriptor_);
-        vars["classname_capitalized"] = UnderscoresToCapitalizedCamelCase(descriptor_);
+        vars["classname_capitalized"] = UnderscoresToCapitalizedCamelCase(descriptor_, file_);
         if (descriptor_->containing_type() != NULL) {
             vars["parent"] = UniqueFileScopeIdentifier(descriptor_->containing_type());
         }
-        
+
         for (int i = 0; i < descriptor_->nested_type_count(); i++) {
-            MessageGenerator(descriptor_->nested_type(i)).GenerateStaticVariablesHeader(printer);
+            MessageGenerator(descriptor_->nested_type(i), file_).GenerateStaticVariablesHeader(printer);
         }
     }
-    
-    
+
+
     void MessageGenerator::GenerateStaticVariablesInitialization(io::Printer* printer) {
         map<string, string> vars;
         vars["identifier"] = UniqueFileScopeIdentifier(descriptor_);
         vars["index"] = SimpleItoa(descriptor_->index());
         vars["classname"] = ClassName(descriptor_);
-        vars["classname_capitalized"] = UnderscoresToCapitalizedCamelCase(descriptor_);
+        vars["classname_capitalized"] = UnderscoresToCapitalizedCamelCase(descriptor_, file_);
         if (descriptor_->containing_type() != NULL) {
             vars["parent"] = UniqueFileScopeIdentifier(descriptor_->containing_type());
         }
-        
+
         for (int i = 0; i < descriptor_->extension_count(); i++) {
-            ExtensionGenerator(ClassName(descriptor_), descriptor_->extension(i)).GenerateInitializationSource(printer);
+            ExtensionGenerator(ClassName(descriptor_), descriptor_->extension(i), file_).GenerateInitializationSource(printer);
         }
         for (int i = 0; i < descriptor_->nested_type_count(); i++) {
-            MessageGenerator(descriptor_->nested_type(i)).GenerateStaticVariablesInitialization(printer);
+            MessageGenerator(descriptor_->nested_type(i), file_).GenerateStaticVariablesInitialization(printer);
         }
     }
-    
-    
+
+
     void MessageGenerator::GenerateStaticVariablesSource(io::Printer* printer) {
         map<string, string> vars;
         vars["identifier"] = UniqueFileScopeIdentifier(descriptor_);
         vars["index"] = SimpleItoa(descriptor_->index());
         vars["classname"] = ClassName(descriptor_);
-        vars["classname_capitalized"] = UnderscoresToCapitalizedCamelCase(descriptor_);
+        vars["classname_capitalized"] = UnderscoresToCapitalizedCamelCase(descriptor_, file_);
         if (descriptor_->containing_type() != NULL) {
             vars["parent"] = UniqueFileScopeIdentifier(descriptor_->containing_type());
         }
-        
+
         for (int i = 0; i < descriptor_->extension_count(); i++) {
-            ExtensionGenerator(ClassName(descriptor_), descriptor_->extension(i))
+            ExtensionGenerator(ClassName(descriptor_), descriptor_->extension(i), file_)
             .GenerateFieldsSource(printer);
         }
-        
+
         for (int i = 0; i < descriptor_->nested_type_count(); i++) {
-            MessageGenerator(descriptor_->nested_type(i)).GenerateStaticVariablesSource(printer);
+            MessageGenerator(descriptor_->nested_type(i), file_).GenerateStaticVariablesSource(printer);
         }
     }
-    
-    
+
+
     void MessageGenerator::DetermineDependencies(set<string>* dependencies) {
         dependencies->insert("@class " + ClassName(descriptor_));
         dependencies->insert("@class " + ClassName(descriptor_) + "Builder");
-        
+
         for (int i = 0; i < descriptor_->nested_type_count(); i++) {
-            MessageGenerator(descriptor_->nested_type(i)).DetermineDependencies(dependencies);
+            MessageGenerator(descriptor_->nested_type(i), file_).DetermineDependencies(dependencies);
         }
     }
-    
+
     void MessageGenerator::GenerateEnumHeader(io::Printer* printer) {
         for (int i = 0; i < descriptor_->enum_type_count(); i++) {
-            EnumGenerator(descriptor_->enum_type(i)).GenerateHeader(printer);
+            EnumGenerator(descriptor_->enum_type(i), file_).GenerateHeader(printer);
         }
-        
+
         for (int i = 0; i < descriptor_->nested_type_count(); i++) {
-            MessageGenerator(descriptor_->nested_type(i)).GenerateEnumHeader(printer);
+            MessageGenerator(descriptor_->nested_type(i), file_).GenerateEnumHeader(printer);
         }
     }
-    
+
     void MessageGenerator::GenerateExtensionRegistrationSource(io::Printer* printer) {
         for (int i = 0; i < descriptor_->extension_count(); i++) {
-            ExtensionGenerator(ClassName(descriptor_), descriptor_->extension(i))
+            ExtensionGenerator(ClassName(descriptor_), descriptor_->extension(i), file_)
             .GenerateRegistrationSource(printer);
         }
-        
+
         for (int i = 0; i < descriptor_->nested_type_count(); i++) {
-            MessageGenerator(descriptor_->nested_type(i))
+            MessageGenerator(descriptor_->nested_type(i), file_)
             .GenerateExtensionRegistrationSource(printer);
         }
     }
-    
+
     void MessageGenerator::GenerateMessageHeader(io::Printer* printer) {
         scoped_array<const FieldDescriptor*> sorted_fields(SortFieldsByType(descriptor_));
-        
+
         for (int i = 0; i < descriptor_->field_count(); i++) {
             string s = "#define ";
-            s = s + this->descriptor_->name() + "_" + descriptor_->field(i)->name() + " @\"" + UnderscoresToCamelCase(descriptor_->field(i)) + "\"\n";
+            s = s + this->descriptor_->name() + "_" + descriptor_->field(i)->name() + " @\"" + UnderscoresToCamelCase(descriptor_->field(i), file_) + "\"\n";
             printer->Print(s.c_str());
         }
 
@@ -269,7 +270,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                            "@private\n",
                            "classname", ClassName(descriptor_));
         }
-        
+
         printer->Indent();
         for (int i = 0; i < descriptor_->field_count(); i++) {
             field_generators_.get(sorted_fields[i]).GenerateHasFieldHeader(printer);
@@ -278,9 +279,9 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
             field_generators_.get(sorted_fields[i]).GenerateFieldHeader(printer);
         }
         printer->Outdent();
-        
+
         printer->Print("}\n");
-        
+
         for (int i = 0; i < descriptor_->field_count(); i++) {
             field_generators_.get(descriptor_->field(i)).GenerateHasPropertyHeader(printer);
         }
@@ -290,7 +291,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         for (int i = 0; i < descriptor_->field_count(); i++) {
             field_generators_.get(descriptor_->field(i)).GenerateMembersHeader(printer);
         }
-        
+
         printer->Print(
                        "\n"
                        "+ (instancetype) defaultInstance;\n"
@@ -300,33 +301,33 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "\n",
                        "fileclass", FileClassName(descriptor_->file()),
                        "identifier", UniqueFileScopeIdentifier(descriptor_));
-        
+
         for (int i = 0; i < descriptor_->extension_count(); i++) {
-            ExtensionGenerator(ClassName(descriptor_), descriptor_->extension(i)).GenerateMembersHeader(printer);
+            ExtensionGenerator(ClassName(descriptor_), descriptor_->extension(i), file_).GenerateMembersHeader(printer);
         }
-        
+
         GenerateIsInitializedHeader(printer);
         GenerateMessageSerializationMethodsHeader(printer);
-        
+
         printer->Print(
                        "- ($classname$Builder*) builder;\n"
                        "+ ($classname$Builder*) builder;\n"
                        "+ ($classname$Builder*) builderWithPrototype:($classname$*) prototype;\n"
                        "- ($classname$Builder*) toBuilder;\n",
                        "classname", ClassName(descriptor_));
-        
+
         GenerateParseFromMethodsHeader(printer);
-        
+
         printer->Print("@end\n\n");
-        
+
         for (int i = 0; i < descriptor_->nested_type_count(); i++) {
-            MessageGenerator(descriptor_->nested_type(i)).GenerateMessageHeader(printer);
+            MessageGenerator(descriptor_->nested_type(i), file_).GenerateMessageHeader(printer);
         }
-        
+
         GenerateBuilderHeader(printer);
     }
-    
-    
+
+
     void MessageGenerator::GenerateSource(io::Printer* printer) {
         printer->Print(
                        "@interface $classname$ ()\n",
@@ -335,14 +336,14 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
             field_generators_.get(descriptor_->field(i)).GenerateExtensionSource(printer);
         }
         printer->Print("@end\n\n");
-        
+
         printer->Print("@implementation $classname$\n\n",
                        "classname", ClassName(descriptor_));
-        
+
         for (int i = 0; i < descriptor_->field_count(); i++) {
             field_generators_.get(descriptor_->field(i)).GenerateSynthesizeSource(printer);
         }
-        
+
         printer->Print(
                        "- (instancetype) init {\n"
                        "  if ((self = [super init])) {\n");
@@ -357,18 +358,18 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "  }\n"
                        "  return self;\n"
                        "}\n");
-        
+
         for (int i = 0; i < descriptor_->extension_count(); i++) {
-            ExtensionGenerator(ClassName(descriptor_), descriptor_->extension(i)).GenerateMembersSource(printer);
+            ExtensionGenerator(ClassName(descriptor_), descriptor_->extension(i), file_).GenerateMembersSource(printer);
         }
-        
+
         printer->Print(
                        "static $classname$* default$classname$Instance = nil;\n"
                        "+ (void) initialize {\n"
                        "  if (self == [$classname$ class]) {\n"
                        "    default$classname$Instance = [[$classname$ alloc] init];\n",
                        "classname", ClassName(descriptor_));
-        
+
         printer->Print(
                        "  }\n"
                        "}\n"
@@ -379,16 +380,16 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "  return default$classname$Instance;\n"
                        "}\n",
                        "classname", ClassName(descriptor_));
-        
+
         for (int i = 0; i < descriptor_->field_count(); i++) {
             field_generators_.get(descriptor_->field(i)).GenerateMembersSource(printer);
         }
-        
+
         GenerateIsInitializedSource(printer);
         GenerateMessageSerializationMethodsSource(printer);
-        
+
         GenerateParseFromMethodsSource(printer);
-        
+
         printer->Print(
                        "+ ($classname$Builder*) builder {\n"
                        "  return [[$classname$Builder alloc] init];\n"
@@ -403,43 +404,43 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "  return [$classname$ builderWithPrototype:self];\n"
                        "}\n",
                        "classname", ClassName(descriptor_));
-        
+
         GenerateMessageDescriptionSource(printer);
 
         GenerateMessageDictionarySource(printer);
-        
+
         GenerateMessageIsEqualSource(printer);
-        
+
         GenerateMessageHashSource(printer);
-        
+
         printer->Print("@end\n\n");
-        
+
         for (int i = 0; i < descriptor_->enum_type_count(); i++) {
-            EnumGenerator(descriptor_->enum_type(i)).GenerateSource(printer);
+            EnumGenerator(descriptor_->enum_type(i), file_).GenerateSource(printer);
         }
-        
+
         for (int i = 0; i < descriptor_->nested_type_count(); i++) {
-            MessageGenerator(descriptor_->nested_type(i)).GenerateSource(printer);
+            MessageGenerator(descriptor_->nested_type(i), file_).GenerateSource(printer);
         }
-        
+
         GenerateBuilderSource(printer);
     }
-    
-    
+
+
     void MessageGenerator::GenerateMessageSerializationMethodsHeader(io::Printer* printer) {
         scoped_array<const FieldDescriptor*> sorted_fields(SortFieldsByNumber(descriptor_));
-        
+
         vector<const Descriptor::ExtensionRange*> sorted_extensions;
         for (int i = 0; i < descriptor_->extension_range_count(); ++i) {
             sorted_extensions.push_back(descriptor_->extension_range(i));
         }
         sort(sorted_extensions.begin(), sorted_extensions.end(),
              ExtensionRangeOrdering());
-        
+
         printer->Print(
                        "- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;\n");
     }
-    
+
     void MessageGenerator::GenerateParseFromMethodsHeader(io::Printer* printer) {
         printer->Print(
                        "\n"
@@ -451,19 +452,19 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "+ ($classname$*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;\n",
                        "classname", ClassName(descriptor_));
     }
-    
-    
+
+
     void MessageGenerator::GenerateSerializeOneFieldHeader(
                                                            io::Printer* printer, const FieldDescriptor* field) {
         field_generators_.get(field).GenerateSerializationCodeHeader(printer);
     }
-    
-    
+
+
     void MessageGenerator::GenerateSerializeOneExtensionRangeHeader(
                                                                     io::Printer* printer, const Descriptor::ExtensionRange* range) {
     }
-    
-    
+
+
     void MessageGenerator::GenerateBuilderHeader(io::Printer* printer) {
         if (descriptor_->extension_range_count() > 0) {
             printer->Print(
@@ -474,27 +475,27 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                            "@interface $classname$Builder : PBGeneratedMessageBuilder {\n",
                            "classname", ClassName(descriptor_));
         }
-        
+
         printer->Print(
                        "@private\n"
                        "  $classname$* result$classname_capitalized$;\n"
                        "}\n",
                        "classname_capitalized",
-                       UnderscoresToCapitalizedCamelCase(descriptor_),
+                       UnderscoresToCapitalizedCamelCase(descriptor_, file_),
                        "classname", ClassName(descriptor_));
-        
+
         GenerateCommonBuilderMethodsHeader(printer);
         GenerateBuilderParsingMethodsHeader(printer);
-        
+
         for (int i = 0; i < descriptor_->field_count(); i++) {
             printer->Print("\n");
             field_generators_.get(descriptor_->field(i)).GenerateBuilderMembersHeader(printer);
         }
-        
+
         printer->Print("@end\n\n");
     }
-    
-    
+
+
     void MessageGenerator::GenerateCommonBuilderMethodsHeader(io::Printer* printer) {
         printer->Print(
                        "\n"
@@ -503,64 +504,64 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "- ($classname$Builder*) clear;\n"
                        "- ($classname$Builder*) clone;\n",
                        "classname", ClassName(descriptor_));
-        
+
         printer->Print(
                        "\n"
                        "- ($classname$*) build;\n"
                        "- ($classname$*) buildPartial;\n",
                        "classname", ClassName(descriptor_));
         printer->Indent();
-        
+
         for (int i = 0; i < descriptor_->field_count(); i++) {
             field_generators_.get(descriptor_->field(i)).GenerateBuildingCodeHeader(printer);
         }
-        
+
         printer->Outdent();
-        
+
         printer->Print(
                        "\n"
                        "- ($classname$Builder*) mergeFrom:($classname$*) other;\n",
                        "classname", ClassName(descriptor_));
         printer->Indent();
-        
+
         for (int i = 0; i < descriptor_->field_count(); i++) {
             field_generators_.get(descriptor_->field(i)).GenerateMergingCodeHeader(printer);
         }
-        
+
         printer->Outdent();
     }
-    
-    
+
+
     void MessageGenerator::GenerateBuilderParsingMethodsHeader(io::Printer* printer) {
         scoped_array<const FieldDescriptor*> sorted_fields(SortFieldsByNumber(descriptor_));
-        
+
         printer->Print(
                        "- ($classname$Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;\n"
                        "- ($classname$Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;\n",
                        "classname", ClassName(descriptor_));
     }
-    
-    
+
+
     void MessageGenerator::GenerateIsInitializedHeader(io::Printer* printer) {
         printer->Print(
                        "- (BOOL) isInitialized;\n");
     }
-    
-    
+
+
     void MessageGenerator::GenerateMessageSerializationMethodsSource(io::Printer* printer) {
         scoped_array<const FieldDescriptor*> sorted_fields(SortFieldsByNumber(descriptor_));
-        
+
         vector<const Descriptor::ExtensionRange*> sorted_extensions;
         for (int i = 0; i < descriptor_->extension_range_count(); ++i) {
             sorted_extensions.push_back(descriptor_->extension_range(i));
         }
         sort(sorted_extensions.begin(), sorted_extensions.end(),
              ExtensionRangeOrdering());
-        
+
         printer->Print(
                        "- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {\n");
         printer->Indent();
-        
+
         // Merge the fields and the extension ranges, both sorted by field number.
         for (int i = 0, j = 0;
              i < descriptor_->field_count() || j < sorted_extensions.size(); ) {
@@ -574,7 +575,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                 GenerateSerializeOneExtensionRangeSource(printer, sorted_extensions[j++]);
             }
         }
-        
+
         if (descriptor_->options().message_set_wire_format()) {
             printer->Print(
                            "[self.unknownFields writeAsMessageSetTo:output];\n");
@@ -582,7 +583,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
             printer->Print(
                            "[self.unknownFields writeToCodedOutputStream:output];\n");
         }
-        
+
         printer->Outdent();
         printer->Print(
                        "}\n"
@@ -594,16 +595,16 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "\n"
                        "  size_ = 0;\n");
         printer->Indent();
-        
+
         for (int i = 0; i < descriptor_->field_count(); i++) {
             field_generators_.get(sorted_fields[i]).GenerateSerializedSizeCodeSource(printer);
         }
-        
+
         if (descriptor_->extension_range_count() > 0) {
             printer->Print(
                            "size_ += [self extensionsSerializedSize];\n");
         }
-        
+
         if (descriptor_->options().message_set_wire_format()) {
             printer->Print(
                            "size_ += self.unknownFields.serializedSizeAsMessageSet;\n");
@@ -611,28 +612,28 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
             printer->Print(
                            "size_ += self.unknownFields.serializedSize;\n");
         }
-        
+
         printer->Outdent();
         printer->Print(
                        "  memoizedSerializedSize = size_;\n"
                        "  return size_;\n"
                        "}\n");
     }
-    
+
     void MessageGenerator::GenerateMessageDescriptionSource(io::Printer* printer) {
         scoped_array<const FieldDescriptor*> sorted_fields(SortFieldsByNumber(descriptor_));
-        
+
         vector<const Descriptor::ExtensionRange*> sorted_extensions;
         for (int i = 0; i < descriptor_->extension_range_count(); ++i) {
             sorted_extensions.push_back(descriptor_->extension_range(i));
         }
         sort(sorted_extensions.begin(), sorted_extensions.end(),
              ExtensionRangeOrdering());
-        
+
         printer->Print(
                        "- (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {\n");
         printer->Indent();
-        
+
         // Merge the fields and the extension ranges, both sorted by field number.
         for (int i = 0, j = 0;
              i < descriptor_->field_count() || j < sorted_extensions.size(); ) {
@@ -646,15 +647,15 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                 GenerateDescriptionOneExtensionRangeSource(printer, sorted_extensions[j++]);
             }
         }
-        
+
         printer->Print(
                        "[self.unknownFields writeDescriptionTo:output withIndent:indent];\n");
-        
+
         printer->Outdent();
         printer->Print(
                        "}\n");
     }
-    
+
     void MessageGenerator::GenerateMessageDictionarySource(io::Printer* printer) {
         scoped_array<const FieldDescriptor*> sorted_fields(SortFieldsByNumber(descriptor_));
 
@@ -690,21 +691,21 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
           "}\n");
     }
 
-    
+
     void MessageGenerator::GenerateMessageIsEqualSource(io::Printer* printer) {
         scoped_array<const FieldDescriptor*> sorted_fields(SortFieldsByNumber(descriptor_));
-        
+
         vector<const Descriptor::ExtensionRange*> sorted_extensions;
         for (int i = 0; i < descriptor_->extension_range_count(); ++i) {
             sorted_extensions.push_back(descriptor_->extension_range(i));
         }
         sort(sorted_extensions.begin(), sorted_extensions.end(),
              ExtensionRangeOrdering());
-        
+
         printer->Print(
                        "- (BOOL) isEqual:(id)other {\n");
         printer->Indent();
-        
+
         printer->Print(
                        "if (other == self) {\n"
                        "  return YES;\n"
@@ -714,11 +715,11 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "}\n"
                        "$classname$ *otherMessage = other;\n",
                        "classname", ClassName(descriptor_));
-        
+
         printer->Print("return\n");
         printer->Indent();
         printer->Indent();
-        
+
         // Merge the fields and the extension ranges, both sorted by field number.
         for (int i = 0, j = 0;
              i < descriptor_->field_count() || j < sorted_extensions.size(); ) {
@@ -733,35 +734,35 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
             }
             printer->Print("\n");
         }
-        
+
         printer->Print(
                        "(self.unknownFields == otherMessage.unknownFields ||"
                        " (self.unknownFields != nil &&"
                        " [self.unknownFields isEqual:otherMessage.unknownFields]));\n");
-        
+
         printer->Outdent();
         printer->Outdent();
         printer->Outdent();
         printer->Print("}\n");
     }
-    
-    
+
+
     void MessageGenerator::GenerateMessageHashSource(io::Printer* printer) {
         scoped_array<const FieldDescriptor*> sorted_fields(SortFieldsByNumber(descriptor_));
-        
+
         vector<const Descriptor::ExtensionRange*> sorted_extensions;
         for (int i = 0; i < descriptor_->extension_range_count(); ++i) {
             sorted_extensions.push_back(descriptor_->extension_range(i));
         }
         sort(sorted_extensions.begin(), sorted_extensions.end(),
              ExtensionRangeOrdering());
-        
+
         printer->Print(
                        "- (NSUInteger) hash {\n");
         printer->Indent();
-        
+
         printer->Print("__block NSUInteger hashCode = 7;\n");
-        
+
         // Merge the fields and the extension ranges, both sorted by field number.
         for (int i = 0, j = 0;
              i < descriptor_->field_count() || j < sorted_extensions.size(); ) {
@@ -775,17 +776,17 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                 GenerateHashOneExtensionRangeSource(printer, sorted_extensions[j++]);
             }
         }
-        
+
         printer->Print(
                        "hashCode = hashCode * 31 + [self.unknownFields hash];\n"
                        "return hashCode;\n");
-        
+
         printer->Outdent();
         printer->Print(
                        "}\n");
     }
-    
-    
+
+
     void MessageGenerator::GenerateParseFromMethodsSource(io::Printer* printer) {
         printer->Print(
                        "+ ($classname$*) parseFromData:(NSData*) data {\n"
@@ -808,13 +809,13 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "}\n",
                        "classname", ClassName(descriptor_));
     }
-    
-    
+
+
     void MessageGenerator::GenerateSerializeOneFieldSource(
                                                            io::Printer* printer, const FieldDescriptor* field) {
         field_generators_.get(field).GenerateSerializationCodeSource(printer);
     }
-    
+
     void MessageGenerator::GenerateDictionaryOneFieldSource(
                                                             io::Printer* printer, const FieldDescriptor* field) {
         field_generators_.get(field).GenerateDictionaryCodeSource(printer);
@@ -829,13 +830,13 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "from", SimpleItoa(range->start),
                        "to", SimpleItoa(range->end));
     }
-    
+
     void MessageGenerator::GenerateDescriptionOneFieldSource(
                                                              io::Printer* printer, const FieldDescriptor* field) {
         field_generators_.get(field).GenerateDescriptionCodeSource(printer);
     }
-    
-    
+
+
     void MessageGenerator::GenerateDescriptionOneExtensionRangeSource(
                                                                       io::Printer* printer, const Descriptor::ExtensionRange* range) {
         printer->Print(
@@ -858,36 +859,36 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 //                        "to", SimpleItoa(range->end));
   }
 
-    
-    
+
+
     void MessageGenerator::GenerateIsEqualOneFieldSource(
                                                          io::Printer* printer, const FieldDescriptor* field) {
         field_generators_.get(field).GenerateIsEqualCodeSource(printer);
     }
-    
-    
+
+
     void MessageGenerator::GenerateIsEqualOneExtensionRangeSource(
                                                                   io::Printer* printer, const Descriptor::ExtensionRange* range) {
         printer->Print(
                        "[self isEqualExtensionsInOther:otherMessage from:$from$ to:$to$] &&\n",
                        "from", SimpleItoa(range->start), "to", SimpleItoa(range->end));
     }
-    
-    
+
+
     void MessageGenerator::GenerateHashOneFieldSource(
                                                       io::Printer* printer, const FieldDescriptor* field) {
         field_generators_.get(field).GenerateHashCodeSource(printer);
     }
-    
-    
+
+
     void MessageGenerator::GenerateHashOneExtensionRangeSource(
                                                                io::Printer* printer, const Descriptor::ExtensionRange* range) {
         printer->Print(
                        "hashCode = hashCode * 31 + [self hashExtensionsFrom:$from$ to:$to$];\n",
                        "from", SimpleItoa(range->start), "to", SimpleItoa(range->end));
     }
-    
-    
+
+
     void MessageGenerator::GenerateBuilderSource(io::Printer* printer) {
         printer->Print(
                        "@interface $classname$Builder()\n"
@@ -897,9 +898,9 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "@implementation $classname$Builder\n"
                        "@synthesize result$classname_capitalized$;\n",
                        "classname_capitalized",
-                       UnderscoresToCapitalizedCamelCase(descriptor_),
+                       UnderscoresToCapitalizedCamelCase(descriptor_, file_),
                        "classname", ClassName(descriptor_));
-        
+
         printer->Print(
                        "- (instancetype) init {\n"
                        "  if ((self = [super init])) {\n"
@@ -908,20 +909,20 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "  return self;\n"
                        "}\n",
                        "classname_capitalized",
-                       UnderscoresToCapitalizedCamelCase(descriptor_),
+                       UnderscoresToCapitalizedCamelCase(descriptor_, file_),
                        "classname", ClassName(descriptor_));
-        
+
         GenerateCommonBuilderMethodsSource(printer);
         GenerateBuilderParsingMethodsSource(printer);
-        
+
         for (int i = 0; i < descriptor_->field_count(); i++) {
             field_generators_.get(descriptor_->field(i)).GenerateBuilderMembersSource(printer);
         }
-        
+
         printer->Print("@end\n\n");
     }
-    
-    
+
+
     void MessageGenerator::GenerateCommonBuilderMethodsSource(io::Printer* printer) {
         if (descriptor_->extension_range_count() > 0) {
             printer->Print(
@@ -929,16 +930,16 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                            "  return result$classname_capitalized$;\n"
                            "}\n",
                            "classname_capitalized",
-                           UnderscoresToCapitalizedCamelCase(descriptor_));
+                           UnderscoresToCapitalizedCamelCase(descriptor_, file_));
         } else {
             printer->Print(
                            "- (PBGeneratedMessage*) internalGetResult {\n"
                            "  return result$classname_capitalized$;\n"
                            "}\n",
                            "classname_capitalized",
-                           UnderscoresToCapitalizedCamelCase(descriptor_));
+                           UnderscoresToCapitalizedCamelCase(descriptor_, file_));
         }
-        
+
         printer->Print(
                        "- ($classname$Builder*) clear {\n"
                        "  self.result$classname_capitalized$ = [[$classname$ alloc] init];\n"
@@ -951,9 +952,9 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "  return [$classname$ defaultInstance];\n"
                        "}\n",
                        "classname_capitalized",
-                       UnderscoresToCapitalizedCamelCase(descriptor_),
+                       UnderscoresToCapitalizedCamelCase(descriptor_, file_),
                        "classname", ClassName(descriptor_));
-        
+
         printer->Print(
                        "- ($classname$*) build {\n"
                        "  [self checkInitialized];\n"
@@ -962,11 +963,11 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "- ($classname$*) buildPartial {\n",
                        "classname", ClassName(descriptor_));
         printer->Indent();
-        
+
         for (int i = 0; i < descriptor_->field_count(); i++) {
             field_generators_.get(descriptor_->field(i)).GenerateBuildingCodeSource(printer);
         }
-        
+
         printer->Outdent();
         printer->Print(
                        "  $classname$* returnMe = result$classname_capitalized$;\n"
@@ -974,9 +975,9 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "  return returnMe;\n"
                        "}\n",
                        "classname_capitalized",
-                       UnderscoresToCapitalizedCamelCase(descriptor_),
+                       UnderscoresToCapitalizedCamelCase(descriptor_, file_),
                        "classname", ClassName(descriptor_));
-        
+
         printer->Print(
                        "- ($classname$Builder*) mergeFrom:($classname$*) other {\n"
                        // Optimization:  If other is the default instance, we know none of its
@@ -986,29 +987,29 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "  }\n",
                        "classname", ClassName(descriptor_));
         printer->Indent();
-        
+
         for (int i = 0; i < descriptor_->field_count(); i++) {
             field_generators_.get(descriptor_->field(i)).GenerateMergingCodeSource(printer);
         }
-        
+
         printer->Outdent();
-        
+
         if (descriptor_->extension_range_count() > 0) {
             printer->Print(
                            "  [self mergeExtensionFields:other];\n");
         }
-        
+
         printer->Print(
                        "  [self mergeUnknownFields:other.unknownFields];\n"
                        "  return self;\n"
                        "}\n");
     }
-    
-    
+
+
     void MessageGenerator::GenerateBuilderParsingMethodsSource(io::Printer* printer) {
         scoped_array<const FieldDescriptor*> sorted_fields(
                                                            SortFieldsByNumber(descriptor_));
-        
+
         printer->Print(
                        "- ($classname$Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {\n"
                        "  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];\n"
@@ -1016,17 +1017,17 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "- ($classname$Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {\n",
                        "classname", ClassName(descriptor_));
         printer->Indent();
-        
+
         printer->Print(
                        "PBUnknownFieldSetBuilder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];\n"
                        "while (YES) {\n");
         printer->Indent();
-        
+
         printer->Print(
                        "SInt32 tag = [input readTag];\n"
                        "switch (tag) {\n");
         printer->Indent();
-        
+
         printer->Print(
                        "case 0:\n"          // zero signals EOF / limit reached
                        "  [self setUnknownFields:[unknownFields build]];\n"
@@ -1038,25 +1039,25 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "  }\n"
                        "  break;\n"
                        "}\n");
-        
+
         for (int i = 0; i < descriptor_->field_count(); i++) {
             const FieldDescriptor* field = sorted_fields[i];
             uint32 tag = WireFormatLite::MakeTag(field->number(),
                                                  WireFormat::WireTypeForField(field));
-            
+
             printer->Print(
                            "case $tag$: {\n",
                            "tag", SimpleItoa(tag));
             printer->Indent();
-            
+
             field_generators_.get(field).GenerateParsingCodeSource(printer);
-            
+
             printer->Outdent();
             printer->Print(
                            "  break;\n"
                            "}\n");
         }
-        
+
         printer->Outdent();
         printer->Outdent();
         printer->Outdent();
@@ -1065,39 +1066,39 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "  }\n"   // while (true)
                        "}\n");
     }
-    
-    
+
+
     void MessageGenerator::GenerateIsInitializedSource(io::Printer* printer) {
         printer->Print(
                        "- (BOOL) isInitialized {\n");
         printer->Indent();
-        
+
         // Check that all required fields in this message are set.
         // TODO(kenton):  We can optimize this when we switch to putting all the
         //   "has" fields into a single bitfield.
         for (int i = 0; i < descriptor_->field_count(); i++) {
             const FieldDescriptor* field = descriptor_->field(i);
-            
+
             if (field->is_required()) {
                 printer->Print(
                                "if (!self.has$capitalized_name$) {\n"
                                "  return NO;\n"
                                "}\n",
-                               "capitalized_name", UnderscoresToCapitalizedCamelCase(field));
+                               "capitalized_name", UnderscoresToCapitalizedCamelCase(field, file_));
             }
         }
-        
+
         // Now check that all embedded messages are initialized.
         for (int i = 0; i < descriptor_->field_count(); i++) {
             const FieldDescriptor* field = descriptor_->field(i);
             if (field->cpp_type() == FieldDescriptor::CPPTYPE_MESSAGE &&
                 HasRequiredFields(field->message_type())) {
-                
+
                 map<string,string> vars;
                 vars["type"] = ClassName(field->message_type());
-                vars["name"] = UnderscoresToCamelCase(field);
-                vars["capitalized_name"] = UnderscoresToCapitalizedCamelCase(field);
-                
+                vars["name"] = UnderscoresToCamelCase(field, file_);
+                vars["capitalized_name"] = UnderscoresToCapitalizedCamelCase(field, file_);
+
                 switch (field->label()) {
                     case FieldDescriptor::LABEL_REQUIRED:
                         printer->Print(vars,
@@ -1128,14 +1129,14 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                 }
             }
         }
-        
+
         if (descriptor_->extension_range_count() > 0) {
             printer->Print(
                            "if (!self.extensionsAreInitialized) {\n"
                            "  return NO;\n"
                            "}\n");
         }
-        
+
         printer->Outdent();
         printer->Print(
                        "  return YES;\n"

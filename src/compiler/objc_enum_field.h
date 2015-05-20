@@ -27,12 +27,12 @@ namespace google {
     namespace protobuf {
         namespace compiler {
             namespace objectivec {
-                
+
                 class EnumFieldGenerator : public FieldGenerator {
                 public:
-                    explicit EnumFieldGenerator(const FieldDescriptor* descriptor);
+                    explicit EnumFieldGenerator(const FieldDescriptor* descriptor, const FileDescriptor* file);
                     ~EnumFieldGenerator();
-                    
+
                     void GenerateHasFieldHeader(io::Printer* printer) const;
                     void GenerateFieldHeader(io::Printer* printer) const;
                     void GenerateHasPropertyHeader(io::Printer* printer) const;
@@ -44,7 +44,7 @@ namespace google {
                     void GenerateParsingCodeHeader(io::Printer* printer) const;
                     void GenerateSerializationCodeHeader(io::Printer* printer) const;
                     void GenerateSerializedSizeCodeHeader(io::Printer* printer) const;
-                    
+
                     void GenerateExtensionSource(io::Printer* printer) const;
                     void GenerateSynthesizeSource(io::Printer* printer) const;
                     void GenerateInitializationSource(io::Printer* printer) const;
@@ -59,21 +59,21 @@ namespace google {
                     void GenerateDictionaryCodeSource(io::Printer* printer) const;
                     void GenerateIsEqualCodeSource(io::Printer* printer) const;
                     void GenerateHashCodeSource(io::Printer* printer) const;
-                    
+
                     string GetBoxedType() const;
-                    
+
                 private:
                     const FieldDescriptor* descriptor_;
                     map<string, string> variables_;
-                    
+
                     GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(EnumFieldGenerator);
                 };
-                
+
                 class RepeatedEnumFieldGenerator : public FieldGenerator {
                 public:
-                    explicit RepeatedEnumFieldGenerator(const FieldDescriptor* descriptor);
+                    explicit RepeatedEnumFieldGenerator(const FieldDescriptor* descriptor, const FileDescriptor* file);
                     ~RepeatedEnumFieldGenerator();
-                    
+
                     void GenerateHasFieldHeader(io::Printer* printer) const;
                     void GenerateFieldHeader(io::Printer* printer) const;
                     void GenerateHasPropertyHeader(io::Printer* printer) const;
@@ -85,7 +85,7 @@ namespace google {
                     void GenerateParsingCodeHeader(io::Printer* printer) const;
                     void GenerateSerializationCodeHeader(io::Printer* printer) const;
                     void GenerateSerializedSizeCodeHeader(io::Printer* printer) const;
-                    
+
                     void GenerateExtensionSource(io::Printer* printer) const;
                     void GenerateSynthesizeSource(io::Printer* printer) const;
                     void GenerateInitializationSource(io::Printer* printer) const;
@@ -100,16 +100,16 @@ namespace google {
                     void GenerateDictionaryCodeSource(io::Printer* printer) const;
                     void GenerateIsEqualCodeSource(io::Printer* printer) const;
                     void GenerateHashCodeSource(io::Printer* printer) const;
-                    
+
                     string GetBoxedType() const;
-                    
+
                 private:
                     const FieldDescriptor* descriptor_;
                     map<string, string> variables_;
-                    
+
                     GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(RepeatedEnumFieldGenerator);
                 };
-                
+
             }  // namespace objectivec
         }  // namespace compiler
     }  // namespace protobuf
