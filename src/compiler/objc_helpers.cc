@@ -39,7 +39,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
             }
         }
     }
-    
+
     bool isObjectArray(const FieldDescriptor* field){
         switch (field->type()) {
             case FieldDescriptor::TYPE_STRING  :
@@ -60,17 +60,17 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
             case FieldDescriptor::TYPE_FLOAT   :
             case FieldDescriptor::TYPE_DOUBLE  :
             case FieldDescriptor::TYPE_BOOL    : return false  ;
-                
+
         }
         GOOGLE_LOG(FATAL) << "Can't get here.";
         return false;
     }
-    
-    
-    string UnderscoresToCapitalizedCamelCase(const string& input) {
+
+
+    string UnderscoresToCapitalizedCamelCaseStrict(const string& input) {
         vector<string> values;
         string current;
-        
+
         bool last_char_was_number = false;
         bool last_char_was_lower = false;
         bool last_char_was_upper = false;
@@ -106,7 +106,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
             }
         }
         values.push_back(current);
-        
+
         for (vector<string>::iterator i = values.begin(); i != values.end(); ++i) {
             string value = *i;
             for (unsigned int j = 0; j < value.length(); j++) {
@@ -124,53 +124,85 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         }
         return result;
     }
-    
-    
-    string UnderscoresToCamelCase(const string& input) {
-        string result = UnderscoresToCapitalizedCamelCase(input);
+
+
+    string UnderscoresToCapitalizedCamelCaseRelaxed(const string& input) {
+        vector<string> values;
+        string current;
+
+        bool last_was_underscore = true;
+        for (unsigned int i = 0; i < input.size(); ++i) {
+            char c = input[i];
+            if (isalnum(c)) {
+                if (last_was_underscore) {
+                    last_was_underscore = false;
+                    current += toupper(c);
+                } else {
+                    current += c;
+                }
+            } else {
+                last_was_underscore = true;
+            }
+        }
+        return current;
+    }
+
+
+    string UnderscoresToCapitalizedCamelCase(const string& input, const FileDescriptor* file) {
+        if (file->options().HasExtension(objectivec_file_options)) {
+            ObjectiveCFileOptions options = file->options().GetExtension(objectivec_file_options);
+            if (options.relax_camel_case()) {
+                return UnderscoresToCapitalizedCamelCaseRelaxed(input);
+            }
+        }
+        return UnderscoresToCapitalizedCamelCaseStrict(input);
+    }
+
+
+    string UnderscoresToCamelCase(const string& input, const FileDescriptor* file) {
+        string result = UnderscoresToCapitalizedCamelCase(input, file);
         if (result.length() == 0) {
             return result;
         }
-        
         result[0] = tolower(result[0]);
         return result;
     }
-    
-    
-    string UnderscoresToCamelCase(const FieldDescriptor* field) {
-        return SafeNSObjectName(UnderscoresToCamelCase(FieldName(field)));
+
+
+    string UnderscoresToCamelCase(const FieldDescriptor* field, const FileDescriptor* file) {
+        return SafeNSObjectName(UnderscoresToCamelCase(FieldName(field), file));
     }
-    
-    
-    string UnderscoresToCapitalizedCamelCase(const FieldDescriptor* field) {
-        return SafeNSObjectName(UnderscoresToCapitalizedCamelCase(FieldName(field)));
+
+
+    string UnderscoresToCapitalizedCamelCase(const FieldDescriptor* field, const FileDescriptor* file) {
+        return SafeNSObjectName(UnderscoresToCapitalizedCamelCase(FieldName(field), file));
     }
-    
-    string UnderscoresToCapitalizedCamelCase(const Descriptor* desc) {
-        return UnderscoresToCapitalizedCamelCase(desc->name());
+
+    string UnderscoresToCapitalizedCamelCase(const Descriptor* desc, const FileDescriptor* file) {
+        return UnderscoresToCapitalizedCamelCase(desc->name(), file);
     }
-    
-    string UnderscoresToCamelCase(const MethodDescriptor* method) {
-        return UnderscoresToCamelCase(method->name());
+
+    string UnderscoresToCamelCase(const MethodDescriptor* method, const FileDescriptor* file) {
+        return UnderscoresToCamelCase(method->name(), file);
     }
-    
-    
+
+
     string FilenameToCamelCase(const string& filename) {
         string result;
         bool need_uppercase = true;
-        
+
         result.reserve(filename.length());
-        
+
         for (string::const_iterator it(filename.begin()), itEnd(filename.end()); it != itEnd; ++it) {
             const char c = *it;
-            
+
             // Ignore undesirable characters.  The good character must be
             // uppercased, though.
             if (!isalnum(c) && c != '_') {
                 need_uppercase = true;
                 continue;
             }
-            
+
             // If an uppercased character has been requested, transform the current
             // character, append it to the result, reset the flag, and move on.
             // This is safe to do even if the character is already uppercased.
@@ -179,21 +211,21 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                 need_uppercase = false;
                 continue;
             }
-            
+
             // Simply append this character.
             result += c;
-            
+
             // If this character was a digit, we want the next character to be an
             // uppercased letter.
             if (isdigit(c)) {
                 need_uppercase = true;
             }
         }
-        
+
         return result;
     }
-    
-    
+
+
     string StripProto(const string& filename) {
         if (HasSuffixString(filename, ".protodevel")) {
             return StripSuffixString(filename, ".protodevel");
@@ -201,7 +233,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
             return StripSuffixString(filename, ".proto");
         }
     }
-    
+
     bool IsRetainedName(const string& name) {
         static std::string retainednames[] = { "new", "alloc", "copy", "mutableCopy" };
         for (size_t i = 0; i < sizeof(retainednames) / sizeof(retainednames[0]); ++i) {
@@ -211,74 +243,74 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         }
         return false;
     }
-    
+
     bool IsBootstrapFile(const FileDescriptor* file) {
         return file->name() == "google/protobuf/descriptor.proto";
     }
-    
+
     bool isObjectivecFileOptions(const string& name) {
         return name == "ObjectivecDescriptor";
     }
-    
-    
+
+
     string FileName(const FileDescriptor* file) {
         string basename;
-        
+
         string::size_type last_slash = file->name().find_last_of('/');
         if (last_slash == string::npos) {
             basename += file->name();
         } else {
             basename += file->name().substr(last_slash + 1);
         }
-        
+
         return FilenameToCamelCase(StripProto(basename));
     }
-    
-    
+
+
     string FilePath(const FileDescriptor* file) {
         string path = FileName(file);
-        
+
         if (file->options().HasExtension(objectivec_file_options)) {
             ObjectiveCFileOptions options = file->options().GetExtension(objectivec_file_options);
-            
+
             if (options.package() != "") {
                 path = options.package() + "/" + path;
             }
         }
-        
+
         return path;
     }
-    
-    
+
+
     string FileClassPrefix(const FileDescriptor* file) {
         if (IsBootstrapFile(file)) {
             return "PB";
         } else if (file->options().HasExtension(objectivec_file_options)) {
             ObjectiveCFileOptions options = file->options().GetExtension(objectivec_file_options);
-            
+
             return options.class_prefix();
         } else {
             return "";
         }
     }
-    
-    
+
+
     string FileClassName(const FileDescriptor* file) {
         // Ensure the FileClassName is camelcased irrespective of whether the
         // camelcase_output_filename option is set.
         return FileClassPrefix(file) +
-        UnderscoresToCapitalizedCamelCase(FileName(file)) + "Root";
+        UnderscoresToCapitalizedCamelCase(FileName(file), file) + "Root";
     }
-    
-    
+
+
     string ToObjectiveCName(const string& full_name, const FileDescriptor* file) {
         string result;
         result += FileClassPrefix(file);
         result += full_name;
         return result;
     }
-    
-    
+
+
     string ClassNameWorker(const Descriptor* descriptor) {
         string name;
         if (descriptor->containing_type() != NULL) {
@@ -287,8 +319,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         }
         return name + descriptor->name();
     }
-    
-    
+
+
     string ClassNameWorker(const EnumDescriptor* descriptor) {
         string name;
         if (descriptor->containing_type() != NULL) {
@@ -297,39 +329,39 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         }
         return name + descriptor->name();
     }
-    
-    
+
+
     string ClassName(const Descriptor* descriptor) {
         string name;
         name += FileClassPrefix(descriptor->file());
         name += ClassNameWorker(descriptor);
         return name;
     }
-    
-    
+
+
     string ClassName(const EnumDescriptor* descriptor) {
         string name;
         name += FileClassPrefix(descriptor->file());
         name += ClassNameWorker(descriptor);
         return name;
     }
-    
-    
+
+
     string ClassName(const ServiceDescriptor* descriptor) {
         string name;
         name += FileClassPrefix(descriptor->file());
         name += descriptor->name();
         return name;
     }
-    
-    
-    string EnumValueName(const EnumValueDescriptor* descriptor) {
+
+
+    string EnumValueName(const EnumValueDescriptor* descriptor, const FileDescriptor* file) {
         return
         ClassName(descriptor->type()) +
-        UnderscoresToCapitalizedCamelCase(SafeName(descriptor->name()));
+        UnderscoresToCapitalizedCamelCase(SafeName(descriptor->name()), file);
     }
-    
-    
+
+
     ObjectiveCType GetObjectiveCType(FieldDescriptor::Type field_type) {
         switch (field_type) {
             case FieldDescriptor::TYPE_INT32:
@@ -338,42 +370,42 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
             case FieldDescriptor::TYPE_FIXED32:
             case FieldDescriptor::TYPE_SFIXED32:
                 return OBJECTIVECTYPE_INT;
-                
+
             case FieldDescriptor::TYPE_INT64:
             case FieldDescriptor::TYPE_UINT64:
             case FieldDescriptor::TYPE_SINT64:
             case FieldDescriptor::TYPE_FIXED64:
             case FieldDescriptor::TYPE_SFIXED64:
                 return OBJECTIVECTYPE_LONG;
-                
+
             case FieldDescriptor::TYPE_FLOAT:
                 return OBJECTIVECTYPE_FLOAT;
-                
+
             case FieldDescriptor::TYPE_DOUBLE:
                 return OBJECTIVECTYPE_DOUBLE;
-                
+
             case FieldDescriptor::TYPE_BOOL:
                 return OBJECTIVECTYPE_BOOLEAN;
-                
+
             case FieldDescriptor::TYPE_STRING:
                 return OBJECTIVECTYPE_STRING;
-                
+
             case FieldDescriptor::TYPE_BYTES:
                 return OBJECTIVECTYPE_DATA;
-                
+
             case FieldDescriptor::TYPE_ENUM:
                 return OBJECTIVECTYPE_ENUM;
-                
+
             case FieldDescriptor::TYPE_GROUP:
             case FieldDescriptor::TYPE_MESSAGE:
                 return OBJECTIVECTYPE_MESSAGE;
         }
-        
+
         GOOGLE_LOG(FATAL) << "Can't get here.";
         return OBJECTIVECTYPE_INT;
     }
-    
-    
+
+
     const char* BoxedPrimitiveTypeName(ObjectiveCType type) {
         switch (type) {
             case OBJECTIVECTYPE_INT    : return "NSNumber";
@@ -386,12 +418,12 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
             case OBJECTIVECTYPE_ENUM   : return "NSNumber";
             case OBJECTIVECTYPE_MESSAGE: return NULL;
         }
-        
+
         GOOGLE_LOG(FATAL) << "Can't get here.";
         return NULL;
     }
-    
-    
+
+
     bool IsPrimitiveType(ObjectiveCType type) {
         switch (type) {
             case OBJECTIVECTYPE_INT    :
@@ -401,38 +433,38 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
             case OBJECTIVECTYPE_BOOLEAN:
             case OBJECTIVECTYPE_ENUM   :
                 return true;
-                
+
             default:
                 return false;
         }
     }
-    
-    
+
+
     bool IsReferenceType(ObjectiveCType type) {
         return !IsPrimitiveType(type);
     }
-    
-    
+
+
     bool ReturnsPrimitiveType(const FieldDescriptor* field) {
         return IsPrimitiveType(GetObjectiveCType(field->type()));
     }
-    
-    
+
+
     bool ReturnsReferenceType(const FieldDescriptor* field) {
         return !ReturnsPrimitiveType(field);
     }
-    
-    
+
+
     namespace {
         string DotsToUnderscores(const string& name) {
             return StringReplace(name, ".", "_", true);
         }
-        
+
         const char* const kKeywordList[] = {
             "TYPE_BOOL"
         };
-        
-        
+
+
         hash_set<string> MakeKeywordsMap() {
             hash_set<string> result;
             for (unsigned int i = 0; i < GOOGLE_ARRAYSIZE(kKeywordList); i++) {
@@ -440,11 +472,11 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
             }
             return result;
         }
-        
+
         hash_set<string> kKeywords = MakeKeywordsMap();
     }
-    
-    
+
+
     string SafeName(const string& name) {
         string result = name;
         if (kKeywords.count(result) > 0) {
@@ -452,7 +484,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         }
         return result;
     }
-    
+
     template <typename T, typename U>
     class create_map {
     private:
@@ -461,20 +493,20 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         create_map(const T& key, const U& val) {
             m_map[key] = val;
         }
-        
+
         create_map<T, U>& operator()(const T& key, const U& val) {
             m_map[key] = val;
             return *this;
         }
-        
+
         operator std::map<T, U>() {
             return m_map;
         }
     };
-    
+
     string SafeNSObjectName(const string& name) {
         typedef std::map<string, string> NSObjectMap;
-        
+
         static NSObjectMap keywords = create_map<string, string>
             ("load",                "pb_load")
             ("initialize",          "pb_initialize")
@@ -489,15 +521,15 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
             ("class",               "pb_class")
             ("description",         "pb_description")
             ("debugDescription",    "pb_debugDescription");
-        
+
         NSObjectMap::const_iterator it = keywords.find(name);
-        
+
         if (it != keywords.end())
             return it->second;
         else
             return name;
     }
-    
+
     string BoxValue(const FieldDescriptor* field, const string& value) {
         switch (GetObjectiveCType(field)) {
             case OBJECTIVECTYPE_INT:
@@ -516,7 +548,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                 return value;
         }
     }
-    
+
     bool AllAscii(const string& text) {
         for (unsigned int i = 0; i < text.size(); i++) {
             if ((text[i] & 0x80) != 0) {
@@ -525,8 +557,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         }
         return true;
     }
-    
-    string DefaultValue(const FieldDescriptor* field) {
+
+    string DefaultValue(const FieldDescriptor* field, const FileDescriptor* file) {
         // Switch on cpp_type since we need to know which default_value_* method
         // of FieldDescriptor to call.
         switch (field->cpp_type()) {
@@ -583,15 +615,15 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                     }
                 }
             case FieldDescriptor::CPPTYPE_ENUM:
-                return EnumValueName(field->default_value_enum());
+                return EnumValueName(field->default_value_enum(), file);
             case FieldDescriptor::CPPTYPE_MESSAGE:
                 return "[" + ClassName(field->message_type()) + " defaultInstance]";
         }
-        
+
         GOOGLE_LOG(FATAL) << "Can't get here.";
         return "";
     }
-    
+
     const char* GetArrayValueType(const FieldDescriptor* field) {
         switch (field->type()) {
             case FieldDescriptor::TYPE_INT32   : return "PBArrayValueTypeInt32" ;
@@ -613,16 +645,16 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
             case FieldDescriptor::TYPE_GROUP   : return "PBArrayValueTypeObject";
             case FieldDescriptor::TYPE_MESSAGE : return "PBArrayValueTypeObject";
         }
-        
+
         GOOGLE_LOG(FATAL) << "Can't get here.";
         return NULL;
     }
-    
+
     // Escape C++ trigraphs by escaping question marks to \?
     string EscapeTrigraphs(const string& to_escape) {
         return StringReplace(to_escape, "?", "\\?", true);
     }
-    
+
 }  // namespace objectivec
 }  // namespace compiler
 }  // namespace protobuf

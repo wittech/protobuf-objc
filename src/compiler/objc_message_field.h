@@ -27,12 +27,12 @@ namespace google {
     namespace protobuf {
         namespace compiler {
             namespace objectivec {
-                
+
                 class MessageFieldGenerator : public FieldGenerator {
                 public:
-                    explicit MessageFieldGenerator(const FieldDescriptor* descriptor);
+                    explicit MessageFieldGenerator(const FieldDescriptor* descriptor, const FileDescriptor* file);
                     ~MessageFieldGenerator();
-                    
+
                     void GenerateHasFieldHeader(io::Printer* printer) const;
                     void GenerateFieldHeader(io::Printer* printer) const;
                     void GenerateHasPropertyHeader(io::Printer* printer) const;
@@ -44,7 +44,7 @@ namespace google {
                     void GenerateParsingCodeHeader(io::Printer* printer) const;
                     void GenerateSerializationCodeHeader(io::Printer* printer) const;
                     void GenerateSerializedSizeCodeHeader(io::Printer* printer) const;
-                    
+
                     void GenerateExtensionSource(io::Printer* printer) const;
                     void GenerateSynthesizeSource(io::Printer* printer) const;
                     void GenerateInitializationSource(io::Printer* printer) const;
@@ -59,21 +59,21 @@ namespace google {
                     void GenerateDictionaryCodeSource(io::Printer* printer) const;
                     void GenerateIsEqualCodeSource(io::Printer* printer) const;
                     void GenerateHashCodeSource(io::Printer* printer) const;
-                    
+
                     string GetBoxedType() const;
-                    
+
                 private:
                     const FieldDescriptor* descriptor_;
                     map<string, string> variables_;
-                    
+
                     GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(MessageFieldGenerator);
                 };
-                
+
                 class RepeatedMessageFieldGenerator : public FieldGenerator {
                 public:
-                    explicit RepeatedMessageFieldGenerator(const FieldDescriptor* descriptor);
+                    explicit RepeatedMessageFieldGenerator(const FieldDescriptor* descriptor, const FileDescriptor* file);
                     ~RepeatedMessageFieldGenerator();
-                    
+
                     void GenerateHasFieldHeader(io::Printer* printer) const;
                     void GenerateFieldHeader(io::Printer* printer) const;
                     void GenerateHasPropertyHeader(io::Printer* printer) const;
@@ -85,7 +85,7 @@ namespace google {
                     void GenerateParsingCodeHeader(io::Printer* printer) const;
                     void GenerateSerializationCodeHeader(io::Printer* printer) const;
                     void GenerateSerializedSizeCodeHeader(io::Printer* printer) const;
-                    
+
                     void GenerateExtensionSource(io::Printer* printer) const;
                     void GenerateSynthesizeSource(io::Printer* printer) const;
                     void GenerateInitializationSource(io::Printer* printer) const;
@@ -100,13 +100,13 @@ namespace google {
                     void GenerateDictionaryCodeSource(io::Printer *printer) const;
                     void GenerateIsEqualCodeSource(io::Printer* printer) const;
                     void GenerateHashCodeSource(io::Printer* printer) const;
-                    
+
                     string GetBoxedType() const;
-                    
+
                 private:
                     const FieldDescriptor* descriptor_;
                     map<string, string> variables_;
-                    
+
                     GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(RepeatedMessageFieldGenerator);
                 };
             }  // namespace objectivec

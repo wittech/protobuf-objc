@@ -15,7 +15,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "objc_extension.h"
 
 #include <google/protobuf/descriptor.pb.h>
 #include <google/protobuf/stubs/strutil.h>
@@ -25,59 +24,60 @@
 #include "objc_helpers.h"
 
 namespace google { namespace protobuf { namespace compiler { namespace objectivec {
-    
-    ExtensionGenerator::ExtensionGenerator(string classname, const FieldDescriptor* descriptor)
-    : classname_(classname),
-    descriptor_(descriptor) {
+
+    ExtensionGenerator::ExtensionGenerator(string classname, const FieldDescriptor* descriptor, const FileDescriptor* file)
+    : classname_(classname)
+    , file_(file)
+    , descriptor_(descriptor) {
     }
-    
-    
+
+
     ExtensionGenerator::~ExtensionGenerator() {
     }
-    
-    
+
+
     void ExtensionGenerator::GenerateMembersHeader(io::Printer* printer) {
         map<string, string> vars;
-        vars["name"] = UnderscoresToCamelCase(descriptor_);
-        
+        vars["name"] = UnderscoresToCamelCase(descriptor_, file_);
+
         printer->Print(vars,
                        "+ (id<PBExtensionField>) $name$;\n");
     }
-    
-    
+
+
     void ExtensionGenerator::GenerateFieldsSource(io::Printer* printer) {
         map<string, string> vars;
-        vars["name"] = UnderscoresToCamelCase(descriptor_);
+        vars["name"] = UnderscoresToCamelCase(descriptor_, file_);
         vars["containing_type"] = classname_;
-        
+
         printer->Print(vars,
                        "static id<PBExtensionField> $containing_type$_$name$ = nil;\n");
     }
-    
-    
+
+
     void ExtensionGenerator::GenerateMembersSource(io::Printer* printer) {
         map<string, string> vars;
-        vars["name"] = UnderscoresToCamelCase(descriptor_);
+        vars["name"] = UnderscoresToCamelCase(descriptor_, file_);
         vars["containing_type"] = classname_;
-        
+
         printer->Print(vars,
                        "+ (id<PBExtensionField>) $name$ {\n"
                        "  return $containing_type$_$name$;\n"
                        "}\n");
     }
-    
+
     void ExtensionGenerator::GenerateInitializationSource(io::Printer* printer) {
         map<string, string> vars;
-        vars["name"] = UnderscoresToCamelCase(descriptor_);
+        vars["name"] = UnderscoresToCamelCase(descriptor_, file_);
         vars["containing_type"] = classname_;
         vars["extended_type"] = ClassName(descriptor_->containing_type());
         vars["number"] = SimpleItoa(descriptor_->number());
-        
+
         const bool isPacked = descriptor_->options().packed();
         vars["is_repeated"] = descriptor_->is_repeated() ? "YES" : "NO";
         vars["is_packed"] = isPacked ? "YES" : "NO";
         vars["is_wire_format"] = descriptor_->containing_type()->options().message_set_wire_format() ? "YES" : "NO";
-        
+
         ObjectiveCType java_type = GetObjectiveCType(descriptor_);
         string singular_type;
         switch (java_type) {
@@ -88,7 +88,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                 vars["type"] = BoxedPrimitiveTypeName(java_type);
                 break;
         }
-        
+
         switch (descriptor_->type()) {
             case FieldDescriptor::TYPE_INT32:
                 vars["extension_type"] = "PBExtensionTypeInt32";
@@ -145,7 +145,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                 vars["extension_type"] = "PBExtensionTypeGroup";
                 break;
         }
-        
+
         if(descriptor_->is_repeated())
         {
             if(isObjectArray(descriptor_))
@@ -159,15 +159,15 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         }
         else
         {
-            vars["default"] =  BoxValue(descriptor_, DefaultValue(descriptor_));
+            vars["default"] =  BoxValue(descriptor_, DefaultValue(descriptor_, file_));
         }
-        
+
         printer->Print(vars,
                        "$containing_type$_$name$ =\n");
-        
+
         printer->Print(
                        vars,
-                       
+
                        "  [PBConcreteExtensionField extensionWithType:$extension_type$\n"
                        "                                 extendedClass:[$extended_type$ class]\n"
                        "                                   fieldNumber:$number$\n"
@@ -176,14 +176,14 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                        "                                    isRepeated:$is_repeated$\n"
                        "                                      isPacked:$is_packed$\n"
                        "                        isMessageSetWireFormat:$is_wire_format$];\n");
-        
+
     }
-    
+
     void ExtensionGenerator::GenerateRegistrationSource(io::Printer* printer) {
         printer->Print(
                        "[registry addExtension:$scope$_$name$];\n",
                        "scope", classname_,
-                       "name", UnderscoresToCamelCase(descriptor_));
+                       "name", UnderscoresToCamelCase(descriptor_, file_));
     }
 }  // namespace objectivec
 }  // namespace compiler
