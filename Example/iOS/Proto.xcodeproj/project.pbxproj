@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3FF8873619412B2400CC159D /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FF8873319412B1D00CC159D /* libProtocolBuffers.a */; };
+		3F253A0D1AE561410092A44B /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FF8873319412B1D00CC159D /* libProtocolBuffers.a */; };
 		BE3A706418CF88C9008F79A2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE3A706318CF88C9008F79A2 /* Foundation.framework */; };
 		BE3A706618CF88C9008F79A2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE3A706518CF88C9008F79A2 /* CoreGraphics.framework */; };
 		BE3A706818CF88C9008F79A2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE3A706718CF88C9008F79A2 /* UIKit.framework */; };
@@ -73,7 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FF8873619412B2400CC159D /* libProtocolBuffers.a in Frameworks */,
+				3F253A0D1AE561410092A44B /* libProtocolBuffers.a in Frameworks */,
 				BE3A706618CF88C9008F79A2 /* CoreGraphics.framework in Frameworks */,
 				BE3A706818CF88C9008F79A2 /* UIKit.framework in Frameworks */,
 				BE3A706418CF88C9008F79A2 /* Foundation.framework in Frameworks */,
@@ -87,7 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				3FF8873319412B1D00CC159D /* libProtocolBuffers.a */,
-				3FF8873519412B1D00CC159D /* UnitTests.octest */,
+				3FF8873519412B1D00CC159D /* UnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -229,10 +229,10 @@
 			remoteRef = 3FF8873219412B1D00CC159D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		3FF8873519412B1D00CC159D /* UnitTests.octest */ = {
+		3FF8873519412B1D00CC159D /* UnitTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = UnitTests.xctest;
 			remoteRef = 3FF8873419412B1D00CC159D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

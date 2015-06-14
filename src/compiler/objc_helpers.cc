@@ -66,7 +66,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         return false;
     }
 
-
     string UnderscoresToCapitalizedCamelCaseStrict(const string& input) {
         vector<string> values;
         string current;
@@ -78,6 +77,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
             char c = input[i];
             if (c >= '0' && c <= '9') {
                 if (!last_char_was_number) {
+                    
                     values.push_back(current);
                     current = "";
                 }
@@ -120,7 +120,11 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         }
         string result;
         for (vector<string>::iterator i = values.begin(); i != values.end(); ++i) {
-            result += *i;
+            result +=  *i;
+            vector<string>::iterator j = i;
+            if (--j == values.begin() && values.begin() != values.end()) {
+                result = SafeNSObjectName(result);
+            }
         }
         return result;
     }
@@ -508,6 +512,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         typedef std::map<string, string> NSObjectMap;
 
         static NSObjectMap keywords = create_map<string, string>
+            ("New",                 "PbNew")
+            ("new",                 "PbNew")
             ("load",                "pb_load")
             ("initialize",          "pb_initialize")
             ("init",                "pb_init")
@@ -523,7 +529,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
             ("debugDescription",    "pb_debugDescription");
 
         NSObjectMap::const_iterator it = keywords.find(name);
-
         if (it != keywords.end())
             return it->second;
         else
