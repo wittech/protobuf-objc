@@ -121,10 +121,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         string result;
         for (vector<string>::iterator i = values.begin(); i != values.end(); ++i) {
             result +=  *i;
-            vector<string>::iterator j = i;
-            if (--j == values.begin() && values.begin() != values.end()) {
-                result = SafeNSObjectName(result);
-            }
         }
         return result;
     }

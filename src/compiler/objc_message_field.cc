@@ -75,7 +75,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
     void MessageFieldGenerator::GenerateFieldHeader(io::Printer* printer) const {
-        printer->Print(variables_, "$storage_type$ $name$$storage_attribute$;\n");
+        printer->Print(variables_, "$storage_type$ $name$;\n");
     }
 
 
@@ -119,7 +119,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     void MessageFieldGenerator::GenerateBuilderMembersHeader(io::Printer* printer) const {
         printer->Print(variables_,
                        "- (BOOL) has$capitalized_name$;\n"
-                       "- ($storage_type$) $name$;\n"
+                       "- ($storage_type$) $name$$storage_attribute$;\n"
                        "- ($classname$Builder*) set$capitalized_name$:($storage_type$) value;\n"
                        "- ($classname$Builder*) set$capitalized_name$Builder:($type$Builder*) builderForValue;\n"
                        "- ($classname$Builder*) merge$capitalized_name$:($storage_type$) value;\n"
@@ -304,7 +304,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     void RepeatedMessageFieldGenerator::GenerateExtensionSource(io::Printer* printer) const {
 
-        printer->Print(variables_,"@property (strong) NSMutableArray * $list_name$;\n");
+        printer->Print(variables_,"@property (strong)$storage_attribute$ NSMutableArray * $list_name$;\n");
     }
 
 

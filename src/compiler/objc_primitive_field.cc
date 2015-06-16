@@ -477,7 +477,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     void RepeatedPrimitiveFieldGenerator::GenerateExtensionSource(io::Printer* printer) const {
         if(isObjectArray(descriptor_))
         {
-            printer->Print(variables_, "@property (strong) NSMutableArray * $list_name$;\n");
+            printer->Print(variables_, "@property (strong)$storage_attribute$ NSMutableArray * $list_name$;\n");
         }
         else
         {
