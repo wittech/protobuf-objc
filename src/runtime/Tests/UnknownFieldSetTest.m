@@ -121,6 +121,38 @@
   XCTAssertEqualObjects(destination1.data, destination2.data, @"");
 }
 
+- (void) testMergeFrom_LengthDelimited {
+  PBUnknownFieldSet* set1 =
+          [[[[PBUnknownFieldSet builder]
+                  addField:[[PBMutableField field] addLengthDelimited:[@"2" dataUsingEncoding:NSUTF8StringEncoding]] forNumber:2]
+                  addField:[[PBMutableField field] addLengthDelimited:[@"4" dataUsingEncoding:NSUTF8StringEncoding]] forNumber:3] build];
+
+  PBUnknownFieldSet* set2 =
+          [[[[PBUnknownFieldSet builder]
+                  addField:[[PBMutableField field] addLengthDelimited:[@"1" dataUsingEncoding:NSUTF8StringEncoding]] forNumber:1]
+                  addField:[[PBMutableField field] addLengthDelimited:[@"3" dataUsingEncoding:NSUTF8StringEncoding]] forNumber:3] build];
+
+  PBUnknownFieldSet* set3 =
+          [[[[PBUnknownFieldSet builder]
+                  addField:[[PBMutableField field] addLengthDelimited:[@"1" dataUsingEncoding:NSUTF8StringEncoding]] forNumber:1]
+                  addField:[[PBMutableField field] addLengthDelimited:[@"4" dataUsingEncoding:NSUTF8StringEncoding]] forNumber:3] build];
+
+  PBUnknownFieldSet* set4 =
+          [[[[PBUnknownFieldSet builder]
+                  addField:[[PBMutableField field] addLengthDelimited:[@"2" dataUsingEncoding:NSUTF8StringEncoding]] forNumber:2]
+                  addField:[[PBMutableField field] addLengthDelimited:[@"3" dataUsingEncoding:NSUTF8StringEncoding]] forNumber:3] build];
+
+  TestEmptyMessage* source1 = (id)[[[TestEmptyMessage builder] setUnknownFields:set1] build];
+  TestEmptyMessage* source2 = (id)[[[TestEmptyMessage builder] setUnknownFields:set2] build];
+  TestEmptyMessage* source3 = (id)[[[TestEmptyMessage builder] setUnknownFields:set3] build];
+  TestEmptyMessage* source4 = (id)[[[TestEmptyMessage builder] setUnknownFields:set4] build];
+
+  TestEmptyMessage* destination1 = (id)[[[[TestEmptyMessage builder] mergeFrom:source1] mergeFrom:source2] build];
+  TestEmptyMessage* destination2 = (id)[[[[TestEmptyMessage builder] mergeFrom:source3] mergeFrom:source4] build];
+
+  XCTAssertEqualObjects(destination1.data, destination2.data, @"");
+}
+
 
 - (void) testClear {
   PBUnknownFieldSet* fields =
