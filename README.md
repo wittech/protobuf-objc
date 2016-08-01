@@ -48,7 +48,7 @@ How To Install Protobuf
 Compile ".proto" files.
 -----------------------
 
-`protoc --plugin=/usr/local/bin/protoc-gen-objc person.proto --objc_out="./"`
+`protoc person.proto --lobjc_out="./"`
 
 
 Compilation Options

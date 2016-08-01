@@ -16,6 +16,8 @@
 
 // Author: cyrusn@google.com (Cyrus Najmabadi)
 
+syntax = "proto2";
+
 import "google/protobuf/descriptor.proto";
 
 package google.protobuf;

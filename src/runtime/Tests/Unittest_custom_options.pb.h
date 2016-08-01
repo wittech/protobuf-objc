@@ -51,6 +51,8 @@
 @class PBDescriptorProtoBuilder;
 @class PBDescriptorProtoExtensionRange;
 @class PBDescriptorProtoExtensionRangeBuilder;
+@class PBDescriptorProtoReservedRange;
+@class PBDescriptorProtoReservedRangeBuilder;
 @class PBEnumDescriptorProto;
 @class PBEnumDescriptorProtoBuilder;
 @class PBEnumOptions;
@@ -69,6 +71,10 @@
 @class PBFileDescriptorSetBuilder;
 @class PBFileOptions;
 @class PBFileOptionsBuilder;
+@class PBGeneratedCodeInfo;
+@class PBGeneratedCodeInfoAnnotation;
+@class PBGeneratedCodeInfoAnnotationBuilder;
+@class PBGeneratedCodeInfoBuilder;
 @class PBMessageOptions;
 @class PBMessageOptionsBuilder;
 @class PBMethodDescriptorProto;
@@ -77,6 +83,8 @@
 @class PBMethodOptionsBuilder;
 @class PBOneofDescriptorProto;
 @class PBOneofDescriptorProtoBuilder;
+@class PBOneofOptions;
+@class PBOneofOptionsBuilder;
 @class PBServiceDescriptorProto;
 @class PBServiceDescriptorProtoBuilder;
 @class PBServiceOptions;

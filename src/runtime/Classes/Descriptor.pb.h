@@ -8,6 +8,8 @@
 @class PBDescriptorProtoBuilder;
 @class PBDescriptorProtoExtensionRange;
 @class PBDescriptorProtoExtensionRangeBuilder;
+@class PBDescriptorProtoReservedRange;
+@class PBDescriptorProtoReservedRangeBuilder;
 @class PBEnumDescriptorProto;
 @class PBEnumDescriptorProtoBuilder;
 @class PBEnumOptions;
@@ -26,6 +28,10 @@
 @class PBFileDescriptorSetBuilder;
 @class PBFileOptions;
 @class PBFileOptionsBuilder;
+@class PBGeneratedCodeInfo;
+@class PBGeneratedCodeInfoAnnotation;
+@class PBGeneratedCodeInfoAnnotationBuilder;
+@class PBGeneratedCodeInfoBuilder;
 @class PBMessageOptions;
 @class PBMessageOptionsBuilder;
 @class PBMethodDescriptorProto;
@@ -34,6 +40,8 @@
 @class PBMethodOptionsBuilder;
 @class PBOneofDescriptorProto;
 @class PBOneofDescriptorProtoBuilder;
+@class PBOneofOptions;
+@class PBOneofOptionsBuilder;
 @class PBServiceDescriptorProto;
 @class PBServiceDescriptorProtoBuilder;
 @class PBServiceOptions;
@@ -98,6 +106,15 @@ typedef NS_ENUM(SInt32, PBFieldOptionsCType) {
 
 BOOL PBFieldOptionsCTypeIsValidValue(PBFieldOptionsCType value);
 NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
+
+typedef NS_ENUM(SInt32, PBFieldOptionsJSType) {
+  PBFieldOptionsJSTypeJsNormal = 0,
+  PBFieldOptionsJSTypeJsString = 1,
+  PBFieldOptionsJSTypeJsNumber = 2,
+};
+
+BOOL PBFieldOptionsJSTypeIsValidValue(PBFieldOptionsJSType value);
+NSString *NSStringFromPBFieldOptionsJSType(PBFieldOptionsJSType value);
 
 
 @interface PBDescriptorRoot : NSObject {
@@ -167,14 +184,17 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 #define FileDescriptorProto_extension @"extension"
 #define FileDescriptorProto_options @"options"
 #define FileDescriptorProto_source_code_info @"sourceCodeInfo"
+#define FileDescriptorProto_syntax @"syntax"
 @interface PBFileDescriptorProto : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasName_:1;
   BOOL hasPackage_:1;
+  BOOL hasSyntax_:1;
   BOOL hasOptions_:1;
   BOOL hasSourceCodeInfo_:1;
   NSString* name;
   NSString* package;
+  NSString* syntax;
   PBFileOptions* options;
   PBSourceCodeInfo* sourceCodeInfo;
   PBAppendableArray * publicDependencyArray;
@@ -189,6 +209,7 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 - (BOOL) hasPackage;
 - (BOOL) hasOptions;
 - (BOOL) hasSourceCodeInfo;
+- (BOOL) hasSyntax;
 @property (readonly, strong) NSString* name;
 @property (readonly, strong) NSString* package;
 @property (readonly, strong) NSArray * dependency;
@@ -200,6 +221,7 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 @property (readonly, strong) NSArray<PBFieldDescriptorProto*> * extension;
 @property (readonly, strong) PBFileOptions* options;
 @property (readonly, strong) PBSourceCodeInfo* sourceCodeInfo;
+@property (readonly, strong) NSString* syntax;
 - (NSString*)dependencyAtIndex:(NSUInteger)index;
 - (SInt32)publicDependencyAtIndex:(NSUInteger)index;
 - (SInt32)weakDependencyAtIndex:(NSUInteger)index;
@@ -310,6 +332,11 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 - (PBFileDescriptorProtoBuilder*) setSourceCodeInfoBuilder:(PBSourceCodeInfoBuilder*) builderForValue;
 - (PBFileDescriptorProtoBuilder*) mergeSourceCodeInfo:(PBSourceCodeInfo*) value;
 - (PBFileDescriptorProtoBuilder*) clearSourceCodeInfo;
+
+- (BOOL) hasSyntax;
+- (NSString*) syntax;
+- (PBFileDescriptorProtoBuilder*) setSyntax:(NSString*) value;
+- (PBFileDescriptorProtoBuilder*) clearSyntax;
 @end
 
 #define DescriptorProto_name @"name"
@@ -320,18 +347,22 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 #define DescriptorProto_extension_range @"extensionRange"
 #define DescriptorProto_oneof_decl @"oneofDecl"
 #define DescriptorProto_options @"options"
+#define DescriptorProto_reserved_range @"reservedRange"
+#define DescriptorProto_reserved_name @"reservedName"
 @interface PBDescriptorProto : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasName_:1;
   BOOL hasOptions_:1;
   NSString* name;
   PBMessageOptions* options;
+  NSMutableArray * reservedNameArray;
   NSMutableArray * fieldArray;
   NSMutableArray * extensionArray;
   NSMutableArray * nestedTypeArray;
   NSMutableArray * enumTypeArray;
   NSMutableArray * extensionRangeArray;
   NSMutableArray * oneofDeclArray;
+  NSMutableArray * reservedRangeArray;
 }
 - (BOOL) hasName;
 - (BOOL) hasOptions;
@@ -343,12 +374,16 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 @property (readonly, strong) NSArray<PBDescriptorProtoExtensionRange*> * extensionRange;
 @property (readonly, strong) NSArray<PBOneofDescriptorProto*> * oneofDecl;
 @property (readonly, strong) PBMessageOptions* options;
+@property (readonly, strong) NSArray<PBDescriptorProtoReservedRange*> * reservedRange;
+@property (readonly, strong) NSArray * reservedName;
 - (PBFieldDescriptorProto*)fieldAtIndex:(NSUInteger)index;
 - (PBFieldDescriptorProto*)extensionAtIndex:(NSUInteger)index;
 - (PBDescriptorProto*)nestedTypeAtIndex:(NSUInteger)index;
 - (PBEnumDescriptorProto*)enumTypeAtIndex:(NSUInteger)index;
 - (PBDescriptorProtoExtensionRange*)extensionRangeAtIndex:(NSUInteger)index;
 - (PBOneofDescriptorProto*)oneofDeclAtIndex:(NSUInteger)index;
+- (PBDescriptorProtoReservedRange*)reservedRangeAtIndex:(NSUInteger)index;
+- (NSString*)reservedNameAtIndex:(NSUInteger)index;
 
 + (instancetype) defaultInstance;
 - (instancetype) defaultInstance;
@@ -428,6 +463,66 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 - (PBDescriptorProtoExtensionRangeBuilder*) clearEnd;
 @end
 
+#define ReservedRange_start @"start"
+#define ReservedRange_end @"end"
+@interface PBDescriptorProtoReservedRange : PBGeneratedMessage<GeneratedMessageProtocol> {
+@private
+  BOOL hasStart_:1;
+  BOOL hasEnd_:1;
+  SInt32 start;
+  SInt32 end;
+}
+- (BOOL) hasStart;
+- (BOOL) hasEnd;
+@property (readonly) SInt32 start;
+@property (readonly) SInt32 end;
+
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBDescriptorProtoReservedRangeBuilder*) builder;
++ (PBDescriptorProtoReservedRangeBuilder*) builder;
++ (PBDescriptorProtoReservedRangeBuilder*) builderWithPrototype:(PBDescriptorProtoReservedRange*) prototype;
+- (PBDescriptorProtoReservedRangeBuilder*) toBuilder;
+
++ (PBDescriptorProtoReservedRange*) parseFromData:(NSData*) data;
++ (PBDescriptorProtoReservedRange*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDescriptorProtoReservedRange*) parseFromInputStream:(NSInputStream*) input;
++ (PBDescriptorProtoReservedRange*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDescriptorProtoReservedRange*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBDescriptorProtoReservedRange*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBDescriptorProtoReservedRangeBuilder : PBGeneratedMessageBuilder {
+@private
+  PBDescriptorProtoReservedRange* resultReservedRange;
+}
+
+- (PBDescriptorProtoReservedRange*) defaultInstance;
+
+- (PBDescriptorProtoReservedRangeBuilder*) clear;
+- (PBDescriptorProtoReservedRangeBuilder*) clone;
+
+- (PBDescriptorProtoReservedRange*) build;
+- (PBDescriptorProtoReservedRange*) buildPartial;
+
+- (PBDescriptorProtoReservedRangeBuilder*) mergeFrom:(PBDescriptorProtoReservedRange*) other;
+- (PBDescriptorProtoReservedRangeBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBDescriptorProtoReservedRangeBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasStart;
+- (SInt32) start;
+- (PBDescriptorProtoReservedRangeBuilder*) setStart:(SInt32) value;
+- (PBDescriptorProtoReservedRangeBuilder*) clearStart;
+
+- (BOOL) hasEnd;
+- (SInt32) end;
+- (PBDescriptorProtoReservedRangeBuilder*) setEnd:(SInt32) value;
+- (PBDescriptorProtoReservedRangeBuilder*) clearEnd;
+@end
+
 @interface PBDescriptorProtoBuilder : PBGeneratedMessageBuilder {
 @private
   PBDescriptorProto* resultDescriptorProto;
@@ -492,6 +587,18 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 - (PBDescriptorProtoBuilder*) setOptionsBuilder:(PBMessageOptionsBuilder*) builderForValue;
 - (PBDescriptorProtoBuilder*) mergeOptions:(PBMessageOptions*) value;
 - (PBDescriptorProtoBuilder*) clearOptions;
+
+- (NSMutableArray<PBDescriptorProtoReservedRange*> *)reservedRange;
+- (PBDescriptorProtoReservedRange*)reservedRangeAtIndex:(NSUInteger)index;
+- (PBDescriptorProtoBuilder *)addReservedRange:(PBDescriptorProtoReservedRange*)value;
+- (PBDescriptorProtoBuilder *)setReservedRangeArray:(NSArray<PBDescriptorProtoReservedRange*> *)array;
+- (PBDescriptorProtoBuilder *)clearReservedRange;
+
+- (NSMutableArray *)reservedName;
+- (NSString*)reservedNameAtIndex:(NSUInteger)index;
+- (PBDescriptorProtoBuilder *)addReservedName:(NSString*)value;
+- (PBDescriptorProtoBuilder *)setReservedNameArray:(NSArray *)array;
+- (PBDescriptorProtoBuilder *)clearReservedName;
 @end
 
 #define FieldDescriptorProto_name @"name"
@@ -502,6 +609,7 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 #define FieldDescriptorProto_extendee @"extendee"
 #define FieldDescriptorProto_default_value @"defaultValue"
 #define FieldDescriptorProto_oneof_index @"oneofIndex"
+#define FieldDescriptorProto_json_name @"jsonName"
 #define FieldDescriptorProto_options @"options"
 @interface PBFieldDescriptorProto : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
@@ -511,6 +619,7 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
   BOOL hasTypeName_:1;
   BOOL hasExtendee_:1;
   BOOL hasDefaultValue_:1;
+  BOOL hasJsonName_:1;
   BOOL hasOptions_:1;
   BOOL hasLabel_:1;
   BOOL hasType_:1;
@@ -520,6 +629,7 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
   NSString* typeName;
   NSString* extendee;
   NSString* defaultValue;
+  NSString* jsonName;
   PBFieldOptions* options;
   PBFieldDescriptorProtoLabel label;
   PBFieldDescriptorProtoType type;
@@ -532,6 +642,7 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 - (BOOL) hasExtendee;
 - (BOOL) hasDefaultValue;
 - (BOOL) hasOneofIndex;
+- (BOOL) hasJsonName;
 - (BOOL) hasOptions;
 @property (readonly, strong) NSString* name;
 @property (readonly) SInt32 number;
@@ -541,6 +652,7 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 @property (readonly, strong) NSString* extendee;
 @property (readonly, strong) NSString* defaultValue;
 @property (readonly) SInt32 oneofIndex;
+@property (readonly, strong) NSString* jsonName;
 @property (readonly, strong) PBFieldOptions* options;
 
 + (instancetype) defaultInstance;
@@ -618,6 +730,11 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 - (PBFieldDescriptorProtoBuilder*) setOneofIndex:(SInt32) value;
 - (PBFieldDescriptorProtoBuilder*) clearOneofIndex;
 
+- (BOOL) hasJsonName;
+- (NSString*) jsonName;
+- (PBFieldDescriptorProtoBuilder*) setJsonName:(NSString*) value;
+- (PBFieldDescriptorProtoBuilder*) clearJsonName;
+
 - (BOOL) hasOptions;
 - (PBFieldOptions*) options;
 - (PBFieldDescriptorProtoBuilder*) setOptions:(PBFieldOptions*) value;
@@ -627,13 +744,18 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 @end
 
 #define OneofDescriptorProto_name @"name"
+#define OneofDescriptorProto_options @"options"
 @interface PBOneofDescriptorProto : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasName_:1;
+  BOOL hasOptions_:1;
   NSString* name;
+  PBOneofOptions* options;
 }
 - (BOOL) hasName;
+- (BOOL) hasOptions;
 @property (readonly, strong) NSString* name;
+@property (readonly, strong) PBOneofOptions* options;
 
 + (instancetype) defaultInstance;
 - (instancetype) defaultInstance;
@@ -674,6 +796,13 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 - (NSString*) name;
 - (PBOneofDescriptorProtoBuilder*) setName:(NSString*) value;
 - (PBOneofDescriptorProtoBuilder*) clearName;
+
+- (BOOL) hasOptions;
+- (PBOneofOptions*) options;
+- (PBOneofDescriptorProtoBuilder*) setOptions:(PBOneofOptions*) value;
+- (PBOneofDescriptorProtoBuilder*) setOptionsBuilder:(PBOneofOptionsBuilder*) builderForValue;
+- (PBOneofDescriptorProtoBuilder*) mergeOptions:(PBOneofOptions*) value;
+- (PBOneofDescriptorProtoBuilder*) clearOptions;
 @end
 
 #define EnumDescriptorProto_name @"name"
@@ -896,12 +1025,18 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 #define MethodDescriptorProto_input_type @"inputType"
 #define MethodDescriptorProto_output_type @"outputType"
 #define MethodDescriptorProto_options @"options"
+#define MethodDescriptorProto_client_streaming @"clientStreaming"
+#define MethodDescriptorProto_server_streaming @"serverStreaming"
 @interface PBMethodDescriptorProto : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
+  BOOL hasClientStreaming_:1;
+  BOOL hasServerStreaming_:1;
   BOOL hasName_:1;
   BOOL hasInputType_:1;
   BOOL hasOutputType_:1;
   BOOL hasOptions_:1;
+  BOOL clientStreaming_:1;
+  BOOL serverStreaming_:1;
   NSString* name;
   NSString* inputType;
   NSString* outputType;
@@ -911,10 +1046,14 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 - (BOOL) hasInputType;
 - (BOOL) hasOutputType;
 - (BOOL) hasOptions;
+- (BOOL) hasClientStreaming;
+- (BOOL) hasServerStreaming;
 @property (readonly, strong) NSString* name;
 @property (readonly, strong) NSString* inputType;
 @property (readonly, strong) NSString* outputType;
 @property (readonly, strong) PBMethodOptions* options;
+- (BOOL) clientStreaming;
+- (BOOL) serverStreaming;
 
 + (instancetype) defaultInstance;
 - (instancetype) defaultInstance;
@@ -972,6 +1111,16 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 - (PBMethodDescriptorProtoBuilder*) setOptionsBuilder:(PBMethodOptionsBuilder*) builderForValue;
 - (PBMethodDescriptorProtoBuilder*) mergeOptions:(PBMethodOptions*) value;
 - (PBMethodDescriptorProtoBuilder*) clearOptions;
+
+- (BOOL) hasClientStreaming;
+- (BOOL) clientStreaming;
+- (PBMethodDescriptorProtoBuilder*) setClientStreaming:(BOOL) value;
+- (PBMethodDescriptorProtoBuilder*) clearClientStreaming;
+
+- (BOOL) hasServerStreaming;
+- (BOOL) serverStreaming;
+- (PBMethodDescriptorProtoBuilder*) setServerStreaming:(BOOL) value;
+- (PBMethodDescriptorProtoBuilder*) clearServerStreaming;
 @end
 
 #define FileOptions_java_package @"javaPackage"
@@ -985,6 +1134,9 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 #define FileOptions_java_generic_services @"javaGenericServices"
 #define FileOptions_py_generic_services @"pyGenericServices"
 #define FileOptions_deprecated @"deprecated"
+#define FileOptions_cc_enable_arenas @"ccEnableArenas"
+#define FileOptions_objc_class_prefix @"objcClassPrefix"
+#define FileOptions_csharp_namespace @"csharpNamespace"
 #define FileOptions_uninterpreted_option @"uninterpretedOption"
 @interface PBFileOptions : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
@@ -995,9 +1147,12 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
   BOOL hasJavaGenericServices_:1;
   BOOL hasPyGenericServices_:1;
   BOOL hasDeprecated_:1;
+  BOOL hasCcEnableArenas_:1;
   BOOL hasJavaPackage_:1;
   BOOL hasJavaOuterClassname_:1;
   BOOL hasGoPackage_:1;
+  BOOL hasObjcClassPrefix_:1;
+  BOOL hasCsharpNamespace_:1;
   BOOL hasOptimizeFor_:1;
   BOOL javaMultipleFiles_:1;
   BOOL javaGenerateEqualsAndHash_:1;
@@ -1006,9 +1161,12 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
   BOOL javaGenericServices_:1;
   BOOL pyGenericServices_:1;
   BOOL deprecated_:1;
+  BOOL ccEnableArenas_:1;
   NSString* javaPackage;
   NSString* javaOuterClassname;
   NSString* goPackage;
+  NSString* objcClassPrefix;
+  NSString* csharpNamespace;
   PBFileOptionsOptimizeMode optimizeFor;
   NSMutableArray * uninterpretedOptionArray;
 }
@@ -1023,6 +1181,9 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 - (BOOL) hasJavaGenericServices;
 - (BOOL) hasPyGenericServices;
 - (BOOL) hasDeprecated;
+- (BOOL) hasCcEnableArenas;
+- (BOOL) hasObjcClassPrefix;
+- (BOOL) hasCsharpNamespace;
 @property (readonly, strong) NSString* javaPackage;
 @property (readonly, strong) NSString* javaOuterClassname;
 - (BOOL) javaMultipleFiles;
@@ -1034,6 +1195,9 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 - (BOOL) javaGenericServices;
 - (BOOL) pyGenericServices;
 - (BOOL) deprecated;
+- (BOOL) ccEnableArenas;
+@property (readonly, strong) NSString* objcClassPrefix;
+@property (readonly, strong) NSString* csharpNamespace;
 @property (readonly, strong) NSArray<PBUninterpretedOption*> * uninterpretedOption;
 - (PBUninterpretedOption*)uninterpretedOptionAtIndex:(NSUInteger)index;
 
@@ -1127,6 +1291,21 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 - (PBFileOptionsBuilder*) setDeprecated:(BOOL) value;
 - (PBFileOptionsBuilder*) clearDeprecated;
 
+- (BOOL) hasCcEnableArenas;
+- (BOOL) ccEnableArenas;
+- (PBFileOptionsBuilder*) setCcEnableArenas:(BOOL) value;
+- (PBFileOptionsBuilder*) clearCcEnableArenas;
+
+- (BOOL) hasObjcClassPrefix;
+- (NSString*) objcClassPrefix;
+- (PBFileOptionsBuilder*) setObjcClassPrefix:(NSString*) value;
+- (PBFileOptionsBuilder*) clearObjcClassPrefix;
+
+- (BOOL) hasCsharpNamespace;
+- (NSString*) csharpNamespace;
+- (PBFileOptionsBuilder*) setCsharpNamespace:(NSString*) value;
+- (PBFileOptionsBuilder*) clearCsharpNamespace;
+
 - (NSMutableArray<PBUninterpretedOption*> *)uninterpretedOption;
 - (PBUninterpretedOption*)uninterpretedOptionAtIndex:(NSUInteger)index;
 - (PBFileOptionsBuilder *)addUninterpretedOption:(PBUninterpretedOption*)value;
@@ -1137,23 +1316,28 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 #define MessageOptions_message_set_wire_format @"messageSetWireFormat"
 #define MessageOptions_no_standard_descriptor_accessor @"noStandardDescriptorAccessor"
 #define MessageOptions_deprecated @"deprecated"
+#define MessageOptions_map_entry @"mapEntry"
 #define MessageOptions_uninterpreted_option @"uninterpretedOption"
 @interface PBMessageOptions : PBExtendableMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasMessageSetWireFormat_:1;
   BOOL hasNoStandardDescriptorAccessor_:1;
   BOOL hasDeprecated_:1;
+  BOOL hasMapEntry_:1;
   BOOL messageSetWireFormat_:1;
   BOOL noStandardDescriptorAccessor_:1;
   BOOL deprecated_:1;
+  BOOL mapEntry_:1;
   NSMutableArray * uninterpretedOptionArray;
 }
 - (BOOL) hasMessageSetWireFormat;
 - (BOOL) hasNoStandardDescriptorAccessor;
 - (BOOL) hasDeprecated;
+- (BOOL) hasMapEntry;
 - (BOOL) messageSetWireFormat;
 - (BOOL) noStandardDescriptorAccessor;
 - (BOOL) deprecated;
+- (BOOL) mapEntry;
 @property (readonly, strong) NSArray<PBUninterpretedOption*> * uninterpretedOption;
 - (PBUninterpretedOption*)uninterpretedOptionAtIndex:(NSUInteger)index;
 
@@ -1207,6 +1391,11 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 - (PBMessageOptionsBuilder*) setDeprecated:(BOOL) value;
 - (PBMessageOptionsBuilder*) clearDeprecated;
 
+- (BOOL) hasMapEntry;
+- (BOOL) mapEntry;
+- (PBMessageOptionsBuilder*) setMapEntry:(BOOL) value;
+- (PBMessageOptionsBuilder*) clearMapEntry;
+
 - (NSMutableArray<PBUninterpretedOption*> *)uninterpretedOption;
 - (PBUninterpretedOption*)uninterpretedOptionAtIndex:(NSUInteger)index;
 - (PBMessageOptionsBuilder *)addUninterpretedOption:(PBUninterpretedOption*)value;
@@ -1216,9 +1405,9 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 
 #define FieldOptions_ctype @"ctype"
 #define FieldOptions_packed @"packed"
+#define FieldOptions_jstype @"jstype"
 #define FieldOptions_lazy @"lazy"
 #define FieldOptions_deprecated @"deprecated"
-#define FieldOptions_experimental_map_key @"experimentalMapKey"
 #define FieldOptions_weak @"weak"
 #define FieldOptions_uninterpreted_option @"uninterpretedOption"
 @interface PBFieldOptions : PBExtendableMessage<GeneratedMessageProtocol> {
@@ -1227,27 +1416,27 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
   BOOL hasLazy_:1;
   BOOL hasDeprecated_:1;
   BOOL hasWeak_:1;
-  BOOL hasExperimentalMapKey_:1;
   BOOL hasCtype_:1;
+  BOOL hasJstype_:1;
   BOOL packed_:1;
   BOOL lazy_:1;
   BOOL deprecated_:1;
   BOOL weak_:1;
-  NSString* experimentalMapKey;
   PBFieldOptionsCType ctype;
+  PBFieldOptionsJSType jstype;
   NSMutableArray * uninterpretedOptionArray;
 }
 - (BOOL) hasCtype;
 - (BOOL) hasPacked;
+- (BOOL) hasJstype;
 - (BOOL) hasLazy;
 - (BOOL) hasDeprecated;
-- (BOOL) hasExperimentalMapKey;
 - (BOOL) hasWeak;
 @property (readonly) PBFieldOptionsCType ctype;
 - (BOOL) packed;
+@property (readonly) PBFieldOptionsJSType jstype;
 - (BOOL) lazy;
 - (BOOL) deprecated;
-@property (readonly, strong) NSString* experimentalMapKey;
 - (BOOL) weak;
 @property (readonly, strong) NSArray<PBUninterpretedOption*> * uninterpretedOption;
 - (PBUninterpretedOption*)uninterpretedOptionAtIndex:(NSUInteger)index;
@@ -1297,6 +1486,11 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 - (PBFieldOptionsBuilder*) setPacked:(BOOL) value;
 - (PBFieldOptionsBuilder*) clearPacked;
 
+- (BOOL) hasJstype;
+- (PBFieldOptionsJSType) jstype;
+- (PBFieldOptionsBuilder*) setJstype:(PBFieldOptionsJSType) value;
+- (PBFieldOptionsBuilder*) clearJstype;
+
 - (BOOL) hasLazy;
 - (BOOL) lazy;
 - (PBFieldOptionsBuilder*) setLazy:(BOOL) value;
@@ -1306,11 +1500,6 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 - (BOOL) deprecated;
 - (PBFieldOptionsBuilder*) setDeprecated:(BOOL) value;
 - (PBFieldOptionsBuilder*) clearDeprecated;
-
-- (BOOL) hasExperimentalMapKey;
-- (NSString*) experimentalMapKey;
-- (PBFieldOptionsBuilder*) setExperimentalMapKey:(NSString*) value;
-- (PBFieldOptionsBuilder*) clearExperimentalMapKey;
 
 - (BOOL) hasWeak;
 - (BOOL) weak;
@@ -1322,6 +1511,56 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 - (PBFieldOptionsBuilder *)addUninterpretedOption:(PBUninterpretedOption*)value;
 - (PBFieldOptionsBuilder *)setUninterpretedOptionArray:(NSArray<PBUninterpretedOption*> *)array;
 - (PBFieldOptionsBuilder *)clearUninterpretedOption;
+@end
+
+#define OneofOptions_uninterpreted_option @"uninterpretedOption"
+@interface PBOneofOptions : PBExtendableMessage<GeneratedMessageProtocol> {
+@private
+  NSMutableArray * uninterpretedOptionArray;
+}
+@property (readonly, strong) NSArray<PBUninterpretedOption*> * uninterpretedOption;
+- (PBUninterpretedOption*)uninterpretedOptionAtIndex:(NSUInteger)index;
+
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBOneofOptionsBuilder*) builder;
++ (PBOneofOptionsBuilder*) builder;
++ (PBOneofOptionsBuilder*) builderWithPrototype:(PBOneofOptions*) prototype;
+- (PBOneofOptionsBuilder*) toBuilder;
+
++ (PBOneofOptions*) parseFromData:(NSData*) data;
++ (PBOneofOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBOneofOptions*) parseFromInputStream:(NSInputStream*) input;
++ (PBOneofOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBOneofOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBOneofOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBOneofOptionsBuilder : PBExtendableMessageBuilder {
+@private
+  PBOneofOptions* resultOneofOptions;
+}
+
+- (PBOneofOptions*) defaultInstance;
+
+- (PBOneofOptionsBuilder*) clear;
+- (PBOneofOptionsBuilder*) clone;
+
+- (PBOneofOptions*) build;
+- (PBOneofOptions*) buildPartial;
+
+- (PBOneofOptionsBuilder*) mergeFrom:(PBOneofOptions*) other;
+- (PBOneofOptionsBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBOneofOptionsBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSMutableArray<PBUninterpretedOption*> *)uninterpretedOption;
+- (PBUninterpretedOption*)uninterpretedOptionAtIndex:(NSUInteger)index;
+- (PBOneofOptionsBuilder *)addUninterpretedOption:(PBUninterpretedOption*)value;
+- (PBOneofOptionsBuilder *)setUninterpretedOptionArray:(NSArray<PBUninterpretedOption*> *)array;
+- (PBOneofOptionsBuilder *)clearUninterpretedOption;
 @end
 
 #define EnumOptions_allow_alias @"allowAlias"
@@ -1774,6 +2013,7 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 #define Location_span @"span"
 #define Location_leading_comments @"leadingComments"
 #define Location_trailing_comments @"trailingComments"
+#define Location_leading_detached_comments @"leadingDetachedComments"
 @interface PBSourceCodeInfoLocation : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasLeadingComments_:1;
@@ -1784,6 +2024,7 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
   SInt32 pathMemoizedSerializedSize;
   PBAppendableArray * spanArray;
   SInt32 spanMemoizedSerializedSize;
+  NSMutableArray * leadingDetachedCommentsArray;
 }
 - (BOOL) hasLeadingComments;
 - (BOOL) hasTrailingComments;
@@ -1791,8 +2032,10 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 @property (readonly, strong) PBArray * span;
 @property (readonly, strong) NSString* leadingComments;
 @property (readonly, strong) NSString* trailingComments;
+@property (readonly, strong) NSArray * leadingDetachedComments;
 - (SInt32)pathAtIndex:(NSUInteger)index;
 - (SInt32)spanAtIndex:(NSUInteger)index;
+- (NSString*)leadingDetachedCommentsAtIndex:(NSUInteger)index;
 
 + (instancetype) defaultInstance;
 - (instancetype) defaultInstance;
@@ -1852,6 +2095,12 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 - (NSString*) trailingComments;
 - (PBSourceCodeInfoLocationBuilder*) setTrailingComments:(NSString*) value;
 - (PBSourceCodeInfoLocationBuilder*) clearTrailingComments;
+
+- (NSMutableArray *)leadingDetachedComments;
+- (NSString*)leadingDetachedCommentsAtIndex:(NSUInteger)index;
+- (PBSourceCodeInfoLocationBuilder *)addLeadingDetachedComments:(NSString*)value;
+- (PBSourceCodeInfoLocationBuilder *)setLeadingDetachedCommentsArray:(NSArray *)array;
+- (PBSourceCodeInfoLocationBuilder *)clearLeadingDetachedComments;
 @end
 
 @interface PBSourceCodeInfoBuilder : PBGeneratedMessageBuilder {
@@ -1876,6 +2125,138 @@ NSString *NSStringFromPBFieldOptionsCType(PBFieldOptionsCType value);
 - (PBSourceCodeInfoBuilder *)addLocation:(PBSourceCodeInfoLocation*)value;
 - (PBSourceCodeInfoBuilder *)setLocationArray:(NSArray<PBSourceCodeInfoLocation*> *)array;
 - (PBSourceCodeInfoBuilder *)clearLocation;
+@end
+
+#define GeneratedCodeInfo_annotation @"annotation"
+@interface PBGeneratedCodeInfo : PBGeneratedMessage<GeneratedMessageProtocol> {
+@private
+  NSMutableArray * annotationArray;
+}
+@property (readonly, strong) NSArray<PBGeneratedCodeInfoAnnotation*> * annotation;
+- (PBGeneratedCodeInfoAnnotation*)annotationAtIndex:(NSUInteger)index;
+
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBGeneratedCodeInfoBuilder*) builder;
++ (PBGeneratedCodeInfoBuilder*) builder;
++ (PBGeneratedCodeInfoBuilder*) builderWithPrototype:(PBGeneratedCodeInfo*) prototype;
+- (PBGeneratedCodeInfoBuilder*) toBuilder;
+
++ (PBGeneratedCodeInfo*) parseFromData:(NSData*) data;
++ (PBGeneratedCodeInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBGeneratedCodeInfo*) parseFromInputStream:(NSInputStream*) input;
++ (PBGeneratedCodeInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBGeneratedCodeInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBGeneratedCodeInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+#define Annotation_path @"path"
+#define Annotation_source_file @"sourceFile"
+#define Annotation_begin @"begin"
+#define Annotation_end @"end"
+@interface PBGeneratedCodeInfoAnnotation : PBGeneratedMessage<GeneratedMessageProtocol> {
+@private
+  BOOL hasBegin_:1;
+  BOOL hasEnd_:1;
+  BOOL hasSourceFile_:1;
+  SInt32 begin;
+  SInt32 end;
+  NSString* sourceFile;
+  PBAppendableArray * pathArray;
+  SInt32 pathMemoizedSerializedSize;
+}
+- (BOOL) hasSourceFile;
+- (BOOL) hasBegin;
+- (BOOL) hasEnd;
+@property (readonly, strong) PBArray * path;
+@property (readonly, strong) NSString* sourceFile;
+@property (readonly) SInt32 begin;
+@property (readonly) SInt32 end;
+- (SInt32)pathAtIndex:(NSUInteger)index;
+
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBGeneratedCodeInfoAnnotationBuilder*) builder;
++ (PBGeneratedCodeInfoAnnotationBuilder*) builder;
++ (PBGeneratedCodeInfoAnnotationBuilder*) builderWithPrototype:(PBGeneratedCodeInfoAnnotation*) prototype;
+- (PBGeneratedCodeInfoAnnotationBuilder*) toBuilder;
+
++ (PBGeneratedCodeInfoAnnotation*) parseFromData:(NSData*) data;
++ (PBGeneratedCodeInfoAnnotation*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBGeneratedCodeInfoAnnotation*) parseFromInputStream:(NSInputStream*) input;
++ (PBGeneratedCodeInfoAnnotation*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBGeneratedCodeInfoAnnotation*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBGeneratedCodeInfoAnnotation*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBGeneratedCodeInfoAnnotationBuilder : PBGeneratedMessageBuilder {
+@private
+  PBGeneratedCodeInfoAnnotation* resultAnnotation;
+}
+
+- (PBGeneratedCodeInfoAnnotation*) defaultInstance;
+
+- (PBGeneratedCodeInfoAnnotationBuilder*) clear;
+- (PBGeneratedCodeInfoAnnotationBuilder*) clone;
+
+- (PBGeneratedCodeInfoAnnotation*) build;
+- (PBGeneratedCodeInfoAnnotation*) buildPartial;
+
+- (PBGeneratedCodeInfoAnnotationBuilder*) mergeFrom:(PBGeneratedCodeInfoAnnotation*) other;
+- (PBGeneratedCodeInfoAnnotationBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBGeneratedCodeInfoAnnotationBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (PBAppendableArray *)path;
+- (SInt32)pathAtIndex:(NSUInteger)index;
+- (PBGeneratedCodeInfoAnnotationBuilder *)addPath:(SInt32)value;
+- (PBGeneratedCodeInfoAnnotationBuilder *)setPathArray:(NSArray *)array;
+- (PBGeneratedCodeInfoAnnotationBuilder *)setPathValues:(const SInt32 *)values count:(NSUInteger)count;
+- (PBGeneratedCodeInfoAnnotationBuilder *)clearPath;
+
+- (BOOL) hasSourceFile;
+- (NSString*) sourceFile;
+- (PBGeneratedCodeInfoAnnotationBuilder*) setSourceFile:(NSString*) value;
+- (PBGeneratedCodeInfoAnnotationBuilder*) clearSourceFile;
+
+- (BOOL) hasBegin;
+- (SInt32) begin;
+- (PBGeneratedCodeInfoAnnotationBuilder*) setBegin:(SInt32) value;
+- (PBGeneratedCodeInfoAnnotationBuilder*) clearBegin;
+
+- (BOOL) hasEnd;
+- (SInt32) end;
+- (PBGeneratedCodeInfoAnnotationBuilder*) setEnd:(SInt32) value;
+- (PBGeneratedCodeInfoAnnotationBuilder*) clearEnd;
+@end
+
+@interface PBGeneratedCodeInfoBuilder : PBGeneratedMessageBuilder {
+@private
+  PBGeneratedCodeInfo* resultGeneratedCodeInfo;
+}
+
+- (PBGeneratedCodeInfo*) defaultInstance;
+
+- (PBGeneratedCodeInfoBuilder*) clear;
+- (PBGeneratedCodeInfoBuilder*) clone;
+
+- (PBGeneratedCodeInfo*) build;
+- (PBGeneratedCodeInfo*) buildPartial;
+
+- (PBGeneratedCodeInfoBuilder*) mergeFrom:(PBGeneratedCodeInfo*) other;
+- (PBGeneratedCodeInfoBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBGeneratedCodeInfoBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSMutableArray<PBGeneratedCodeInfoAnnotation*> *)annotation;
+- (PBGeneratedCodeInfoAnnotation*)annotationAtIndex:(NSUInteger)index;
+- (PBGeneratedCodeInfoBuilder *)addAnnotation:(PBGeneratedCodeInfoAnnotation*)value;
+- (PBGeneratedCodeInfoBuilder *)setAnnotationArray:(NSArray<PBGeneratedCodeInfoAnnotation*> *)array;
+- (PBGeneratedCodeInfoBuilder *)clearAnnotation;
 @end
 
 

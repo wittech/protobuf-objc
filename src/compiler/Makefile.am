@@ -1,8 +1,8 @@
 MAINTAINERCLEANFILES = \
 	Makefile.in
-bin_PROGRAMS = protoc-gen-objc
-protoc_gen_objc_LDFLAGS = -lprotobuf -lprotoc
-protoc_gen_objc_SOURCES = 	\
+bin_PROGRAMS = protoc-gen-lobjc
+protoc_gen_lobjc_LDFLAGS = -lprotobuf -lprotoc
+protoc_gen_lobjc_SOURCES = 	\
 	main.cc					\
 	objc_enum_field.cc		\
 	objc_file.cc			\

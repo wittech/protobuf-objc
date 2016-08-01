@@ -2,11 +2,12 @@
 // source: google/protobuf/objectivec-descriptor.proto
 
 #define INTERNAL_SUPPRESS_PROTOBUF_FIELD_DEPRECATION
-#include "google/protobuf/objectivec-descriptor.pb.h"
+#include <google/protobuf/objectivec-descriptor.pb.h>
 
 #include <algorithm>
 
 #include <google/protobuf/stubs/common.h>
+#include <google/protobuf/stubs/port.h>
 #include <google/protobuf/stubs/once.h>
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/wire_format_lite_inl.h>
@@ -28,6 +29,7 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 }  // namespace
 
 
+void protobuf_AssignDesc_google_2fprotobuf_2fobjectivec_2ddescriptor_2eproto() GOOGLE_ATTRIBUTE_COLD;
 void protobuf_AssignDesc_google_2fprotobuf_2fobjectivec_2ddescriptor_2eproto() {
   protobuf_AddDesc_google_2fprotobuf_2fobjectivec_2ddescriptor_2eproto();
   const ::google::protobuf::FileDescriptor* file =
@@ -41,16 +43,16 @@ void protobuf_AssignDesc_google_2fprotobuf_2fobjectivec_2ddescriptor_2eproto() {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ObjectiveCFileOptions, relax_camel_case_),
   };
   ObjectiveCFileOptions_reflection_ =
-    new ::google::protobuf::internal::GeneratedMessageReflection(
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
       ObjectiveCFileOptions_descriptor_,
       ObjectiveCFileOptions::default_instance_,
       ObjectiveCFileOptions_offsets_,
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ObjectiveCFileOptions, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ObjectiveCFileOptions, _unknown_fields_),
       -1,
-      ::google::protobuf::DescriptorPool::generated_pool(),
-      ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(ObjectiveCFileOptions));
+      -1,
+      sizeof(ObjectiveCFileOptions),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ObjectiveCFileOptions, _internal_metadata_),
+      -1);
 }
 
 namespace {
@@ -61,10 +63,11 @@ inline void protobuf_AssignDescriptorsOnce() {
                  &protobuf_AssignDesc_google_2fprotobuf_2fobjectivec_2ddescriptor_2eproto);
 }
 
+void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    ObjectiveCFileOptions_descriptor_, &ObjectiveCFileOptions::default_instance());
+      ObjectiveCFileOptions_descriptor_, &ObjectiveCFileOptions::default_instance());
 }
 
 }  // namespace
@@ -74,6 +77,7 @@ void protobuf_ShutdownFile_google_2fprotobuf_2fobjectivec_2ddescriptor_2eproto()
   delete ObjectiveCFileOptions_reflection_;
 }
 
+void protobuf_AddDesc_google_2fprotobuf_2fobjectivec_2ddescriptor_2eproto() GOOGLE_ATTRIBUTE_COLD;
 void protobuf_AddDesc_google_2fprotobuf_2fobjectivec_2ddescriptor_2eproto() {
   static bool already_here = false;
   if (already_here) return;
@@ -110,14 +114,14 @@ struct StaticDescriptorInitializer_google_2fprotobuf_2fobjectivec_2ddescriptor_2
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int ObjectiveCFileOptions::kPackageFieldNumber;
 const int ObjectiveCFileOptions::kClassPrefixFieldNumber;
 const int ObjectiveCFileOptions::kRelaxCamelCaseFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 ObjectiveCFileOptions::ObjectiveCFileOptions()
-  : ::google::protobuf::Message() {
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   SharedCtor();
   // @@protoc_insertion_point(constructor:google.protobuf.ObjectiveCFileOptions)
 }
@@ -126,7 +130,8 @@ void ObjectiveCFileOptions::InitAsDefaultInstance() {
 }
 
 ObjectiveCFileOptions::ObjectiveCFileOptions(const ObjectiveCFileOptions& from)
-  : ::google::protobuf::Message() {
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:google.protobuf.ObjectiveCFileOptions)
@@ -135,8 +140,8 @@ ObjectiveCFileOptions::ObjectiveCFileOptions(const ObjectiveCFileOptions& from)
 void ObjectiveCFileOptions::SharedCtor() {
   ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
-  package_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  class_prefix_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  package_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  class_prefix_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   relax_camel_case_ = false;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -147,12 +152,8 @@ ObjectiveCFileOptions::~ObjectiveCFileOptions() {
 }
 
 void ObjectiveCFileOptions::SharedDtor() {
-  if (package_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete package_;
-  }
-  if (class_prefix_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete class_prefix_;
-  }
+  package_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  class_prefix_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (this != default_instance_) {
   }
 }
@@ -174,31 +175,34 @@ const ObjectiveCFileOptions& ObjectiveCFileOptions::default_instance() {
 
 ObjectiveCFileOptions* ObjectiveCFileOptions::default_instance_ = NULL;
 
-ObjectiveCFileOptions* ObjectiveCFileOptions::New() const {
-  return new ObjectiveCFileOptions;
+ObjectiveCFileOptions* ObjectiveCFileOptions::New(::google::protobuf::Arena* arena) const {
+  ObjectiveCFileOptions* n = new ObjectiveCFileOptions;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
 }
 
 void ObjectiveCFileOptions::Clear() {
-  if (_has_bits_[0 / 32] & 7) {
+// @@protoc_insertion_point(message_clear_start:google.protobuf.ObjectiveCFileOptions)
+  if (_has_bits_[0 / 32] & 7u) {
     if (has_package()) {
-      if (package_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-        package_->clear();
-      }
+      package_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     }
     if (has_class_prefix()) {
-      if (class_prefix_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-        class_prefix_->clear();
-      }
+      class_prefix_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     }
     relax_camel_case_ = false;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
-  mutable_unknown_fields()->Clear();
+  if (_internal_metadata_.have_unknown_fields()) {
+    mutable_unknown_fields()->Clear();
+  }
 }
 
 bool ObjectiveCFileOptions::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:google.protobuf.ObjectiveCFileOptions)
   for (;;) {
@@ -214,7 +218,7 @@ bool ObjectiveCFileOptions::MergePartialFromCodedStream(
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->package().data(), this->package().length(),
             ::google::protobuf::internal::WireFormat::PARSE,
-            "package");
+            "google.protobuf.ObjectiveCFileOptions.package");
         } else {
           goto handle_unusual;
         }
@@ -231,7 +235,7 @@ bool ObjectiveCFileOptions::MergePartialFromCodedStream(
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->class_prefix().data(), this->class_prefix().length(),
             ::google::protobuf::internal::WireFormat::PARSE,
-            "class_prefix");
+            "google.protobuf.ObjectiveCFileOptions.class_prefix");
         } else {
           goto handle_unusual;
         }
@@ -284,7 +288,7 @@ void ObjectiveCFileOptions::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->package().data(), this->package().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "package");
+      "google.protobuf.ObjectiveCFileOptions.package");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       1, this->package(), output);
   }
@@ -294,7 +298,7 @@ void ObjectiveCFileOptions::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->class_prefix().data(), this->class_prefix().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "class_prefix");
+      "google.protobuf.ObjectiveCFileOptions.class_prefix");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       2, this->class_prefix(), output);
   }
@@ -304,22 +308,22 @@ void ObjectiveCFileOptions::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteBool(3, this->relax_camel_case(), output);
   }
 
-  if (!unknown_fields().empty()) {
+  if (_internal_metadata_.have_unknown_fields()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
   }
   // @@protoc_insertion_point(serialize_end:google.protobuf.ObjectiveCFileOptions)
 }
 
-::google::protobuf::uint8* ObjectiveCFileOptions::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* ObjectiveCFileOptions::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:google.protobuf.ObjectiveCFileOptions)
   // optional string package = 1;
   if (has_package()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->package().data(), this->package().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "package");
+      "google.protobuf.ObjectiveCFileOptions.package");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         1, this->package(), target);
@@ -330,7 +334,7 @@ void ObjectiveCFileOptions::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->class_prefix().data(), this->class_prefix().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "class_prefix");
+      "google.protobuf.ObjectiveCFileOptions.class_prefix");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         2, this->class_prefix(), target);
@@ -341,7 +345,7 @@ void ObjectiveCFileOptions::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(3, this->relax_camel_case(), target);
   }
 
-  if (!unknown_fields().empty()) {
+  if (_internal_metadata_.have_unknown_fields()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
   }
@@ -350,9 +354,10 @@ void ObjectiveCFileOptions::SerializeWithCachedSizes(
 }
 
 int ObjectiveCFileOptions::ByteSize() const {
+// @@protoc_insertion_point(message_byte_size_start:google.protobuf.ObjectiveCFileOptions)
   int total_size = 0;
 
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+  if (_has_bits_[0 / 32] & 7u) {
     // optional string package = 1;
     if (has_package()) {
       total_size += 1 +
@@ -373,7 +378,7 @@ int ObjectiveCFileOptions::ByteSize() const {
     }
 
   }
-  if (!unknown_fields().empty()) {
+  if (_internal_metadata_.have_unknown_fields()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         unknown_fields());
@@ -385,40 +390,54 @@ int ObjectiveCFileOptions::ByteSize() const {
 }
 
 void ObjectiveCFileOptions::MergeFrom(const ::google::protobuf::Message& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  const ObjectiveCFileOptions* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const ObjectiveCFileOptions*>(
-      &from);
+// @@protoc_insertion_point(generalized_merge_from_start:google.protobuf.ObjectiveCFileOptions)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) {
+    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
+  }
+  const ObjectiveCFileOptions* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const ObjectiveCFileOptions>(
+          &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:google.protobuf.ObjectiveCFileOptions)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:google.protobuf.ObjectiveCFileOptions)
     MergeFrom(*source);
   }
 }
 
 void ObjectiveCFileOptions::MergeFrom(const ObjectiveCFileOptions& from) {
-  GOOGLE_CHECK_NE(&from, this);
+// @@protoc_insertion_point(class_specific_merge_from_start:google.protobuf.ObjectiveCFileOptions)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) {
+    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
+  }
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_package()) {
-      set_package(from.package());
+      set_has_package();
+      package_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.package_);
     }
     if (from.has_class_prefix()) {
-      set_class_prefix(from.class_prefix());
+      set_has_class_prefix();
+      class_prefix_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.class_prefix_);
     }
     if (from.has_relax_camel_case()) {
       set_relax_camel_case(from.relax_camel_case());
     }
   }
-  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+  if (from._internal_metadata_.have_unknown_fields()) {
+    mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+  }
 }
 
 void ObjectiveCFileOptions::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:google.protobuf.ObjectiveCFileOptions)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void ObjectiveCFileOptions::CopyFrom(const ObjectiveCFileOptions& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:google.protobuf.ObjectiveCFileOptions)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -430,14 +449,16 @@ bool ObjectiveCFileOptions::IsInitialized() const {
 }
 
 void ObjectiveCFileOptions::Swap(ObjectiveCFileOptions* other) {
-  if (other != this) {
-    std::swap(package_, other->package_);
-    std::swap(class_prefix_, other->class_prefix_);
-    std::swap(relax_camel_case_, other->relax_camel_case_);
-    std::swap(_has_bits_[0], other->_has_bits_[0]);
-    _unknown_fields_.Swap(&other->_unknown_fields_);
-    std::swap(_cached_size_, other->_cached_size_);
-  }
+  if (other == this) return;
+  InternalSwap(other);
+}
+void ObjectiveCFileOptions::InternalSwap(ObjectiveCFileOptions* other) {
+  package_.Swap(&other->package_);
+  class_prefix_.Swap(&other->class_prefix_);
+  std::swap(relax_camel_case_, other->relax_camel_case_);
+  std::swap(_has_bits_[0], other->_has_bits_[0]);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata ObjectiveCFileOptions::GetMetadata() const {
@@ -448,6 +469,142 @@ void ObjectiveCFileOptions::Swap(ObjectiveCFileOptions* other) {
   return metadata;
 }
 
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// ObjectiveCFileOptions
+
+// optional string package = 1;
+bool ObjectiveCFileOptions::has_package() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+void ObjectiveCFileOptions::set_has_package() {
+  _has_bits_[0] |= 0x00000001u;
+}
+void ObjectiveCFileOptions::clear_has_package() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+void ObjectiveCFileOptions::clear_package() {
+  package_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_package();
+}
+ const ::std::string& ObjectiveCFileOptions::package() const {
+  // @@protoc_insertion_point(field_get:google.protobuf.ObjectiveCFileOptions.package)
+  return package_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void ObjectiveCFileOptions::set_package(const ::std::string& value) {
+  set_has_package();
+  package_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:google.protobuf.ObjectiveCFileOptions.package)
+}
+ void ObjectiveCFileOptions::set_package(const char* value) {
+  set_has_package();
+  package_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:google.protobuf.ObjectiveCFileOptions.package)
+}
+ void ObjectiveCFileOptions::set_package(const char* value, size_t size) {
+  set_has_package();
+  package_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:google.protobuf.ObjectiveCFileOptions.package)
+}
+ ::std::string* ObjectiveCFileOptions::mutable_package() {
+  set_has_package();
+  // @@protoc_insertion_point(field_mutable:google.protobuf.ObjectiveCFileOptions.package)
+  return package_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ ::std::string* ObjectiveCFileOptions::release_package() {
+  // @@protoc_insertion_point(field_release:google.protobuf.ObjectiveCFileOptions.package)
+  clear_has_package();
+  return package_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void ObjectiveCFileOptions::set_allocated_package(::std::string* package) {
+  if (package != NULL) {
+    set_has_package();
+  } else {
+    clear_has_package();
+  }
+  package_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), package);
+  // @@protoc_insertion_point(field_set_allocated:google.protobuf.ObjectiveCFileOptions.package)
+}
+
+// optional string class_prefix = 2;
+bool ObjectiveCFileOptions::has_class_prefix() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+void ObjectiveCFileOptions::set_has_class_prefix() {
+  _has_bits_[0] |= 0x00000002u;
+}
+void ObjectiveCFileOptions::clear_has_class_prefix() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+void ObjectiveCFileOptions::clear_class_prefix() {
+  class_prefix_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_class_prefix();
+}
+ const ::std::string& ObjectiveCFileOptions::class_prefix() const {
+  // @@protoc_insertion_point(field_get:google.protobuf.ObjectiveCFileOptions.class_prefix)
+  return class_prefix_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void ObjectiveCFileOptions::set_class_prefix(const ::std::string& value) {
+  set_has_class_prefix();
+  class_prefix_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:google.protobuf.ObjectiveCFileOptions.class_prefix)
+}
+ void ObjectiveCFileOptions::set_class_prefix(const char* value) {
+  set_has_class_prefix();
+  class_prefix_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:google.protobuf.ObjectiveCFileOptions.class_prefix)
+}
+ void ObjectiveCFileOptions::set_class_prefix(const char* value, size_t size) {
+  set_has_class_prefix();
+  class_prefix_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:google.protobuf.ObjectiveCFileOptions.class_prefix)
+}
+ ::std::string* ObjectiveCFileOptions::mutable_class_prefix() {
+  set_has_class_prefix();
+  // @@protoc_insertion_point(field_mutable:google.protobuf.ObjectiveCFileOptions.class_prefix)
+  return class_prefix_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ ::std::string* ObjectiveCFileOptions::release_class_prefix() {
+  // @@protoc_insertion_point(field_release:google.protobuf.ObjectiveCFileOptions.class_prefix)
+  clear_has_class_prefix();
+  return class_prefix_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void ObjectiveCFileOptions::set_allocated_class_prefix(::std::string* class_prefix) {
+  if (class_prefix != NULL) {
+    set_has_class_prefix();
+  } else {
+    clear_has_class_prefix();
+  }
+  class_prefix_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), class_prefix);
+  // @@protoc_insertion_point(field_set_allocated:google.protobuf.ObjectiveCFileOptions.class_prefix)
+}
+
+// optional bool relax_camel_case = 3;
+bool ObjectiveCFileOptions::has_relax_camel_case() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+void ObjectiveCFileOptions::set_has_relax_camel_case() {
+  _has_bits_[0] |= 0x00000004u;
+}
+void ObjectiveCFileOptions::clear_has_relax_camel_case() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+void ObjectiveCFileOptions::clear_relax_camel_case() {
+  relax_camel_case_ = false;
+  clear_has_relax_camel_case();
+}
+ bool ObjectiveCFileOptions::relax_camel_case() const {
+  // @@protoc_insertion_point(field_get:google.protobuf.ObjectiveCFileOptions.relax_camel_case)
+  return relax_camel_case_;
+}
+ void ObjectiveCFileOptions::set_relax_camel_case(bool value) {
+  set_has_relax_camel_case();
+  relax_camel_case_ = value;
+  // @@protoc_insertion_point(field_set:google.protobuf.ObjectiveCFileOptions.relax_camel_case)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::FileOptions,
     ::google::protobuf::internal::MessageTypeTraits< ::google::protobuf::ObjectiveCFileOptions >, 11, false >
   objectivec_file_options(kObjectivecFileOptionsFieldNumber, ::google::protobuf::ObjectiveCFileOptions::default_instance());
