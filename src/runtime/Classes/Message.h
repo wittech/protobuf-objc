@@ -16,7 +16,7 @@
 // limitations under the License.
 
 @class PBCodedOutputStream2;
-@class PBUnknownFieldSet;
+@class PBUnknownFieldSet2;
 @protocol PBMessageBuilder;
 
 /**

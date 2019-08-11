@@ -31,5 +31,5 @@
 @class PBGeneratedMessageBuilder;
 @class PBMutableExtensionRegistry;
 @class PBMutableField;
-@class PBUnknownFieldSet;
-@class PBUnknownFieldSetBuilder;
+@class PBUnknownFieldSet2;
+@class PBUnknownFieldSetBuilder2;

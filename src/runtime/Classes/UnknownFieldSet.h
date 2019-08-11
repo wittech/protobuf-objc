@@ -17,7 +17,7 @@
 
 @class PBCodedOutputStream2;
 @class PBField2;
-@class PBUnknownFieldSetBuilder;
+@class PBUnknownFieldSetBuilder2;
 
 @interface PBUnknownFieldSet2 : NSObject {
 @private

@@ -17,7 +17,7 @@
 
 #import "Field.h"
 
-@class PBUnknownFieldSet;
+@class PBUnknownFieldSet2;
 
 @interface PBMutableField2 : PBField2
 
