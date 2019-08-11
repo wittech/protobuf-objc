@@ -25,7 +25,7 @@
 @class PBConcreteExtensionField;
 @class PBExtendableMessageBuilder;
 @class PBExtendableMessage;
-@class PBExtensionRegistry;
+@class PBExtensionRegistry2;
 @class PBField2;
 @class PBGeneratedMessage;
 @class PBGeneratedMessageBuilder;

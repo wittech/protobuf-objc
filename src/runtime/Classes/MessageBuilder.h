@@ -18,7 +18,7 @@
 #import "Message.h"
 
 @class PBCodedInputStream2;
-@class PBExtensionRegistry;
+@class PBExtensionRegistry2;
 
 /**
  * Abstract interface implemented by Protocol Message builders.

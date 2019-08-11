@@ -20,7 +20,7 @@
 @class PBCodedInputStream2;
 @class PBCodedOutputStream2;
 @class PBExtendableMessageBuilder;
-@class PBExtensionRegistry;
+@class PBExtensionRegistry2;
 @class PBUnknownFieldSetBuilder2;
 
 @protocol PBExtensionField
