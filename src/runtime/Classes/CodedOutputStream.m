@@ -26,7 +26,7 @@
 
 @implementation PBCodedOutputStream2
 
-const SInt32 DEFAULT_BUFFER_SIZE = 4 * 1024;
+const SInt32 DEFAULT_BUFFER_SIZE2 = 4 * 1024;
 
 
 - (instancetype)initWithOutputStream:(NSOutputStream*)_output data:(NSMutableData*)data {
@@ -44,7 +44,7 @@ const SInt32 DEFAULT_BUFFER_SIZE = 4 * 1024;
 
 
 + (PBCodedOutputStream2*)streamWithOutputStream:(NSOutputStream*)output {
-	return [PBCodedOutputStream2 streamWithOutputStream:output bufferSize:DEFAULT_BUFFER_SIZE];
+	return [PBCodedOutputStream2 streamWithOutputStream:output bufferSize:DEFAULT_BUFFER_SIZE2];
 }
 
 

@@ -32,9 +32,9 @@
 
 @implementation PBCodedInputStream2
 
-const SInt32 DEFAULT_RECURSION_LIMIT = 64;
-const SInt32 DEFAULT_SIZE_LIMIT = 64 << 20;  // 64MB
-const SInt32 BUFFER_SIZE = 4096;
+const SInt32 DEFAULT_RECURSION_LIMIT2 = 64;
+const SInt32 DEFAULT_SIZE_LIMIT2 = 64 << 20;  // 64MB
+const SInt32 BUFFER_SIZE2 = 4096;
 
 @synthesize buffer;
 @synthesize input;
@@ -44,8 +44,8 @@ const SInt32 BUFFER_SIZE = 4096;
 
 - (void) commonInit {
   currentLimit = INT_MAX;
-  recursionLimit = DEFAULT_RECURSION_LIMIT;
-  sizeLimit = DEFAULT_SIZE_LIMIT;
+  recursionLimit = DEFAULT_RECURSION_LIMIT2;
+  sizeLimit = DEFAULT_SIZE_LIMIT2;
 }
 
 
@@ -63,7 +63,7 @@ const SInt32 BUFFER_SIZE = 4096;
 
 - (instancetype) initWithInputStream:(NSInputStream*) input_ {
   if ((self = [super init])) {
-    self.buffer = [NSMutableData dataWithLength:BUFFER_SIZE];
+    self.buffer = [NSMutableData dataWithLength:BUFFER_SIZE2];
     bufferSize = 0;
     self.input = input_;
     [input open];
@@ -630,7 +630,7 @@ const SInt32 BUFFER_SIZE = 4096;
     NSData* data = [NSData dataWithBytes:(((int8_t*) buffer.bytes) + bufferPos) length:size];
     bufferPos += size;
     return data;
-  } else if (size < BUFFER_SIZE) {
+  } else if (size < BUFFER_SIZE2) {
     // Reading more bytes than are in the buffer, but not an excessive number
     // of bytes.  We can safely allocate the resulting array ahead of time.
 
@@ -680,7 +680,7 @@ const SInt32 BUFFER_SIZE = 4096;
     NSMutableArray* chunks = [NSMutableArray array];
 
     while (sizeLeft > 0) {
-      NSMutableData* chunk = [NSMutableData dataWithLength:MIN(sizeLeft, BUFFER_SIZE)];
+      NSMutableData* chunk = [NSMutableData dataWithLength:MIN(sizeLeft, BUFFER_SIZE2)];
 
       SInt32 pos = 0;
       while (pos < chunk.length) {
