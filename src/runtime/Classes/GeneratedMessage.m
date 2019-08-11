@@ -19,18 +19,18 @@
 
 #import "UnknownFieldSet.h"
 
-@interface PBGeneratedMessage ()
-@property (strong) PBUnknownFieldSet* unknownFields;
+@interface PBGeneratedMessage2 ()
+@property (strong) PBUnknownFieldSet2* unknownFields;
 @end
 
 
-@implementation PBGeneratedMessage
+@implementation PBGeneratedMessage2
 
 @synthesize unknownFields;
 
 - (instancetype) init {
   if ((self = [super init])) {
-    self.unknownFields = [PBUnknownFieldSet defaultInstance];
+    self.unknownFields = [PBUnknownFieldSet2 defaultInstance];
     memoizedSerializedSize = -1;
   }
 

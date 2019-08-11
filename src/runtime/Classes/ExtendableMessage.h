@@ -54,7 +54,7 @@
  *
  * <p>See also {@link ExtendableBuilder}.
  */
-@interface PBExtendableMessage : PBGeneratedMessage {
+@interface PBExtendableMessage : PBGeneratedMessage2 {
 @private
   NSMutableDictionary* extensionMap;
   NSMutableDictionary* extensionRegistry;
@@ -69,7 +69,7 @@
 //@protected
 - (BOOL) extensionsAreInitialized;
 - (SInt32) extensionsSerializedSize;
-- (void) writeExtensionsToCodedOutputStream:(PBCodedOutputStream*) output
+- (void) writeExtensionsToCodedOutputStream:(PBCodedOutputStream2*) output
                                        from:(SInt32) startInclusive
                                          to:(SInt32) endExclusive;
 - (void) writeExtensionDescriptionToMutableString:(NSMutableString*) output

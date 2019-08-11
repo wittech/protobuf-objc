@@ -17,11 +17,11 @@
 
 #import "WireFormat.h"
 
-@class PBCodedInputStream;
-@class PBCodedOutputStream;
+@class PBCodedInputStream2;
+@class PBCodedOutputStream2;
 @class PBExtendableMessageBuilder;
 @class PBExtensionRegistry;
-@class PBUnknownFieldSetBuilder;
+@class PBUnknownFieldSetBuilder2;
 
 @protocol PBExtensionField
 - (SInt32) fieldNumber;
@@ -30,12 +30,12 @@
 - (Class) extendedClass;
 - (instancetype) defaultValue;
 
-- (void) mergeFromCodedInputStream:(PBCodedInputStream*) input
-                     unknownFields:(PBUnknownFieldSetBuilder*) unknownFields
-                 extensionRegistry:(PBExtensionRegistry*) extensionRegistry
+- (void) mergeFromCodedInputStream:(PBCodedInputStream2*) input
+                     unknownFields:(PBUnknownFieldSetBuilder2*) unknownFields
+                 extensionRegistry:(PBExtensionRegistry2*) extensionRegistry
                            builder:(PBExtendableMessageBuilder*) builder
                                tag:(SInt32) tag;
-- (void) writeValue:(id) value includingTagToCodedOutputStream:(PBCodedOutputStream*) output;
+- (void) writeValue:(id) value includingTagToCodedOutputStream:(PBCodedOutputStream2*) output;
 - (SInt32) computeSerializedSizeIncludingTag:(id) value;
 - (void) writeDescriptionOf:(id) value
                          to:(NSMutableString*) output

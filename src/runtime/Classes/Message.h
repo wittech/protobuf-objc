@@ -15,7 +15,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@class PBCodedOutputStream;
+@class PBCodedOutputStream2;
 @class PBUnknownFieldSet;
 @protocol PBMessageBuilder;
 
@@ -38,7 +38,7 @@
 /**
  * Get the {@code UnknownFieldSet}
  */
-- (PBUnknownFieldSet*) unknownFields;
+- (PBUnknownFieldSet2*) unknownFields;
 
 /**
  * Get the number of bytes required to encode this message.  The result
@@ -56,7 +56,7 @@
  * Serializes the message and writes it to {@code output}.  This does not
  * flush or close the stream.
  */
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream2*) output;
 - (void) writeToOutputStream:(NSOutputStream*) output;
 
 /**

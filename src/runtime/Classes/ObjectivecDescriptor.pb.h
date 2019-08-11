@@ -54,7 +54,7 @@
 
 @interface ObjectivecDescriptorRoot : NSObject {
 }
-+ (PBExtensionRegistry*) extensionRegistry;
++ (PBExtensionRegistry2*) extensionRegistry;
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 + (id<PBExtensionField>) objectivecFileOptions;
 @end
@@ -62,7 +62,7 @@
 #define ObjectiveCFileOptions_package @"package"
 #define ObjectiveCFileOptions_class_prefix @"classPrefix"
 #define ObjectiveCFileOptions_relax_camel_case @"relaxCamelCase"
-@interface ObjectiveCFileOptions : PBGeneratedMessage<GeneratedMessageProtocol> {
+@interface ObjectiveCFileOptions : PBGeneratedMessage2<GeneratedMessageProtocol> {
 @private
   BOOL hasRelaxCamelCase_:1;
   BOOL hasPackage_:1;
@@ -82,18 +82,18 @@
 - (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream2*) output;
 - (ObjectiveCFileOptionsBuilder*) builder;
 + (ObjectiveCFileOptionsBuilder*) builder;
 + (ObjectiveCFileOptionsBuilder*) builderWithPrototype:(ObjectiveCFileOptions*) prototype;
 - (ObjectiveCFileOptionsBuilder*) toBuilder;
 
 + (ObjectiveCFileOptions*) parseFromData:(NSData*) data;
-+ (ObjectiveCFileOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (ObjectiveCFileOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry2*) extensionRegistry;
 + (ObjectiveCFileOptions*) parseFromInputStream:(NSInputStream*) input;
-+ (ObjectiveCFileOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (ObjectiveCFileOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (ObjectiveCFileOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (ObjectiveCFileOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry2*) extensionRegistry;
++ (ObjectiveCFileOptions*) parseFromCodedInputStream:(PBCodedInputStream2*) input;
++ (ObjectiveCFileOptions*) parseFromCodedInputStream:(PBCodedInputStream2*) input extensionRegistry:(PBExtensionRegistry2*) extensionRegistry;
 @end
 
 @interface ObjectiveCFileOptionsBuilder : PBGeneratedMessageBuilder {
@@ -110,8 +110,8 @@
 - (ObjectiveCFileOptions*) buildPartial;
 
 - (ObjectiveCFileOptionsBuilder*) mergeFrom:(ObjectiveCFileOptions*) other;
-- (ObjectiveCFileOptionsBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (ObjectiveCFileOptionsBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (ObjectiveCFileOptionsBuilder*) mergeFromCodedInputStream:(PBCodedInputStream2*) input;
+- (ObjectiveCFileOptionsBuilder*) mergeFromCodedInputStream:(PBCodedInputStream2*) input extensionRegistry:(PBExtensionRegistry2*) extensionRegistry;
 
 - (BOOL) hasPackage;
 - (NSString*) package;

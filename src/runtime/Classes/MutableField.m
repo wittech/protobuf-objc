@@ -20,14 +20,14 @@
 #import "Field.h"
 #import "PBArray.h"
 
-@implementation PBMutableField
+@implementation PBMutableField2
 
 
-+ (PBMutableField *)field {
-	return [[PBMutableField alloc] init];
++ (PBMutableField2 *)field {
+	return [[PBMutableField2 alloc] init];
 }
 
-- (PBMutableField *)clear {
+- (PBMutableField2 *)clear {
 
     _varintArray = nil;
 	_fixed32Array = nil;
@@ -38,7 +38,7 @@
 	return self;
 }
 
-- (PBMutableField *)mergeFromField:(PBField *)other {
+- (PBMutableField2 *)mergeFromField:(PBField2 *)other {
 	if (other.varintArray.count > 0) {
 		if (_varintArray == nil) {
 			_varintArray = [other.varintArray copy];
@@ -82,34 +82,34 @@
 	return self;
 }
 
-- (PBMutableField *)addVarint:(SInt64)value {
+- (PBMutableField2 *)addVarint:(SInt64)value {
 	if (_varintArray == nil) {
-		_varintArray = [[PBAppendableArray alloc] initWithValueType:PBArrayValueTypeInt64];
+		_varintArray = [[PBAppendableArray2 alloc] initWithValueType:PBArrayValueTypeInt64];
 	}
 	[_varintArray addInt64:value];
 
 	return self;
 }
 
-- (PBMutableField *)addFixed32:(SInt32)value {
+- (PBMutableField2 *)addFixed32:(SInt32)value {
 	if (_fixed32Array == nil) {
-		_fixed32Array = [[PBAppendableArray alloc] initWithValueType:PBArrayValueTypeInt32];
+		_fixed32Array = [[PBAppendableArray2 alloc] initWithValueType:PBArrayValueTypeInt32];
 	}
 	[_fixed32Array addInt32:value];
 
 	return self;
 }
 
-- (PBMutableField *)addFixed64:(SInt64)value {
+- (PBMutableField2 *)addFixed64:(SInt64)value {
 	if (_fixed64Array == nil) {
-		_fixed64Array = [[PBAppendableArray alloc] initWithValueType:PBArrayValueTypeInt64];
+		_fixed64Array = [[PBAppendableArray2 alloc] initWithValueType:PBArrayValueTypeInt64];
 	}
 	[_fixed64Array addInt64:value];
 
 	return self;
 }
 
-- (PBMutableField *)addLengthDelimited:(NSData *)value {
+- (PBMutableField2 *)addLengthDelimited:(NSData *)value {
 	if (_lengthDelimitedArray == nil) {
 		_lengthDelimitedArray = [[NSMutableArray alloc] init];
 	}
@@ -118,7 +118,7 @@
 	return self;
 }
 
-- (PBMutableField *)addGroup:(PBUnknownFieldSet *)value {
+- (PBMutableField2 *)addGroup:(PBUnknownFieldSet2 *)value {
 	if (_groupArray == nil) {
 		_groupArray = [[NSMutableArray alloc] init];
 	}

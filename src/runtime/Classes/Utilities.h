@@ -141,7 +141,7 @@ SInt32 computeGroupSize(SInt32 fieldNumber, const id<PBMessage> value);
  * {@code group} field represented by an {@code PBUnknownFieldSet}, including
  * tag.
  */
-SInt32 computeUnknownGroupSize(SInt32 fieldNumber, const PBUnknownFieldSet* value);
+SInt32 computeUnknownGroupSize(SInt32 fieldNumber, const PBUnknownFieldSet2* value);
 
 /**
  * Compute the number of bytes that would be needed to encode an
@@ -252,7 +252,7 @@ SInt32 computeGroupSizeNoTag(const id<PBMessage> value);
  * {@code group} field represented by an {@code PBUnknownFieldSet}, including
  * tag.
  */
-SInt32 computeUnknownGroupSizeNoTag(const PBUnknownFieldSet* value);
+SInt32 computeUnknownGroupSizeNoTag(const PBUnknownFieldSet2* value);
 
 /**
  * Compute the number of bytes that would be needed to encode an

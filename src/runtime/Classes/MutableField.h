@@ -19,17 +19,17 @@
 
 @class PBUnknownFieldSet;
 
-@interface PBMutableField : PBField
+@interface PBMutableField2 : PBField2
 
-+ (PBMutableField *)field;
++ (PBMutableField2 *)field;
 
-- (PBMutableField *)mergeFromField:(PBField *)other;
+- (PBMutableField2 *)mergeFromField:(PBField2 *)other;
 
-- (PBMutableField *)clear;
-- (PBMutableField *)addVarint:(SInt64)value;
-- (PBMutableField *)addFixed32:(SInt32)value;
-- (PBMutableField *)addFixed64:(SInt64)value;
-- (PBMutableField *)addLengthDelimited:(NSData *)value;
-- (PBMutableField *)addGroup:(PBUnknownFieldSet *)value;
+- (PBMutableField2 *)clear;
+- (PBMutableField2 *)addVarint:(SInt64)value;
+- (PBMutableField2 *)addFixed32:(SInt32)value;
+- (PBMutableField2 *)addFixed64:(SInt64)value;
+- (PBMutableField2 *)addLengthDelimited:(NSData *)value;
+- (PBMutableField2 *)addGroup:(PBUnknownFieldSet2 *)value;
 
 @end

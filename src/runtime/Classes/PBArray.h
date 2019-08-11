@@ -18,9 +18,9 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString * const PBArrayTypeMismatchException;
-extern NSString * const PBArrayNumberExpectedException;
-extern NSString * const PBArrayAllocationFailureException;
+extern NSString * const PBArrayTypeMismatchException2;
+extern NSString * const PBArrayNumberExpectedException2;
+extern NSString * const PBArrayAllocationFailureException2;
 
 typedef enum _PBArrayValueType
 {
@@ -33,10 +33,10 @@ typedef enum _PBArrayValueType
 	PBArrayValueTypeDouble,
 } PBArrayValueType;
 
-// PBArray is an immutable array class that's optimized for storing primitive
-// values.  All values stored in an PBArray instance must have the same type
+// PBArray2 is an immutable array class that's optimized for storing primitive
+// values.  All values stored in an PBArray2 instance must have the same type
 // (PBArrayValueType).  Object values (PBArrayValueTypeObject) are retained.
-@interface PBArray : NSObject <NSCopying>
+@interface PBArray2 : NSObject <NSCopying>
 {
 @protected
 	PBArrayValueType	_valueType;
@@ -55,7 +55,7 @@ typedef enum _PBArrayValueType
 - (UInt64)uint64AtIndex:(NSUInteger)index;
 - (Float32)floatAtIndex:(NSUInteger)index;
 - (Float64)doubleAtIndex:(NSUInteger)index;
-- (BOOL)isEqualToArray:(PBArray *)array;
+- (BOOL)isEqualToArray:(PBArray2 *)array;
 - (void)enumerateObjectsUsingBlock:(void (^)(id obj, NSUInteger idx, BOOL *stop))block;
 - (NSUInteger)indexOfObjectPassingTest:(BOOL (^)(id obj, NSUInteger idx, BOOL *stop))predicate;
 
@@ -70,13 +70,13 @@ typedef enum _PBArrayValueType
 
 @end
 
-@interface PBArray (PBArrayExtended)
+@interface PBArray2 (PBArrayExtended)
 
-- (instancetype)arrayByAppendingArray:(PBArray *)array;
-- (PBArray *)filteredArrayUsingPredicate:(NSPredicate *)predicate;
+- (instancetype)arrayByAppendingArray:(PBArray2 *)array;
+- (PBArray2 *)filteredArrayUsingPredicate:(NSPredicate *)predicate;
 @end
 
-@interface PBArray (PBArrayCreation)
+@interface PBArray2 (PBArrayCreation)
 
 + (instancetype)arrayWithValueType:(PBArrayValueType)valueType;
 + (instancetype)arrayWithValues:(const void *)values count:(NSUInteger)count valueType:(PBArrayValueType)valueType;
@@ -87,9 +87,9 @@ typedef enum _PBArrayValueType
 
 @end
 
-// PBAppendableArray extends PBArray with the ability to append new values to
+// PBAppendableArray extends PBArray2 with the ability to append new values to
 // the end of the array.
-@interface PBAppendableArray : PBArray
+@interface PBAppendableArray2 : PBArray2
 
 - (void)addBool:(BOOL)value;
 - (void)addInt32:(SInt32)value;
@@ -100,7 +100,7 @@ typedef enum _PBArrayValueType
 - (void)addDouble:(Float64)value;
 - (void)addEnum:(SInt32)value;
 
-- (void)appendArray:(PBArray *)array;
+- (void)appendArray:(PBArray2 *)array;
 - (void)appendValues:(const void *)values count:(UInt32)count;
 
 @end

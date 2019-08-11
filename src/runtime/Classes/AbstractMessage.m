@@ -19,7 +19,7 @@
 
 #import "CodedOutputStream.h"
 
-@implementation PBAbstractMessage
+@implementation PBAbstractMessage2
 
 - (instancetype) init {
   if ((self = [super init])) {
@@ -31,7 +31,7 @@
 
 - (NSData*) data {
   NSMutableData* data = [NSMutableData dataWithLength:self.serializedSize];
-  PBCodedOutputStream* stream = [PBCodedOutputStream streamWithData:data];
+  PBCodedOutputStream2* stream = [PBCodedOutputStream2 streamWithData:data];
   [self writeToCodedOutputStream:stream];
   return data;
 }
@@ -47,13 +47,13 @@
 }
 
 
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+- (void) writeToCodedOutputStream:(PBCodedOutputStream2*) output {
   @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
 - (void) writeToOutputStream:(NSOutputStream*) output {
-  PBCodedOutputStream* codedOutput = [PBCodedOutputStream streamWithOutputStream:output];
+  PBCodedOutputStream2* codedOutput = [PBCodedOutputStream2 streamWithOutputStream:output];
   [self writeToCodedOutputStream:codedOutput];
   [codedOutput flush];
 }
@@ -64,7 +64,7 @@
 }
 
 
-- (PBUnknownFieldSet*) unknownFields {
+- (PBUnknownFieldSet2*) unknownFields {
   @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 

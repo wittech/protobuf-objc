@@ -15,34 +15,34 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@class PBCodedOutputStream;
-@class PBField;
+@class PBCodedOutputStream2;
+@class PBField2;
 @class PBUnknownFieldSetBuilder;
 
-@interface PBUnknownFieldSet : NSObject {
+@interface PBUnknownFieldSet2 : NSObject {
 @private
   NSDictionary* fields;
 }
 
 @property (readonly, strong) NSDictionary* fields;
 
-+ (PBUnknownFieldSet*) defaultInstance;
++ (PBUnknownFieldSet2*) defaultInstance;
 
-+ (PBUnknownFieldSet*) setWithFields:(NSMutableDictionary*) fields;
-+ (PBUnknownFieldSet*) parseFromData:(NSData*) data;
++ (PBUnknownFieldSet2*) setWithFields:(NSMutableDictionary*) fields;
++ (PBUnknownFieldSet2*) parseFromData:(NSData*) data;
 
-+ (PBUnknownFieldSetBuilder*) builder;
-+ (PBUnknownFieldSetBuilder*) builderWithUnknownFields:(PBUnknownFieldSet*) other;
++ (PBUnknownFieldSetBuilder2*) builder;
++ (PBUnknownFieldSetBuilder2*) builderWithUnknownFields:(PBUnknownFieldSet2*) other;
 
-- (void) writeAsMessageSetTo:(PBCodedOutputStream*) output;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (void) writeAsMessageSetTo:(PBCodedOutputStream2*) output;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream2*) output;
 - (NSData*) data;
 
 - (SInt32) serializedSize;
 - (SInt32) serializedSizeAsMessageSet;
 
 - (BOOL) hasField:(SInt32) number;
-- (PBField*) getField:(SInt32) number;
+- (PBField2*) getField:(SInt32) number;
 
 - (void) writeDescriptionTo:(NSMutableString*) output
                  withIndent:(NSString*) indent;

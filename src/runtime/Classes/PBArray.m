@@ -18,9 +18,9 @@
 
 #import "PBArray.h"
 
-NSString * const PBArrayTypeMismatchException = @"PBArrayTypeMismatchException";
-NSString * const PBArrayNumberExpectedException = @"PBArrayNumberExpectedException";
-NSString * const PBArrayAllocationFailureException = @"PBArrayAllocationFailureException";
+NSString * const PBArrayTypeMismatchException2 = @"PBArrayTypeMismatchException2";
+NSString * const PBArrayNumberExpectedException2 = @"PBArrayNumberExpectedException2";
+NSString * const PBArrayAllocationFailureException2 = @"PBArrayAllocationFailureException2";
 
 #pragma mark NSNumber Setters
 
@@ -94,7 +94,7 @@ static PBArrayValueTypeInfo PBValueTypes[] =
 
 #define PBArrayValueTypeAssert(type) \
 	if (__builtin_expect(_valueType != type, 0)) \
-		[NSException raise:PBArrayTypeMismatchException \
+		[NSException raise:PBArrayTypeMismatchException2 \
 					format:@"array value type mismatch (expected '%s')", #type];
 
 #define PBArrayValueRangeAssert(index) \
@@ -103,16 +103,16 @@ static PBArrayValueTypeInfo PBValueTypes[] =
 
 #define PBArrayNumberAssert(value) \
 	if (__builtin_expect(![value isKindOfClass:[NSNumber class]], 0)) \
-		[NSException raise:PBArrayNumberExpectedException format:@"NSNumber expected (got '%@')", [value class]];
+		[NSException raise:PBArrayNumberExpectedException2 format:@"NSNumber expected (got '%@')", [value class]];
 
 #define PBArrayAllocationAssert(p, size) \
 	if (__builtin_expect(p == NULL, 0)) \
-		[NSException raise:PBArrayAllocationFailureException format:@"failed to allocate %lu bytes", size];
+		[NSException raise:PBArrayAllocationFailureException2 format:@"failed to allocate %lu bytes", size];
 
 #pragma mark -
 #pragma mark PBArray
 
-@implementation PBArray
+@implementation PBArray2
 
 @synthesize valueType = _valueType;
 @dynamic data;
@@ -140,7 +140,7 @@ static PBArrayValueTypeInfo PBValueTypes[] =
 
 - (instancetype)copyWithZone:(NSZone *)zone
 {
-	PBArray *copy = [[[self class] allocWithZone:zone] initWithCount:_count valueType:_valueType];
+	PBArray2 *copy = [[[self class] allocWithZone:zone] initWithCount:_count valueType:_valueType];
 	if (copy)
 	{
 		memcpy(copy->_data, _data, _count * PBArrayValueTypeSize(_valueType));
@@ -230,7 +230,7 @@ static PBArrayValueTypeInfo PBValueTypes[] =
 	return ((Float64 *)_data)[index];
 }
 
-- (BOOL)isEqualToArray:(PBArray *)array
+- (BOOL)isEqualToArray:(PBArray2 *)array
 {
 	if (self == array)
 	{
@@ -249,7 +249,7 @@ static PBArrayValueTypeInfo PBValueTypes[] =
 - (BOOL)isEqual:(id)object
 {
 	BOOL equal = NO;
-	if ([object isKindOfClass:[PBArray class]])
+	if ([object isKindOfClass:[PBArray2 class]])
 	{
 		equal = [self isEqualToArray:object];
 	}
@@ -343,11 +343,11 @@ static PBArrayValueTypeInfo PBValueTypes[] =
 
 @end
 
-@implementation PBArray (PBArrayExtended)
+@implementation PBArray2 (PBArrayExtended)
 
--(PBArray *) filteredArrayUsingPredicate:(NSPredicate *)predicate
+-(PBArray2 *) filteredArrayUsingPredicate:(NSPredicate *)predicate
 {
-    __block PBAppendableArray *newArray = [[PBAppendableArray alloc] initWithValueType:_valueType];
+    __block PBAppendableArray2 *newArray = [[PBAppendableArray2 alloc] initWithValueType:_valueType];
     [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 
         BOOL result = [predicate evaluateWithObject:obj];
@@ -388,11 +388,11 @@ static PBArrayValueTypeInfo PBValueTypes[] =
     return newArray;
 }
 
-- (id)arrayByAppendingArray:(PBArray *)array
+- (id)arrayByAppendingArray:(PBArray2 *)array
 {
 	PBArrayValueTypeAssert(array.valueType);
 
-	PBArray *result = [[[self class] alloc] initWithCount:_count + array.count valueType:_valueType];
+	PBArray2 *result = [[[self class] alloc] initWithCount:_count + array.count valueType:_valueType];
 	if (result)
 	{
 		const size_t elementSize = PBArrayValueTypeSize(_valueType);
@@ -407,7 +407,7 @@ static PBArrayValueTypeInfo PBValueTypes[] =
 
 @end
 
-@implementation PBArray (PBArrayCreation)
+@implementation PBArray2 (PBArrayCreation)
 
 + (instancetype)arrayWithValueType:(PBArrayValueType)valueType
 {
@@ -462,9 +462,9 @@ static PBArrayValueTypeInfo PBValueTypes[] =
 @end
 
 #pragma mark -
-#pragma mark PBAppendableArray
+#pragma mark PBAppendableArray2
 
-@implementation PBAppendableArray
+@implementation PBAppendableArray2
 
 - (void)ensureAdditionalCapacity:(NSUInteger)additionalSlots
 {
@@ -560,7 +560,7 @@ static PBArrayValueTypeInfo PBValueTypes[] =
 	_count++;
 }
 
-- (void)appendArray:(PBArray *)array
+- (void)appendArray:(PBArray2 *)array
 {
 	PBArrayValueTypeAssert(array.valueType);
 	[self ensureAdditionalCapacity:array.count];

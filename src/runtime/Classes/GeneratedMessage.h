@@ -25,20 +25,20 @@
  *
  * @author Cyrus Najmabadi
  */
-@class PBExtensionRegistry;
-@class PBCodedInputStream;
+@class PBExtensionRegistry2;
+@class PBCodedInputStream2;
 @protocol GeneratedMessageProtocol <PBMessage>
 + (id<GeneratedMessageProtocol>) parseFromData:(NSData*) data;
-+ (id<GeneratedMessageProtocol>) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*)extensionRegistry;
++ (id<GeneratedMessageProtocol>) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry2*)extensionRegistry;
 + (id<GeneratedMessageProtocol>) parseFromInputStream:(NSInputStream*) input;
-+ (id<GeneratedMessageProtocol>) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (id<GeneratedMessageProtocol>) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (id<GeneratedMessageProtocol>) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (id<GeneratedMessageProtocol>) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry2*) extensionRegistry;
++ (id<GeneratedMessageProtocol>) parseFromCodedInputStream:(PBCodedInputStream2*) input;
++ (id<GeneratedMessageProtocol>) parseFromCodedInputStream:(PBCodedInputStream2*) input extensionRegistry:(PBExtensionRegistry2*) extensionRegistry;
 @end
 
-@interface PBGeneratedMessage : PBAbstractMessage {
+@interface PBGeneratedMessage2 : PBAbstractMessage2 {
 @private
-  PBUnknownFieldSet* unknownFields;
+  PBUnknownFieldSet2* unknownFields;
 
 @protected
   SInt32 memoizedSerializedSize;

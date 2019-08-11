@@ -1,6 +1,6 @@
 #import "RingBuffer.h"
 
-@implementation RingBuffer
+@implementation RingBuffer2
 
 - (instancetype)initWithData:(NSMutableData*)data {
   if ((self = [super init])) {

@@ -17,7 +17,7 @@
 
 #import "Message.h"
 
-@class PBCodedInputStream;
+@class PBCodedInputStream2;
 @class PBExtensionRegistry;
 
 /**
@@ -57,14 +57,14 @@
  */
 - (id<PBMessage>) defaultInstance;
 
-- (PBUnknownFieldSet*) unknownFields;
-- (id<PBMessageBuilder>) setUnknownFields:(PBUnknownFieldSet*) unknownFields;
+- (PBUnknownFieldSet2*) unknownFields;
+- (id<PBMessageBuilder>) setUnknownFields:(PBUnknownFieldSet2*) unknownFields;
 
 /**
  * Merge some unknown fields into the {@link UnknownFieldSet} for this
  * message.
  */
-- (id<PBMessageBuilder>) mergeUnknownFields:(PBUnknownFieldSet*) unknownFields;
+- (id<PBMessageBuilder>) mergeUnknownFields:(PBUnknownFieldSet2*) unknownFields;
 
 /**
  * Parses a message of this type from the input and merges it with this
@@ -92,7 +92,7 @@
  * verify that the last tag seen was the appropriate end-group tag,
  * or zero for EOF.
  */
-- (id<PBMessageBuilder>) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (id<PBMessageBuilder>) mergeFromCodedInputStream:(PBCodedInputStream2*) input;
 
 /**
  * Like {@link Builder#mergeFrom(CodedInputStream)}, but also
@@ -100,7 +100,7 @@
  * must be registered in {@code extensionRegistry}.  Extensions not in
  * the registry will be treated as unknown fields.
  */
-- (id<PBMessageBuilder>) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (id<PBMessageBuilder>) mergeFromCodedInputStream:(PBCodedInputStream2*) input extensionRegistry:(PBExtensionRegistry2*) extensionRegistry;
 
 /**
  * Parse {@code data} as a message of this type and merge it with the
@@ -114,7 +114,7 @@
  * message being built.  This is just a small wrapper around
  * {@link #mergeFrom(CodedInputStream,ExtensionRegistry)}.
  */
-- (id<PBMessageBuilder>) mergeFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (id<PBMessageBuilder>) mergeFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry2*) extensionRegistry;
 
 /**
  * Parse a message of this type from {@code input} and merge it with the
@@ -132,5 +132,5 @@
  * message being built.  This is just a small wrapper around
  * {@link #mergeFrom(CodedInputStream,ExtensionRegistry)}.
  */
-- (id<PBMessageBuilder>) mergeFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (id<PBMessageBuilder>) mergeFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry2*) extensionRegistry;
 @end

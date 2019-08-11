@@ -15,8 +15,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@class PBExtensionRegistry;
-@class PBUnknownFieldSetBuilder;
+@class PBExtensionRegistry2;
+@class PBUnknownFieldSetBuilder2;
 @protocol PBMessageBuilder;
 
 /**
@@ -31,7 +31,7 @@
  *
  * @author Cyrus Najmabadi
  */
-@interface PBCodedInputStream : NSObject {
+@interface PBCodedInputStream2 : NSObject {
 @private
   NSMutableData* buffer;
   SInt32 bufferSize;
@@ -58,8 +58,8 @@
   SInt32 sizeLimit;
 }
 
-+ (PBCodedInputStream*) streamWithData:(NSData*) data;
-+ (PBCodedInputStream*) streamWithInputStream:(NSInputStream*) input;
++ (PBCodedInputStream2*) streamWithData:(NSData*) data;
++ (PBCodedInputStream2*) streamWithInputStream:(NSInputStream*) input;
 
 /**
  * Attempt to read a field tag, returning zero if we have reached EOF.
@@ -139,19 +139,19 @@
 
 
 /** Read an embedded message field value from the stream. */
-- (void) readMessage:(id<PBMessageBuilder>) builder extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (void) readMessage:(id<PBMessageBuilder>) builder extensionRegistry:(PBExtensionRegistry2*) extensionRegistry;
 
 - (BOOL) readBool;
 - (NSString*) readString;
 - (NSData*) readData;
 
-- (void) readGroup:(SInt32) fieldNumber builder:(id<PBMessageBuilder>) builder extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (void) readGroup:(SInt32) fieldNumber builder:(id<PBMessageBuilder>) builder extensionRegistry:(PBExtensionRegistry2*) extensionRegistry;
 
 /**
  * Reads a {@code group} field value from the stream and merges it into the
  * given {@link UnknownFieldSet}.
  */
-- (void) readUnknownGroup:(SInt32) fieldNumber builder:(PBUnknownFieldSetBuilder*) builder;
+- (void) readUnknownGroup:(SInt32) fieldNumber builder:(PBUnknownFieldSetBuilder2*) builder;
 
 /**
  * Verifies that the last call to readTag() returned the given tag value.

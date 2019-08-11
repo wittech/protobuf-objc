@@ -20,13 +20,13 @@
 @protocol PBExtensionField;
 
 @class PBAbstractMessage;
-@class PBCodedInputStream;
-@class PBCodedOutputStream;
+@class PBCodedInputStream2;
+@class PBCodedOutputStream2;
 @class PBConcreteExtensionField;
 @class PBExtendableMessageBuilder;
 @class PBExtendableMessage;
 @class PBExtensionRegistry;
-@class PBField;
+@class PBField2;
 @class PBGeneratedMessage;
 @class PBGeneratedMessageBuilder;
 @class PBMutableExtensionRegistry;

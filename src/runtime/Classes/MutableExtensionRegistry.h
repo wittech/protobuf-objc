@@ -17,7 +17,7 @@
 
 #import "ExtensionRegistry.h"
 
-@interface PBMutableExtensionRegistry : PBExtensionRegistry {
+@interface PBMutableExtensionRegistry : PBExtensionRegistry2 {
 @private
   NSMutableDictionary* mutableClassMap;
 }

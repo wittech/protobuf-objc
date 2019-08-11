@@ -694,7 +694,7 @@ NSString *NSStringFromNestedOptionTypeNestedEnum(NestedOptionTypeNestedEnum valu
 @property (readonly) SInt32 foo;
 @property (readonly) SInt32 foo2;
 @property (readonly) SInt32 foo3;
-@property (readonly, strong) PBArray * foo4;
+@property (readonly, strong) PBArray2 * foo4;
 - (SInt32)foo4AtIndex:(NSUInteger)index;
 
 + (instancetype) defaultInstance;

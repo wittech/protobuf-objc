@@ -22,7 +22,7 @@
  * implements as many methods of that interface as possible in terms of
  * other methods.
  */
-@interface PBAbstractMessageBuilder : NSObject<PBMessageBuilder> {
+@interface PBAbstractMessageBuilder2 : NSObject<PBMessageBuilder> {
 }
 
 @end

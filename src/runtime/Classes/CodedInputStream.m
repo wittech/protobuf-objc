@@ -24,13 +24,13 @@
 #import "UnknownFieldSet.h"
 
 
-@interface PBCodedInputStream ()
+@interface PBCodedInputStream2 ()
 @property (strong) NSMutableData* buffer;
 @property (strong) NSInputStream* input;
 @end
 
 
-@implementation PBCodedInputStream
+@implementation PBCodedInputStream2
 
 const SInt32 DEFAULT_RECURSION_LIMIT = 64;
 const SInt32 DEFAULT_SIZE_LIMIT = 64 << 20;  // 64MB
@@ -74,13 +74,13 @@ const SInt32 BUFFER_SIZE = 4096;
 }
 
 
-+ (PBCodedInputStream*) streamWithData:(NSData*) data {
-    return [[PBCodedInputStream alloc] initWithData:data];
++ (PBCodedInputStream2*) streamWithData:(NSData*) data {
+    return [[PBCodedInputStream2 alloc] initWithData:data];
 }
 
 
-+ (PBCodedInputStream*) streamWithInputStream:(NSInputStream*) input {
-    return [[PBCodedInputStream alloc] initWithInputStream:input];
++ (PBCodedInputStream2*) streamWithInputStream:(NSInputStream*) input {
+    return [[PBCodedInputStream2 alloc] initWithInputStream:input];
 }
 
 
@@ -236,7 +236,7 @@ const SInt32 BUFFER_SIZE = 4096;
 /** Read a {@code group} field value from the stream. */
 - (void)      readGroup:(SInt32) fieldNumber
                 builder:(id<PBMessageBuilder>) builder
-      extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+      extensionRegistry:(PBExtensionRegistry2*) extensionRegistry {
   if (recursionDepth >= recursionLimit) {
     @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"Recursion Limit Exceeded" userInfo:nil];
   }
@@ -252,7 +252,7 @@ const SInt32 BUFFER_SIZE = 4096;
  * given {@link PBUnknownFieldSet}.
  */
 - (void) readUnknownGroup:(SInt32) fieldNumber
-                  builder:(PBUnknownFieldSetBuilder*) builder {
+                  builder:(PBUnknownFieldSetBuilder2*) builder {
   if (recursionDepth >= recursionLimit) {
     @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"Recursion Limit Exceeded" userInfo:nil];
   }
@@ -265,7 +265,7 @@ const SInt32 BUFFER_SIZE = 4096;
 
 /** Read an embedded message field value from the stream. */
 - (void) readMessage:(id<PBMessageBuilder>) builder
-   extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+   extensionRegistry:(PBExtensionRegistry2*) extensionRegistry {
   SInt32 length = [self readRawVarint32];
   if (recursionDepth >= recursionLimit) {
     @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"Recursion Limit Exceeded" userInfo:nil];

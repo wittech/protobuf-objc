@@ -32,9 +32,9 @@
  * Called by subclasses to parse an unknown field or an extension.
  * @return {@code YES} unless the tag is an end-group tag.
  */
-- (BOOL) parseUnknownField:(PBCodedInputStream*) input
-             unknownFields:(PBUnknownFieldSetBuilder*) unknownFields
-         extensionRegistry:(PBExtensionRegistry*) extensionRegistry
+- (BOOL) parseUnknownField:(PBCodedInputStream2*) input
+             unknownFields:(PBUnknownFieldSetBuilder2*) unknownFields
+         extensionRegistry:(PBExtensionRegistry2*) extensionRegistry
                        tag:(SInt32) tag {
   PBExtendableMessage* message = [self internalGetResult];
   SInt32 wireType = PBWireFormatGetTagWireType(tag);

@@ -5,8 +5,8 @@
 
 @implementation ObjectivecDescriptorRoot
 static id<PBExtensionField> ObjectivecDescriptorRoot_objectivecFileOptions = nil;
-static PBExtensionRegistry* extensionRegistry = nil;
-+ (PBExtensionRegistry*) extensionRegistry {
+static PBExtensionRegistry2* extensionRegistry = nil;
++ (PBExtensionRegistry2*) extensionRegistry {
   return extensionRegistry;
 }
 
@@ -92,7 +92,7 @@ static ObjectiveCFileOptions* defaultObjectiveCFileOptionsInstance = nil;
 - (BOOL) isInitialized {
   return YES;
 }
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+- (void) writeToCodedOutputStream:(PBCodedOutputStream2*) output {
   if (self.hasPackage) {
     [output writeString:1 value:self.package];
   }
@@ -127,19 +127,19 @@ static ObjectiveCFileOptions* defaultObjectiveCFileOptionsInstance = nil;
 + (ObjectiveCFileOptions*) parseFromData:(NSData*) data {
   return (ObjectiveCFileOptions*)[[[ObjectiveCFileOptions builder] mergeFromData:data] build];
 }
-+ (ObjectiveCFileOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
++ (ObjectiveCFileOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry2*) extensionRegistry {
   return (ObjectiveCFileOptions*)[[[ObjectiveCFileOptions builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (ObjectiveCFileOptions*) parseFromInputStream:(NSInputStream*) input {
   return (ObjectiveCFileOptions*)[[[ObjectiveCFileOptions builder] mergeFromInputStream:input] build];
 }
-+ (ObjectiveCFileOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
++ (ObjectiveCFileOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry2*) extensionRegistry {
   return (ObjectiveCFileOptions*)[[[ObjectiveCFileOptions builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (ObjectiveCFileOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input {
++ (ObjectiveCFileOptions*) parseFromCodedInputStream:(PBCodedInputStream2*) input {
   return (ObjectiveCFileOptions*)[[[ObjectiveCFileOptions builder] mergeFromCodedInputStream:input] build];
 }
-+ (ObjectiveCFileOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
++ (ObjectiveCFileOptions*) parseFromCodedInputStream:(PBCodedInputStream2*) input extensionRegistry:(PBExtensionRegistry2*) extensionRegistry {
   return (ObjectiveCFileOptions*)[[[ObjectiveCFileOptions builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (ObjectiveCFileOptionsBuilder*) builder {
@@ -223,7 +223,7 @@ static ObjectiveCFileOptions* defaultObjectiveCFileOptionsInstance = nil;
   }
   return self;
 }
-- (PBGeneratedMessage*) internalGetResult {
+- (PBGeneratedMessage2*) internalGetResult {
   return resultObjectiveCfileOptions;
 }
 - (ObjectiveCFileOptionsBuilder*) clear {
@@ -261,11 +261,11 @@ static ObjectiveCFileOptions* defaultObjectiveCFileOptionsInstance = nil;
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-- (ObjectiveCFileOptionsBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+- (ObjectiveCFileOptionsBuilder*) mergeFromCodedInputStream:(PBCodedInputStream2*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry2 emptyRegistry]];
 }
-- (ObjectiveCFileOptionsBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSetBuilder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+- (ObjectiveCFileOptionsBuilder*) mergeFromCodedInputStream:(PBCodedInputStream2*) input extensionRegistry:(PBExtensionRegistry2*) extensionRegistry {
+  PBUnknownFieldSetBuilder2* unknownFields = [PBUnknownFieldSet2 builderWithUnknownFields:self.unknownFields];
   while (YES) {
     SInt32 tag = [input readTag];
     switch (tag) {

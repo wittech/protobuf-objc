@@ -158,7 +158,7 @@ SInt32 typeSize(PBExtensionType type) {
 
 
 - (void)           writeSingleValue:(id) value
-    includingTagToCodedOutputStream:(PBCodedOutputStream*) output {
+    includingTagToCodedOutputStream:(PBCodedOutputStream2*) output {
   switch (type) {
     case PBExtensionTypeBool:
       [output writeBool:fieldNumber value:[value boolValue]];
@@ -225,7 +225,7 @@ SInt32 typeSize(PBExtensionType type) {
 
 
 - (void)           writeSingleValue:(id) value
-    noTagToCodedOutputStream:(PBCodedOutputStream*) output {
+    noTagToCodedOutputStream:(PBCodedOutputStream2*) output {
   switch (type) {
     case PBExtensionTypeBool:
       [output writeBoolNoTag:[value boolValue]];
@@ -368,14 +368,14 @@ SInt32 typeSize(PBExtensionType type) {
       return;
     case PBExtensionTypeGroup:
     case PBExtensionTypeMessage:
-      [((PBAbstractMessage *)value) writeDescriptionTo:output withIndent:indent];
+      [((PBAbstractMessage2 *)value) writeDescriptionTo:output withIndent:indent];
       return;
   }
   @throw [NSException exceptionWithName:@"InternalError" reason:@"" userInfo:nil];
 }
 
 
-- (void)writeRepeatedValues:(NSArray*) values includingTagsToCodedOutputStream:(PBCodedOutputStream*) output {
+- (void)writeRepeatedValues:(NSArray*) values includingTagsToCodedOutputStream:(PBCodedOutputStream2*) output {
   if (isPacked) {
     [output writeTag:fieldNumber format:PBWireFormatLengthDelimited];
     SInt32 dataSize = 0;
@@ -398,7 +398,7 @@ SInt32 typeSize(PBExtensionType type) {
 }
 
 
-- (void) writeValue:(id) value includingTagToCodedOutputStream:(PBCodedOutputStream*) output {
+- (void) writeValue:(id) value includingTagToCodedOutputStream:(PBCodedOutputStream2*) output {
   if (isRepeated) {
     [self writeRepeatedValues:value includingTagsToCodedOutputStream:output];
   } else {
@@ -473,7 +473,7 @@ SInt32 typeSize(PBExtensionType type) {
         case PBExtensionTypeMessage:
         {
             NSMutableDictionary * dic = [NSMutableDictionary new];
-            [((PBAbstractMessage *)object) storeInDictionary:dic];
+            [((PBAbstractMessage2 *)object) storeInDictionary:dic];
             return dic;
         }
     }
@@ -493,8 +493,8 @@ SInt32 typeSize(PBExtensionType type) {
     }
 }
 
-- (void) mergeMessageSetExtentionFromCodedInputStream:(PBCodedInputStream*) input
-                                        unknownFields:(PBUnknownFieldSetBuilder*) unknownFields {
+- (void) mergeMessageSetExtentionFromCodedInputStream:(PBCodedInputStream2*) input
+                                        unknownFields:(PBUnknownFieldSetBuilder2*) unknownFields {
   @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 
   // The wire format for MessageSet is:
@@ -557,8 +557,8 @@ SInt32 typeSize(PBExtensionType type) {
 }
 
 
-- (id) readSingleValueFromCodedInputStream:(PBCodedInputStream*) input
-                         extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+- (id) readSingleValueFromCodedInputStream:(PBCodedInputStream2*) input
+                         extensionRegistry:(PBExtensionRegistry2*) extensionRegistry {
   switch (type) {
     case PBExtensionTypeBool:     return [NSNumber numberWithBool:[input readBool]];
     case PBExtensionTypeFixed32:  return @([input readFixed32]);
@@ -595,9 +595,9 @@ SInt32 typeSize(PBExtensionType type) {
 }
 
 
-- (void) mergeFromCodedInputStream:(PBCodedInputStream*) input
-                     unknownFields:(PBUnknownFieldSetBuilder*) unknownFields
-     extensionRegistry:(PBExtensionRegistry*) extensionRegistry
+- (void) mergeFromCodedInputStream:(PBCodedInputStream2*) input
+                     unknownFields:(PBUnknownFieldSetBuilder2*) unknownFields
+     extensionRegistry:(PBExtensionRegistry2*) extensionRegistry
     builder:(PBExtendableMessageBuilder*) builder
                                tag:(SInt32) tag {
   if (isPacked) {

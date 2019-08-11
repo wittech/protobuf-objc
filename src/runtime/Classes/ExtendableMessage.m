@@ -76,7 +76,7 @@
 }
 
 
-- (void) writeExtensionsToCodedOutputStream:(PBCodedOutputStream*) output
+- (void) writeExtensionsToCodedOutputStream:(PBCodedOutputStream2*) output
                                        from:(SInt32) startInclusive
                                          to:(SInt32) endExclusive {
   // man, i really wish Cocoa had a Sorted/TreeMap

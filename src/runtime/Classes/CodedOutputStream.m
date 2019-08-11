@@ -24,7 +24,7 @@
 #import "UnknownFieldSet.h"
 
 
-@implementation PBCodedOutputStream
+@implementation PBCodedOutputStream2
 
 const SInt32 DEFAULT_BUFFER_SIZE = 4 * 1024;
 
@@ -32,24 +32,24 @@ const SInt32 DEFAULT_BUFFER_SIZE = 4 * 1024;
 - (instancetype)initWithOutputStream:(NSOutputStream*)_output data:(NSMutableData*)data {
 	if ( (self = [super init]) ) {
 		output = _output;
-		buffer = [[RingBuffer alloc] initWithData:data];
+		buffer = [[RingBuffer2 alloc] initWithData:data];
 	}
 	return self;
 }
 
-+ (PBCodedOutputStream*)streamWithOutputStream:(NSOutputStream*)output bufferSize:(SInt32)bufferSize {
++ (PBCodedOutputStream2*)streamWithOutputStream:(NSOutputStream*)output bufferSize:(SInt32)bufferSize {
 	NSMutableData *data = [NSMutableData dataWithLength:bufferSize];
-	return [[PBCodedOutputStream alloc] initWithOutputStream:output data:data];
+	return [[PBCodedOutputStream2 alloc] initWithOutputStream:output data:data];
 }
 
 
-+ (PBCodedOutputStream*)streamWithOutputStream:(NSOutputStream*)output {
-	return [PBCodedOutputStream streamWithOutputStream:output bufferSize:DEFAULT_BUFFER_SIZE];
++ (PBCodedOutputStream2*)streamWithOutputStream:(NSOutputStream*)output {
+	return [PBCodedOutputStream2 streamWithOutputStream:output bufferSize:DEFAULT_BUFFER_SIZE];
 }
 
 
-+ (PBCodedOutputStream*)streamWithData:(NSMutableData*)data {
-	return [[PBCodedOutputStream alloc] initWithOutputStream:nil data:data];
++ (PBCodedOutputStream2*)streamWithData:(NSMutableData*)data {
+	return [[PBCodedOutputStream2 alloc] initWithOutputStream:nil data:data];
 }
 
 
@@ -215,14 +215,14 @@ const SInt32 DEFAULT_BUFFER_SIZE = 4 * 1024;
 }
 
 
-- (void)writeUnknownGroupNoTag:(SInt32)fieldNumber value:(const PBUnknownFieldSet*)value {
+- (void)writeUnknownGroupNoTag:(SInt32)fieldNumber value:(const PBUnknownFieldSet2*)value {
 	[value writeToCodedOutputStream:self];
 	[self writeTag:fieldNumber format:PBWireFormatEndGroup];
 }
 
 
 /** Write a group represented by an {@link PBUnknownFieldSet}. */
-- (void)writeUnknownGroup:(SInt32)fieldNumber value:(const PBUnknownFieldSet*)value {
+- (void)writeUnknownGroup:(SInt32)fieldNumber value:(const PBUnknownFieldSet2*)value {
 	[self writeTag:fieldNumber format:PBWireFormatStartGroup];
 	[self writeUnknownGroupNoTag:fieldNumber value:value];
 }

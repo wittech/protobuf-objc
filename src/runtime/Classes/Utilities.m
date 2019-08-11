@@ -167,7 +167,7 @@ SInt32 computeGroupSizeNoTag(const id<PBMessage> value) {
 }
 
 
-SInt32 computeUnknownGroupSizeNoTag(const PBUnknownFieldSet* value) {
+SInt32 computeUnknownGroupSizeNoTag(const PBUnknownFieldSet2* value) {
 	return value.serializedSize;
 }
 
@@ -263,7 +263,7 @@ SInt32 computeGroupSize(SInt32 fieldNumber, const id<PBMessage> value) {
 }
 
 
-SInt32 computeUnknownGroupSize(SInt32 fieldNumber, const PBUnknownFieldSet* value) {
+SInt32 computeUnknownGroupSize(SInt32 fieldNumber, const PBUnknownFieldSet2* value) {
 	return computeTagSize(fieldNumber) * 2 + computeUnknownGroupSizeNoTag(value);
 }
 

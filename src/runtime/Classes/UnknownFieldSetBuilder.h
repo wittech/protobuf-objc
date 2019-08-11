@@ -17,10 +17,10 @@
 
 #import "MessageBuilder.h"
 
-@class PBField;
-@class PBMutableField;
+@class PBField2;
+@class PBMutableField2;
 
-@interface PBUnknownFieldSetBuilder : NSObject <PBMessageBuilder> {
+@interface PBUnknownFieldSetBuilder2 : NSObject <PBMessageBuilder> {
 @private
   NSMutableDictionary* fields;
 
@@ -29,25 +29,25 @@
   //   row (important when parsing an unknown repeated field).
   SInt32 lastFieldNumber;
 
-  PBMutableField* lastField;
+  PBMutableField2* lastField;
 }
 
-+ (PBUnknownFieldSetBuilder*) createBuilder:(PBUnknownFieldSet*) unknownFields;
++ (PBUnknownFieldSetBuilder2*) createBuilder:(PBUnknownFieldSet2*) unknownFields;
 
-- (PBUnknownFieldSet*) build;
-- (PBUnknownFieldSetBuilder*) mergeUnknownFields:(PBUnknownFieldSet*) other;
+- (PBUnknownFieldSet2*) build;
+- (PBUnknownFieldSetBuilder2*) mergeUnknownFields:(PBUnknownFieldSet2*) other;
 
-- (PBUnknownFieldSetBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBUnknownFieldSetBuilder*) mergeFromData:(NSData*) data;
-- (PBUnknownFieldSetBuilder*) mergeFromInputStream:(NSInputStream*) input;
+- (PBUnknownFieldSetBuilder2*) mergeFromCodedInputStream:(PBCodedInputStream2*) input;
+- (PBUnknownFieldSetBuilder2*) mergeFromData:(NSData*) data;
+- (PBUnknownFieldSetBuilder2*) mergeFromInputStream:(NSInputStream*) input;
 
-- (PBUnknownFieldSetBuilder*) mergeVarintField:(SInt32) number value:(SInt32) value;
+- (PBUnknownFieldSetBuilder2*) mergeVarintField:(SInt32) number value:(SInt32) value;
 
-- (BOOL) mergeFieldFrom:(SInt32) tag input:(PBCodedInputStream*) input;
+- (BOOL) mergeFieldFrom:(SInt32) tag input:(PBCodedInputStream2*) input;
 
-- (PBUnknownFieldSetBuilder*) addField:(PBField*) field forNumber:(SInt32) number;
+- (PBUnknownFieldSetBuilder2*) addField:(PBField2*) field forNumber:(SInt32) number;
 
-- (PBUnknownFieldSetBuilder*) clear;
-- (PBUnknownFieldSetBuilder*) mergeField:(PBField*) field forNumber:(SInt32) number;
+- (PBUnknownFieldSetBuilder2*) clear;
+- (PBUnknownFieldSetBuilder2*) mergeField:(PBField2*) field forNumber:(SInt32) number;
 
 @end

@@ -22,7 +22,7 @@
 #import "UnknownFieldSet.h"
 #import "Utilities.h"
 
-@implementation PBField
+@implementation PBField2
 
 @synthesize varintArray = _varintArray;
 @synthesize fixed32Array = _fixed32Array;
@@ -30,16 +30,16 @@
 @synthesize lengthDelimitedArray = _lengthDelimitedArray;
 @synthesize groupArray = _groupArray;
 
-static PBField *sDefaultInstance = nil;
+static PBField2 *sDefaultInstance = nil;
 
 + (void)initialize {
-	if (self == [PBField class]) {
-		sDefaultInstance = [[PBField alloc] init];
+	if (self == [PBField2 class]) {
+		sDefaultInstance = [[PBField2 alloc] init];
 	}
 }
 
 
-+ (PBField *)defaultInstance {
++ (PBField2 *)defaultInstance {
 	return sDefaultInstance;
 }
 
@@ -74,7 +74,7 @@ static PBField *sDefaultInstance = nil;
 		result += computeDataSize(fieldNumber, value);
 	}
 
-	for (PBUnknownFieldSet *value in _groupArray) {
+	for (PBUnknownFieldSet2 *value in _groupArray) {
 		result += computeUnknownGroupSize(fieldNumber, value);
 	}
 
@@ -91,7 +91,7 @@ static PBField *sDefaultInstance = nil;
 	return result;
 }
 
-- (void)writeTo:(SInt32)fieldNumber output:(PBCodedOutputStream *) output {
+- (void)writeTo:(SInt32)fieldNumber output:(PBCodedOutputStream2 *) output {
 	const SInt64 *varintValues = (const SInt64 *)_varintArray.data;
 	if (varintValues) {
 		const NSUInteger count = _varintArray.count;
@@ -120,7 +120,7 @@ static PBField *sDefaultInstance = nil;
 		[output writeData:fieldNumber value:value];
 	}
 
-	for (PBUnknownFieldSet *value in _groupArray) {
+	for (PBUnknownFieldSet2 *value in _groupArray) {
 		[output writeUnknownGroup:fieldNumber value:value];
 	}
 }
@@ -143,14 +143,14 @@ static PBField *sDefaultInstance = nil;
       for (NSData* value in self.lengthDelimitedArray) {
         [output appendFormat:@"%@%ld: %@\n", indent, (long)fieldNumber, value];
       }
-      for (PBUnknownFieldSet* value in self.groupArray) {
+      for (PBUnknownFieldSet2* value in self.groupArray) {
         [output appendFormat:@"%@%ld: [\n", indent, (long)fieldNumber];
         [value writeDescriptionTo:output withIndent:[NSString stringWithFormat:@"%@  ", indent]];
         [output appendFormat:@"%@]", indent];
       }
 }
 
-- (void)writeAsMessageSetExtensionTo:(SInt32)fieldNumber output:(PBCodedOutputStream *) output {
+- (void)writeAsMessageSetExtensionTo:(SInt32)fieldNumber output:(PBCodedOutputStream2 *) output {
 	for (NSData *value in _lengthDelimitedArray) {
 		[output writeRawMessageSetExtension:fieldNumber value:value];
 	}

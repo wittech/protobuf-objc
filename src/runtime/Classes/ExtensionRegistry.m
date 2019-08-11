@@ -17,20 +17,20 @@
 
 #import "ExtensionRegistry.h"
 
-@interface PBExtensionRegistry()
+@interface PBExtensionRegistry2()
 @property (strong) NSDictionary* classMap;
 @end
 
-@implementation PBExtensionRegistry
+@implementation PBExtensionRegistry2
 
 @synthesize classMap;
 
 
-static PBExtensionRegistry* emptyRegistry = nil;
+static PBExtensionRegistry2* emptyRegistry = nil;
 
 + (void) initialize {
-  if (self == [PBExtensionRegistry class]) {
-    emptyRegistry = [[PBExtensionRegistry alloc] initWithClassMap:[NSDictionary dictionary]];
+  if (self == [PBExtensionRegistry2 class]) {
+    emptyRegistry = [[PBExtensionRegistry2 alloc] initWithClassMap:[NSDictionary dictionary]];
   }
 }
 
@@ -49,7 +49,7 @@ static PBExtensionRegistry* emptyRegistry = nil;
 }
 
 
-+ (PBExtensionRegistry*) emptyRegistry {
++ (PBExtensionRegistry2*) emptyRegistry {
   return emptyRegistry;
 }
 

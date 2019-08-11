@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@interface RingBuffer : NSObject {
+@interface RingBuffer2 : NSObject {
 	NSMutableData *buffer;
 	SInt32 position;
 	SInt32 tail;

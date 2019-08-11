@@ -71,12 +71,12 @@
 
 #import "ExtensionField.h"
 
-@interface PBExtensionRegistry : NSObject {
+@interface PBExtensionRegistry2 : NSObject {
 @protected
   NSDictionary* classMap;
 }
 
-+ (PBExtensionRegistry*) emptyRegistry;
++ (PBExtensionRegistry2*) emptyRegistry;
 - (id<PBExtensionField>) getExtension:(Class) clazz fieldNumber:(SInt32) fieldNumber;
 
 /* @protected */

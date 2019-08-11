@@ -30,18 +30,18 @@
  * @author Cyrus Najmabadi
  */
 
-@class PBUnknownFieldSet;
-@class RingBuffer;
+@class PBUnknownFieldSet2;
+@class RingBuffer2;
 @protocol PBMessage;
 
-@interface PBCodedOutputStream : NSObject {
+@interface PBCodedOutputStream2 : NSObject {
     NSOutputStream *output;
-    RingBuffer *buffer;
+    RingBuffer2 *buffer;
 }
 
-+ (PBCodedOutputStream*) streamWithData:(NSMutableData*) data;
-+ (PBCodedOutputStream*) streamWithOutputStream:(NSOutputStream*) output;
-+ (PBCodedOutputStream*) streamWithOutputStream:(NSOutputStream*) output bufferSize:(SInt32) bufferSize;
++ (PBCodedOutputStream2*) streamWithData:(NSMutableData*) data;
++ (PBCodedOutputStream2*) streamWithOutputStream:(NSOutputStream*) output;
++ (PBCodedOutputStream2*) streamWithOutputStream:(NSOutputStream*) output bufferSize:(SInt32) bufferSize;
 
 /**
  * Flushes the stream and forces any buffered bytes to be written.  This
@@ -87,7 +87,7 @@
 - (void) writeBool:(SInt32) fieldNumber value:(BOOL) value;
 - (void) writeString:(SInt32) fieldNumber value:(const NSString*) value;
 - (void) writeGroup:(SInt32) fieldNumber value:(const id<PBMessage>) value;
-- (void) writeUnknownGroup:(SInt32) fieldNumber value:(const PBUnknownFieldSet*) value;
+- (void) writeUnknownGroup:(SInt32) fieldNumber value:(const PBUnknownFieldSet2*) value;
 - (void) writeMessage:(SInt32) fieldNumber value:(const id<PBMessage>) value;
 - (void) writeUInt32:(SInt32) fieldNumber value:(SInt32) value;
 - (void) writeSFixed32:(SInt32) fieldNumber value:(SInt32) value;
@@ -105,7 +105,7 @@
 - (void) writeBoolNoTag:(BOOL) value;
 - (void) writeStringNoTag:(const NSString*) value;
 - (void) writeGroupNoTag:(SInt32) fieldNumber value:(const id<PBMessage>) value;
-- (void) writeUnknownGroupNoTag:(SInt32) fieldNumber value:(const PBUnknownFieldSet*) value;
+- (void) writeUnknownGroupNoTag:(SInt32) fieldNumber value:(const PBUnknownFieldSet2*) value;
 - (void) writeMessageNoTag:(const id<PBMessage>) value;
 - (void) writeDataNoTag:(const NSData*) value;
 - (void) writeUInt32NoTag:(SInt32) value;

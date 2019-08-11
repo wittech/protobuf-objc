@@ -2687,7 +2687,7 @@ static ComplexOptionType1* defaultComplexOptionType1Instance = nil;
 - (instancetype) defaultInstance {
   return defaultComplexOptionType1Instance;
 }
-- (PBArray *)foo4 {
+- (PBArray2 *)foo4 {
   return foo4Array;
 }
 - (SInt32)foo4AtIndex:(NSUInteger)index {
